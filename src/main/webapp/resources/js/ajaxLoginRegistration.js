@@ -10,6 +10,19 @@ function redirect() {
 		}
 	});
 };
+
+function fetchBooks() {
+	$.ajax({
+		type : "GET",
+		url : 'listOfBooks',
+		data : "",
+		success : function(response) {
+			if (response.message === 'Book found.') {
+				return true;
+			}
+		}
+	});
+};
 // post request for registration
 function submit() {
 	var checked = document.getElementById('terms_privacy').checked;
@@ -37,6 +50,35 @@ function submit() {
 			if (response.signUpMSG === 'notCreated') {
 				signup_msg.innerHTML = "Your account was not created!";
 				return false;
+			}
+		},
+		error : function(xhr, status, err) {
+			alert(err);
+			load();
+		}
+	});
+}
+
+// post request for registration
+function saveBook() {
+	var emty = document.getElementById('emty');
+	$.ajax({
+		url : 'saveBook',
+		type : 'POST',
+		data : {
+			name : $('#book_name').val(),
+			description : $('#book_description').val(),
+			category : $('#book_category').val(),
+			price : $('#book_price').val(),
+		},
+		success : function(response) {
+			if (response.BookField === 'Field is mandetory') {
+				emty.innerHTML = "Field is mandetory";
+				return false;
+			}
+			if (response.BookField === 'Successfully saved') {
+				emty.innerHTML = "Inserted Successfully";
+				return true;
 			}
 		},
 		error : function(xhr, status, err) {

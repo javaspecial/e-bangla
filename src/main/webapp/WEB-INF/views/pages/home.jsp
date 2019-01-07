@@ -2,9 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
-<title>Resume Home</title>
+<title>E-Bangla Home</title>
 <meta charset="utf-8" />
 <%@ page isELIgnored="false"%>
 <link rel="shortcut icon"
@@ -18,279 +19,296 @@
 	src="<spring:url value="/resources/assets/js/breakpoints.min.js" />"></script>
 <script src="<spring:url value="/resources/assets/js/util.js" />"></script>
 <script src="<spring:url value="/resources/assets/js/main.js" />"></script>
+<script
+	src="<spring:url value="/resources/js/ajaxLoginRegistration.js" />"></script>
+
+<link rel="stylesheet"
+	href="<spring:url value="/resources/css/bootstrap.css"/> " />
+<link rel="stylesheet"
+	href="<spring:url value="/resources/css/style.css"/> " />
+<script src="<spring:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+<script src="<spring:url value="/resources/js/move-top.js" />"></script>
+<script src="<spring:url value="/resources/js/easing.js" />"></script>
+<link rel="stylesheet"
+	href="<spring:url value="/resources/css/font-awesome.css"/> " />
+<script src="<spring:url value="/resources/js/jstarbox.js" />"></script>
+<link rel="stylesheet"
+	href="<spring:url value="/resources/css/jstarbox.css"/> " />
+
+<link href='//fonts.googleapis.com/css?family=Montserrat:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Noto+Sans:400,700'
+	rel='stylesheet' type='text/css'>
+
 </head>
-<body class="is-preload">
-	<!-- Wrapper -->
-	<div id="wrapper">
-		<!-- Main -->
-		<div id="main">
-			<div class="inner">
-				<!-- Header -->
-				<header id="header">
-					<a href="index.html" class="logo">${welcomeMSG}</a>
-					<ul class="icons">
-						<li><a href="#" class="icon fa-twitter"><span
-								class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon fa-facebook"><span
-								class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon fa-snapchat-ghost"><span
-								class="label">Snapchat</span></a></li>
-						<li><a href="#" class="icon fa-instagram"><span
-								class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon fa-medium"><span
-								class="label">Medium</span></a></li>
-					</ul>
-				</header>
-
-				<!-- Banner -->
-				<section id="banner">
-					<div class="content">
-						<header>
-							<h1>
-								Hi, I’m Editorial<br /> by HTML5 UP
-							</h1>
-							<p>A free and fully responsive site template</p>
-						</header>
-						<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu.
-							Proin aliquam facilisis ante interdum congue. Integer mollis,
-							nisl amet convallis, porttitor magna ullamcorper, amet egestas
-							mauris. Ut magna finibus nisi nec lacinia. Nam maximus erat id
-							euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor
-							sit nullam.</p>
-						<ul class="actions">
-							<li><a href="#" class="button big">Learn More</a></li>
-						</ul>
-					</div>
-					<span class="image object"> <img
-						src="<spring:url value="/resources/images/pic10.jpg"/>" alt="" />
-					</span>
-				</section>
-
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Erat lacinia</h2>
-					</header>
-					<div class="features">
-						<article>
-							<span class="icon fa-diamond"></span>
-							<div class="content">
-								<h3>Portitor ullamcorper</h3>
-								<p>Aenean ornare velit lacus, ac varius enim lorem
-									ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-									nulla amet lorem feugiat tempus aliquam.</p>
-							</div>
-						</article>
-						<article>
-							<span class="icon fa-paper-plane"></span>
-							<div class="content">
-								<h3>Sapien veroeros</h3>
-								<p>Aenean ornare velit lacus, ac varius enim lorem
-									ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-									nulla amet lorem feugiat tempus aliquam.</p>
-							</div>
-						</article>
-						<article>
-							<span class="icon fa-rocket"></span>
-							<div class="content">
-								<h3>Quam lorem ipsum</h3>
-								<p>Aenean ornare velit lacus, ac varius enim lorem
-									ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-									nulla amet lorem feugiat tempus aliquam.</p>
-							</div>
-						</article>
-						<article>
-							<span class="icon fa-signal"></span>
-							<div class="content">
-								<h3>Sed magna finibus</h3>
-								<p>Aenean ornare velit lacus, ac varius enim lorem
-									ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-									nulla amet lorem feugiat tempus aliquam.</p>
-							</div>
-						</article>
-					</div>
-				</section>
-
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Ipsum sed dolor</h2>
-					</header>
-					<div class="posts">
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic01.jpg"/>" alt="" /></a>
-							<h3>Interdum aenean</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic02.jpg"/>" alt="" /></a>
-							<h3>Nulla amet dolore</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic03.jpg"/>" alt="" /></a>
-							<h3>Tempus ullamcorper</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic04.jpg"/>" alt="" /></a>
-							<h3>Sed etiam facilis</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic05.jpg"/>" alt="" /></a>
-							<h3>Feugiat lorem aenean</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic06.jpg"/>" alt="" /></a>
-							<h3>Amet varius aliquam</h3>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore. Proin aliquam facilisis ante interdum. Sed
-								nulla amet lorem feugiat tempus aliquam.</p>
-							<ul class="actions">
-								<li><a href="#" class="button">More</a></li>
-							</ul>
-						</article>
-					</div>
-				</section>
-
+<body>
+	<div class="header">
+		<div class="container">
+			<div class="logo">
+				<h1>
+					<a href="index.html"><b>T<br>H<br>E
+					</b>E-Bangla<span>The Best Supermarket</span></a>
+				</h1>
 			</div>
-		</div>
+			<div class="header-ri">
+				<ul class="social-top">
+					<li><a href="#" class="icon facebook"><i
+							class="fa fa-facebook" aria-hidden="true"></i><span></span></a></li>
+					<li><a href="#" class="icon twitter"><i
+							class="fa fa-twitter" aria-hidden="true"></i><span></span></a></li>
+					<li><a href="#" class="icon pinterest"><i
+							class="fa fa-pinterest-p" aria-hidden="true"></i><span></span></a></li>
+					<li><a href="#" class="icon dribbble"><i
+							class="fa fa-dribbble" aria-hidden="true"></i><span></span></a></li>
+				</ul>
+			</div>
 
-		<!-- Sidebar -->
-		<div id="sidebar">
-			<div class="inner">
 
-				<!-- Search -->
-				<section id="search" class="alt">
-					<form method="post" action="#">
-						<input type="text" name="query" id="query" placeholder="Search" />
-					</form>
-				</section>
+			<div class="nav-top">
+				<nav class="navbar navbar-default">
 
-				<!-- Menu -->
-				<nav id="menu">
-					<header class="major">
-						<h2>Menu</h2>
-					</header>
-					<ul>
-						<li><a href="index.html">Homepage</a></li>
-						<li><a href="generic.html">Generic</a></li>
-						<li><a href="elements.html">Elements</a></li>
-						<li><span class="opener">Submenu</span>
-							<ul>
-								<li><a href="#">Lorem Dolor</a></li>
-								<li><a href="#">Ipsum Adipiscing</a></li>
-								<li><a href="#">Tempus Magna</a></li>
-								<li><a href="#">Feugiat Veroeros</a></li>
-							</ul></li>
-						<li><a href="#">Etiam Dolore</a></li>
-						<li><a href="#">Adipiscing</a></li>
-						<li><span class="opener">Another Submenu</span>
-							<ul>
-								<li><a href="#">Lorem Dolor</a></li>
-								<li><a href="#">Ipsum Adipiscing</a></li>
-								<li><a href="#">Tempus Magna</a></li>
-								<li><a href="#">Feugiat Veroeros</a></li>
-							</ul></li>
-						<li><a href="#">Maximus Erat</a></li>
-						<li><a href="#">Sapien Mauris</a></li>
-						<li><a href="#">Amet Lacinia</a></li>
-					</ul>
-				</nav>
+					<div class="navbar-header nav_2">
+						<button type="button"
+							class="navbar-toggle collapsed navbar-toggle1"
+							data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
 
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Ante interdum</h2>
-					</header>
-					<div class="mini-posts">
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic07.jpg"/>" alt="" /></a>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore aliquam.</p>
-						</article>
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic08.jpg"/>" alt="" /></a>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore aliquam.</p>
-						</article>
-						<article>
-							<a href="#" class="image"><img
-								src="<spring:url value="/resources/images/pic09.jpg"/>" alt="" /></a>
-							<p>Aenean ornare velit lacus, ac varius enim lorem
-								ullamcorper dolore aliquam.</p>
-						</article>
+
 					</div>
-					<ul class="actions">
-						<li><a href="#" class="button">More</a></li>
-					</ul>
-				</section>
+				</nav>
+			</div>
 
-				<!-- Section -->
-				<section>
-					<header class="major">
-						<h2>Get in touch</h2>
-					</header>
-					<p>Sed varius enim lorem ullamcorper dolore aliquam aenean
-						ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin
-						sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat
-						tempus aliquam.</p>
-					<ul class="contact">
-						<li class="fa-envelope-o"><a href="#">information@untitled.tld</a></li>
-						<li class="fa-phone">(000) 000-0000</li>
-						<li class="fa-home">1234 Somewhere Road #8254<br />
-							Nashville, TN 00000-0000
+		</div>
+	</div>
+	<script>
+		window.jQuery
+				|| document
+						.write(
+								'<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')
+	</script>
+	<script src="js/jquery.vide.min.js"></script>
+	<div class="content-top ">
+		<div class="container ">
+			<div class="tab-head ">
+				<nav class="nav-sidebar">
+					</span><span id="emty" style="color: red">${emptyBookField}</span>
+					<ul class="nav tabs ">
+						<input type="text" id="book_name" required="required"
+							name="book_name" class="string optional" placeholder="Book Name">
+						<input type="text" id="book_description" required="required"
+							name="book_description" class="string optional"
+							placeholder="Book Description">
+						<input type="text" id="book_category" required="required"
+							name="book_category" class="string optional"
+							placeholder="Book Category">
+						<input type="number" required="required" name="book_price"
+							placeholder="Book Price" class="form-control input-lg"
+							id="book_price">
+						<br></br>
+						<button onclick="saveBook();" class="sumbit" name="sumbit">Insert
+							Book</button>
+						<li class="">
+							<form id="fetchBook" role="form" ModelAttribute="Book"
+								action="listOfBooks" method="get">
+								<button class="sumbit" name="sumbit">Show Book Detail</button>
+							</form>
+						</li>
+						<li class="">
+							<button onclick="showWishList();" class="sumbit" name="sumbit">Wishlist</button>
 						</li>
 					</ul>
-				</section>
+					<table border="1">
+						<th>Sr No</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Price</th>
+						<th>Category</th>
+						<th>Cart</th>
+						<c:forEach var="emp" items="${books}" varStatus="status">
+							<tr>
+								<td>${status.index + 1}</td>
+								<td>${emp.name}</td>
+								<td>${emp.description}</td>
+								<td>${emp.price}</td>
+								<td>${emp.category}</td>
+								<td><button onclick="addToCart();" class="sumbit"
+										name="sumbit">Add To Cart</button></td>
+							</tr>
+						</c:forEach>
+					</table>
+				</nav>
+				<%-- <div class=" tab-content tab-content-t ">
+					<div class="tab-pane active text-style" id="tab1">
+						<div class=" con-w3l">
+							<div class="col-md-3 m-wthree">
+								<div class="col-m">
+									<a href="#" data-toggle="modal" data-target="#myModal1"
+										class="offer-img"> <img
+										src="<spring:url value="/resources/images/of.png"/>"
+										class="img-responsive" alt="" />
+										<div class="offer">
+											<p>
+												<span>Offer</span>
+											</p>
+										</div>
+									</a>
+									<div class="mid-1">
+										<div class="women">
+											<h6>
+												<a href="single.html">Moong</a>(1 kg)
+											</h6>
+										</div>
+										<div class="mid-2">
+											<p>
+												<label>$2.00</label><em class="item_price">$1.50</em>
+											</p>
+											<div class="block">
+												<div class="starbox small ghosting"></div>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="add">
+											<button class="btn btn-danger my-cart-btn my-cart-b "
+												data-id="1" data-name="Moong" data-summary="summary 1"
+												data-price="1.50" data-quantity="1"
+												data-image="images/of.png">Add to Cart</button>
+										</div>
 
-				<!-- Footer -->
-				<footer id="footer">
-					<p class="copyright">
-						&copy; Untitled. All rights reserved. Demo Images: <a
-							href="https://unsplash.com">Unsplash</a>. Design: <a
-							href="https://html5up.net">HTML5 UP</a>.
-					</p>
-				</footer>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 m-wthree">
+								<div class="col-m">
+									<a href="#" data-toggle="modal" data-target="#myModal2"
+										class="offer-img"> <img
+										src="<spring:url value="/resources/images/of1.png"/>"
+										class="img-responsive" alt="" />
+										<div class="offer">
+											<p>
+												<span>Offer</span>
+											</p>
+										</div>
+									</a>
+									<div class="mid-1">
+										<div class="women">
+											<h6>
+												<a href="single.html">Sunflower Oil</a>(5 kg)
+											</h6>
+										</div>
+										<div class="mid-2">
+											<p>
+												<label>$10.00</label><em class="item_price">$9.00</em>
+											</p>
+											<div class="block">
+												<div class="starbox small ghosting"></div>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="add">
+											<button class="btn btn-danger my-cart-btn my-cart-b"
+												data-id="2" data-name="Sunflower Oil"
+												data-summary="summary 2" data-price="9.00" data-quantity="1"
+												data-image="images/of1.png">Add to Cart</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 m-wthree">
+								<div class="col-m">
+									<a href="#" data-toggle="modal" data-target="#myModal3"
+										class="offer-img"> <img
+										src="<spring:url value="/resources/images/of2.png"/>"
+										class="img-responsive" alt="" />
+										<div class="offer">
+											<p>
+												<span>Offer</span>
+											</p>
+										</div>
+									</a>
+									<div class="mid-1">
+										<div class="women">
+											<h6>
+												<a href="single.html">Kabuli Chana</a>(1 kg)
+											</h6>
+										</div>
+										<div class="mid-2">
+											<p>
+												<label>$3.00</label><em class="item_price">$2.00</em>
+											</p>
+											<div class="block">
+												<div class="starbox small ghosting"></div>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="add">
+											<button class="btn btn-danger my-cart-btn my-cart-b"
+												data-id="3" data-name="Kabuli Chana"
+												data-summary="summary 3" data-price="2.00" data-quantity="1"
+												data-image="images/of2.png">Add to Cart</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3 m-wthree">
+								<div class="col-m">
+									<a href="#" data-toggle="modal" data-target="#myModal4"
+										class="offer-img"> <img
+										src="<spring:url value="/resources/images/of3.png"/>"
+										class="img-responsive" alt="" />
+										<div class="offer">
+											<p>
+												<span>Offer</span>
+											</p>
+										</div>
+									</a>
+									<div class="mid-1">
+										<div class="women">
+											<h6>
+												<a href="single.html">Soya Chunks</a>(1 kg)
+											</h6>
+										</div>
+										<div class="mid-2">
+											<p>
+												<label>$4.00</label><em class="item_price">$3.50</em>
+											</p>
+											<div class="block">
+												<div class="starbox small ghosting"></div>
+											</div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="add">
+											<button class="btn btn-danger my-cart-btn my-cart-b"
+												data-id="4" data-name="Soya Chunks" data-summary="summary 4"
+												data-price="3.50" data-quantity="1"
+												data-image="images/of3.png">Add to Cart</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div> --%>
+			</div>
 
+		</div>
+	</div>
+	<br></br>
+	<!--footer-->
+	<div class="footer">
+		<div class="container">
+			<div class="clearfix"></div>
+			<div class="copy-right">
+				<p>
+					&copy; 2019 E-Bangla. All Rights Reserved | Designed by <a
+						href="https://github.com/javaspecial/ebangla"> Md.Shadath</a>
+				</p>
 			</div>
 		</div>
-
 	</div>
+	<!-- //footer-->
 </body>
 </html>

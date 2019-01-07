@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -136,19 +137,14 @@ public class UsersController {
 		return map;
 	}
 
-	@RequestMapping(value = "/listOfBooks", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getAllBooks(Book book) {
-		Map<String, Object> map = new HashMap<String, Object>();
+	@RequestMapping(value = "/listOfBooks", method = RequestMethod.GET)
+	public ModelAndView getAllBooks(ModelAndView model) {
 		List<Book> list = bookService.list();
 		if (list != null) {
-			map.put("status", "200");
-			map.put("message", "Book found.");
-			map.put("data", list);
-		} else {
-			map.put("status", "404");
-			map.put("message", "Book not found!");
+			model.addObject("books", list);
+			model.setViewName("home");
 		}
-		return map;
+		return model;
 	}
 
 	@RequestMapping(value = "/deleteBook", method = RequestMethod.POST)
@@ -164,9 +160,13 @@ public class UsersController {
 	@RequestMapping(value = "/saveBook", method = RequestMethod.POST)
 	public @ResponseBody Map<String, Object> saveBook(Book book) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
-		if (bookService.save(book)) {
-			map.put("status", "200");
-			map.put("message", "Your record have been saved successfully");
+		if (StringUtils.isEmpty(book.getName()) || StringUtils.isEmpty(book.getDescription())
+				|| StringUtils.isEmpty(book.getCategory()) || StringUtils.isEmpty(book.getPrice())) {
+			map.put("BookField", "Field is mandetory");
+			return map;
+		} else if (bookService.save(book)) {
+			map.put("BookField", "Successfully saved");
+			return map;
 		}
 		return map;
 	}
