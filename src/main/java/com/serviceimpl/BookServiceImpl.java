@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.BookDao;
-import com.entity.Book;
+import com.model.Book;
 import com.service.BookService;
 
 @Service

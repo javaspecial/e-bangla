@@ -2,7 +2,7 @@ package com.dao;
 
 import java.util.List;
 
-import com.entity.Book;
+import com.model.Book;
 
 public interface BookDao {
 	public List<Book> list();

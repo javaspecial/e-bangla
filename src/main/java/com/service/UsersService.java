@@ -2,7 +2,7 @@ package com.service;
 
 import java.util.List;
 
-import com.entity.Users;
+import com.model.Users;
 
 public interface UsersService {
 	public List<Users> list();

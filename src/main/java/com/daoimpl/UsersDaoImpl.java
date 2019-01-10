@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.UsersDao;
-import com.entity.Users;
+import com.model.Users;
 import com.resources.AESencryption;
 
 @Repository

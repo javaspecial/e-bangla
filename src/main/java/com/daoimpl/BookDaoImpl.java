@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.BookDao;
-import com.entity.Book;
+import com.model.Book;
 
 @Repository
 @Transactional

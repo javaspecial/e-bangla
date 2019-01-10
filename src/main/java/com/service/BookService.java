@@ -2,7 +2,7 @@ package com.service;
 
 import java.util.List;
 
-import com.entity.Book;
+import com.model.Book;
 
 public interface BookService {
 	public List<Book> list();
