@@ -2,638 +2,1011 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html>
 <head>
-<title>EBangla</title>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="resume,cv,curiculam vita" />
-
+<title>eBangla</title>
 <%@ page isELIgnored="false"%>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="aStar Fashion Template Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords"
+	content="bajar,market,shop,shopping,kenakata,ecommerce,bangla bazar,delivery" />
+
 <link rel="shortcut icon"
 	href="<spring:url value="/resources/icon/title.png"/>" />
-<link
-	href='//fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic'
-	rel='stylesheet' type='text/css'>
-<link
-	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
-	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css"
+	href="<spring:url value="/resources/styles/bootstrap-4.1.3/bootstrap.css "/> ">
+<link rel="stylesheet" type="text/css"
+	href="<spring:url value="/resources/plugins/font-awesome-4.7.0/css/font-awesome.min.css" /> ">
+<link rel="stylesheet" type="text/css"
+	href="<spring:url value="/resources/plugins/OwlCarousel2-2.2.1/owl.carousel.css" /> ">
+<link rel="stylesheet" type="text/css"
+	href="<spring:url value="/resources/plugins/OwlCarousel2-2.2.1/owl.theme.default.css" />">
+<link rel="stylesheet" type="text/css"
+	href="<spring:url value="/resources/plugins/OwlCarousel2-2.2.1/animate.css" /> ">
+<link rel="stylesheet" type="text/css"
+	href="<spring:url value="/resources/styles/main_styles.css" /> ">
+<link rel="stylesheet" type="text/css"
+	href="<spring:url value="/resources/styles/responsive.css" /> ">
 
-<link href="<spring:url value="/resources/css/bootstrap.css" />"
-	rel="stylesheet" type="text/css" media="all" />
-<link href="<spring:url value="/resources/css/style.css" />"
-	rel="stylesheet" type="text/css" media="all" />
-<link href="<spring:url value="/resources/css/font-awesome.css" />"
-	rel="stylesheet" type="text/css" media="all" />
-<script src="<spring:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
-
-<!-- hide-url-bar -->
-<script type="application/x-javascript"
-	src="<spring:url value="/resources/js/hide.urlbar" />"></script>
-<!-- start-smoth-scrolling -->
-<script type="text/javascript"
-	src="<spring:url value="/resources/js/move-top.js" />"></script>
-<script type="text/javascript"
-	src="<spring:url value="/resources/js/easing.js" />"></script>
-<script type="text/javascript"
-	src="<spring:url value="/resources/js/smoth.scrolling.js" />"></script>
-<!-- start-smoth-scrolling -->
-<!-- start script-for sticky-nav -->
-<script src="<spring:url value="/resources/js/sticky-nav" />"></script>
-<!-- end script-for sticky-nav -->
-<!-- start flexSlider -->
-<link rel="stylesheet"
-	href="<spring:url value="/resources/css/flexslider.css" />"
-	type="text/css" media="screen" />
-<script defer
-	src="<spring:url value="/resources/js/jquery.flexslider.js"/>"></script>
-<script type="text/javascript"
-	src="<spring:url value="/resources/js/flexSlider"/>"></script>
-<!-- end flexSlider -->
-<!-- start footer -->
-<!-- Bootstrap Core JavaScript -->
-<script src="<spring:url value="/resources/js/bootstrap.min.js" />"></script>
-<script type="text/javascript"
-	src="<spring:url value="/resources/js/footer.js/"/>">
-	
-</script>
-<!-- end footer -->
-<!-- //here ends scrolling icon -->
-<script src="<spring:url value="/resources/js/minicart.js "/>"></script>
+<script src="<spring:url value="/resources/js/jquery-3.2.1.min.js" /> "></script>
+<script
+	src="<spring:url value="/resources/styles/bootstrap-4.1.3/popper.js" /> "></script>
+<script
+	src="<spring:url value="/resources/styles/bootstrap-4.1.3/bootstrap.min.js" /> "></script>
+<script
+	src="<spring:url value="/resources/plugins/greensock/TweenMax.min.js" /> "></script>
+<script
+	src="<spring:url value="/resources/plugins/greensock/TimelineMax.min.js" /> "></script>
+<script
+	src="<spring:url value="/resources/plugins/scrollmagic/ScrollMagic.min.js"/> "></script>
+<script
+	src="<spring:url value="/resources/plugins/greensock/animation.gsap.min.js"/> "></script>
+<script
+	src="<spring:url value="/resources/plugins/greensock/ScrollToPlugin.min.js" /> "></script>
+<script
+	src="<spring:url value="/resources/plugins/OwlCarousel2-2.2.1/owl.carousel.js" /> "></script>
+<script
+	src="<spring:url value="/resources/plugins/easing/easing.js" /> "></script>
+<script
+	src="<spring:url value="/resources/plugins/parallax-js-master/parallax.min.js" /> "></script>
+<script
+	src="<spring:url value="/resources/plugins/Isotope/isotope.pkgd.min.js" /> "></script>
+<script
+	src="<spring:url value="/resources/plugins/Isotope/fitcolumns.js" /> "></script>
+<script src="<spring:url value="/resources/js/custom.js" /> "></script>
 </head>
 <body>
-	<!-- header -->
-	<div class="agileits_header">
-		<div class="w3l_offers">
-			<a href="products.html">Today's special Offers !</a>
-		</div>
-		<div class="w3l_search">
-			<form action="#" method="post">
-				<input type="text" name="Product" value="Search a product..."
-					onfocus="this.value = '';"
-					onblur="if (this.value == '') {this.value = 'Search a product...';}"
-					required=""> <input type="submit" value=" ">
-			</form>
-		</div>
-		<div class="product_list_header">
-			<form action="#" method="post" class="last">
-				<fieldset>
-					<input type="hidden" name="cmd" value="_cart" /> <input
-						type="hidden" name="display" value="1" /> <input type="submit"
-						name="submit" value="View your cart" class="button" />
-				</fieldset>
-			</form>
-		</div>
-		<div class="w3l_header_right">
-			<ul>
-				<li class="dropdown profile_details_drop"><a href="#"
-					class="dropdown-toggle" data-toggle="dropdown"><i
-						class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
-					<div class="mega-dropdown-menu">
-						<div class="w3ls_vegetables">
-							<ul class="dropdown-menu drp-mnu">
-								<li><a href="login.html">Login</a></li>
-								<li><a href="login.html">Sign Up</a></li>
-							</ul>
-						</div>
-					</div></li>
-			</ul>
-		</div>
-		<div class="w3l_header_right1">
-			<h2>
-				<a href="mail.html">Contact Us</a>
-			</h2>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-	<div class="logo_products">
-		<div class="container">
-			<div class="w3ls_logo_products_left">
-				<h1>
-					<a href="index.html"><span>Grocery</span> Store</a>
-				</h1>
-			</div>
-			<div class="w3ls_logo_products_left1">
-				<ul class="special_items">
-					<li><a href="events.html">Events</a><i>/</i></li>
-					<li><a href="about.html">About Us</a><i>/</i></li>
-					<li><a href="products.html">Best Deals</a><i>/</i></li>
-					<li><a href="services.html">Services</a></li>
-				</ul>
-			</div>
-			<div class="w3ls_logo_products_left1">
-				<ul class="phone_email">
-					<li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234
-						567</li>
-					<li><i class="fa fa-envelope-o" aria-hidden="true"></i><a
-						href="mailto:store@grocery.com">store@grocery.com</a></li>
-				</ul>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<!-- //header -->
-	<!-- banner -->
-	<div class="banner">
-		<div class="w3l_banner_nav_left">
-			<nav class="navbar nav_bottom">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header nav_2">
-					<button type="button"
-						class="navbar-toggle collapsed navbar-toggle1"
-						data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-				</div>
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-					<ul class="nav navbar-nav nav_1">
-						<li><a href="products.html">Branded Foods</a></li>
-						<li><a href="household.html">Households</a></li>
-						<li class="dropdown mega-dropdown active"><a href="#"
-							class="dropdown-toggle" data-toggle="dropdown">Veggies &
-								Fruits<span class="caret"></span>
-						</a>
-							<div
-								class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>
-										<li><a href="vegetables.html">Vegetables</a></li>
-										<li><a href="vegetables.html">Fruits</a></li>
-									</ul>
-								</div>
-							</div></li>
-						<li><a href="kitchen.html">Kitchen</a></li>
-						<li><a href="short-codes.html">Short Codes</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Beverages<span class="caret"></span></a>
-							<div
-								class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>
-										<li><a href="drinks.html">Soft Drinks</a></li>
-										<li><a href="drinks.html">Juices</a></li>
-									</ul>
-								</div>
-							</div></li>
-						<li><a href="pet.html">Pet Food</a></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown">Frozen Foods<span class="caret"></span></a>
-							<div
-								class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
-								<div class="w3ls_vegetables">
-									<ul>
-										<li><a href="frozen.html">Frozen Snacks</a></li>
-										<li><a href="frozen.html">Frozen Nonveg</a></li>
-									</ul>
-								</div>
-							</div></li>
-						<li><a href="bread.html">Bread & Bakery</a></li>
-					</ul>
-				</div>
-				<!-- /.navbar-collapse -->
-			</nav>
-		</div>
-		<div class="w3l_banner_nav_right">
-			<section class="slider">
-				<div class="flexslider">
-					<ul class="slides">
-						<li>
-							<div class="w3l_banner_nav_right_banner">
-								<h3>
-									Make your <span>food</span> with Spicy.
-								</h3>
-								<div class="more">
-									<a href="products.html"
-										class="button--saqui button--round-l button--text-thick"
-										data-text="Shop now">Shop now</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="w3l_banner_nav_right_banner1">
-								<h3>
-									Make your <span>food</span> with Spicy.
-								</h3>
-								<div class="more">
-									<a href="products.html"
-										class="button--saqui button--round-l button--text-thick"
-										data-text="Shop now">Shop now</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="w3l_banner_nav_right_banner2">
-								<h3>
-									upto <i>50%</i> off.
-								</h3>
-								<div class="more">
-									<a href="products.html"
-										class="button--saqui button--round-l button--text-thick"
-										data-text="Shop now">Shop now</a>
-								</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-	<!-- banner -->
-	<div class="banner_bottom">
-		<div class="wthree_banner_bottom_left_grid_sub"></div>
-		<div class="wthree_banner_bottom_left_grid_sub1">
-			<div class="col-md-4 wthree_banner_bottom_left">
-				<div class="wthree_banner_bottom_left_grid">
-					<img src="<spring:url value="/resources/images/4.jpg"/>" alt=" "
-						class="img-responsive" />
-					<div class="wthree_banner_bottom_left_grid_pos">
-						<h4>
-							Discount Offer <span>25%</span>
-						</h4>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 wthree_banner_bottom_left">
-				<div class="wthree_banner_bottom_left_grid">
-					<img src="<spring:url value="/resources/images/5.jpg"/>" alt=" " class="img-responsive" />
-					<div class="wthree_banner_btm_pos">
-						<h3>
-							introducing <span>best store</span> for <i>groceries</i>
-						</h3>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 wthree_banner_bottom_left">
-				<div class="wthree_banner_bottom_left_grid">
-					<img src="<spring:url value="/resources/images/6.jpg "/>" alt=" " class="img-responsive" />
-					<div class="wthree_banner_btm_pos1">
-						<h3>
-							Save <span>Upto</span> $10
-						</h3>
-					</div>
-				</div>
-			</div>
-			<div class="clearfix"></div>
-		</div>
-		<div class="clearfix"></div>
-	</div>
-	<!-- top-brands -->
-	<div class="top-brands">
-		<div class="container">
-			<h3>Hot Offers</h3>
-			<div class="agile_top_brands_grids">
-				<div class="col-md-3 top_brand_left">
-					<div class="hover14 column">
-						<div class="agile_top_brand_left_grid">
-							<div class="tag">
-								<img src="<spring:url value="/resources/images/tag.png"/> " alt=" " class="img-responsive" />
-							</div>
-							<div class="agile_top_brand_left_grid1">
-								<figure>
-									<div class="snipcart-item block">
-										<div class="snipcart-thumb">
-											<a href="single.html"><img title=" " alt=" "
-												src="<spring:url value="/resources/images/1.png"/> " /></a>
-											<p>fortune sunflower oil</p>
-											<h4>
-												$7.99 <span>$10.00</span>
-											</h4>
-										</div>
-										<div class="snipcart-details top_brand_home_details">
-											<form action="checkout.html" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" /> <input
-														type="hidden" name="add" value="1" /> <input
-														type="hidden" name="business" value=" " /> <input
-														type="hidden" name="item_name"
-														value="Fortune Sunflower Oil" /> <input type="hidden"
-														name="amount" value="7.99" /> <input type="hidden"
-														name="discount_amount" value="1.00" /> <input
-														type="hidden" name="currency_code" value="USD" /> <input
-														type="hidden" name="return" value=" " /> <input
-														type="hidden" name="cancel_return" value=" " /> <input
-														type="submit" name="submit" value="Add to cart"
-														class="button" />
-												</fieldset>
+	<div class="super_container">
+		<!-- Header -->
+		<header class="header">
+			<div
+				class="header_content d-flex flex-row align-items-center justify-content-start">
 
-											</form>
+				<!-- Hamburger -->
+				<div class="hamburger menu_mm">
+					<i class="fa fa-bars menu_mm" aria-hidden="true"></i>
+				</div>
+				<!-- Logo -->
+				<div class="header_logo">
+					<a href="#"><div>
+							a<span>star</span>
+						</div></a>
+				</div>
 
-										</div>
-									</div>
-								</figure>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 top_brand_left">
-					<div class="hover14 column">
-						<div class="agile_top_brand_left_grid">
-							<div class="agile_top_brand_left_grid1">
-								<figure>
-									<div class="snipcart-item block">
-										<div class="snipcart-thumb">
-											<a href="single.html"><img title=" " alt=" "
-												src="<spring:url value="/resources/images/3.png"/> " /></a>
-											<p>basmati rise (5 Kg)</p>
-											<h4>
-												$11.99 <span>$15.00</span>
-											</h4>
-										</div>
-										<div class="snipcart-details top_brand_home_details">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" /> <input
-														type="hidden" name="add" value="1" /> <input
-														type="hidden" name="business" value=" " /> <input
-														type="hidden" name="item_name" value="basmati rise" /> <input
-														type="hidden" name="amount" value="11.99" /> <input
-														type="hidden" name="discount_amount" value="1.00" /> <input
-														type="hidden" name="currency_code" value="USD" /> <input
-														type="hidden" name="return" value=" " /> <input
-														type="hidden" name="cancel_return" value=" " /> <input
-														type="submit" name="submit" value="Add to cart"
-														class="button" />
-												</fieldset>
-											</form>
-										</div>
-									</div>
-								</figure>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 top_brand_left">
-					<div class="hover14 column">
-						<div class="agile_top_brand_left_grid">
-							<div class="agile_top_brand_left_grid_pos">
-								<img src="<spring:url value="/resources/images/offer.png"/> " alt=" " class="img-responsive" />
-							</div>
-							<div class="agile_top_brand_left_grid1">
-								<figure>
-									<div class="snipcart-item block">
-										<div class="snipcart-thumb">
-											<a href="single.html"><img src="<spring:url value="/resources/images/2.png "/> " alt=" "
-												class="img-responsive" /></a>
-											<p>Pepsi soft drink (2 Ltr)</p>
-											<h4>
-												$8.00 <span>$10.00</span>
-											</h4>
-										</div>
-										<div class="snipcart-details top_brand_home_details">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" /> <input
-														type="hidden" name="add" value="1" /> <input
-														type="hidden" name="business" value=" " /> <input
-														type="hidden" name="item_name" value="Pepsi soft drink" />
-													<input type="hidden" name="amount" value="8.00" /> <input
-														type="hidden" name="discount_amount" value="1.00" /> <input
-														type="hidden" name="currency_code" value="USD" /> <input
-														type="hidden" name="return" value=" " /> <input
-														type="hidden" name="cancel_return" value=" " /> <input
-														type="submit" name="submit" value="Add to cart"
-														class="button" />
-												</fieldset>
-											</form>
-										</div>
-									</div>
-								</figure>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 top_brand_left">
-					<div class="hover14 column">
-						<div class="agile_top_brand_left_grid">
-							<div class="agile_top_brand_left_grid_pos">
-								<img src="<spring:url value="/resources/images/offer.png" /> " alt=" " class="img-responsive" />
-							</div>
-							<div class="agile_top_brand_left_grid1">
-								<figure>
-									<div class="snipcart-item block">
-										<div class="snipcart-thumb">
-											<a href="single.html"><img src="<spring:url value="/resources/images/4.png"/> "  alt=" "
-												class="img-responsive" /></a>
-											<p>dogs food (4 Kg)</p>
-											<h4>
-												$9.00 <span>$11.00</span>
-											</h4>
-										</div>
-										<div class="snipcart-details top_brand_home_details">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" /> <input
-														type="hidden" name="add" value="1" /> <input
-														type="hidden" name="business" value=" " /> <input
-														type="hidden" name="item_name" value="dogs food" /> <input
-														type="hidden" name="amount" value="9.00" /> <input
-														type="hidden" name="discount_amount" value="1.00" /> <input
-														type="hidden" name="currency_code" value="USD" /> <input
-														type="hidden" name="return" value=" " /> <input
-														type="hidden" name="cancel_return" value=" " /> <input
-														type="submit" name="submit" value="Add to cart"
-														class="button" />
-												</fieldset>
-											</form>
-										</div>
-									</div>
-								</figure>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-	</div>
-	<!-- //top-brands -->
-	<!-- fresh-vegetables -->
-	<div class="fresh-vegetables">
-		<div class="container">
-			<h3>Top Products</h3>
-			<div class="w3l_fresh_vegetables_grids">
+				<!-- Navigation -->
+				<nav class="header_nav">
+					<ul
+						class="d-flex flex-row align-items-center justify-content-start">
+						<li><a href="index.html">home</a></li>
+						<li><a href="#">woman</a></li>
+						<li><a href="#">man</a></li>
+						<li><a href="#">lookbook</a></li>
+						<li><a href="#">blog</a></li>
+						<li><a href="#">contact</a></li>
+					</ul>
+				</nav>
+
+				<!-- Header Extra -->
 				<div
-					class="col-md-3 w3l_fresh_vegetables_grid w3l_fresh_vegetables_grid_left">
-					<div class="w3l_fresh_vegetables_grid2">
+					class="header_extra ml-auto d-flex flex-row align-items-center justify-content-start">
+
+					<!-- Language -->
+					<div class="info_languages has_children">
+						<div class="language_flag">
+							<img src="<spring:url value="/resources/images/flag_1.svg" />"
+								alt="https://www.flaticon.com/authors/freepik" />
+						</div>
+						<div class="dropdown_text">english</div>
+						<div class="dropdown_arrow">
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</div>
+
+						<!-- Language Dropdown Menu -->
 						<ul>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="products.html">All Brands</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="vegetables.html">Vegetables</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="vegetables.html">Fruits</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="drinks.html">Juices</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="pet.html">Pet Food</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="bread.html">Bread & Bakery</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="household.html">Cleaning</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="products.html">Spices</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="products.html">Dry Fruits</a></li>
-							<li><i class="fa fa-check" aria-hidden="true"></i><a
-								href="products.html">Dairy Products</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="col-md-9 w3l_fresh_vegetables_grid_right">
-					<div class="col-md-4 w3l_fresh_vegetables_grid">
-						<div class="w3l_fresh_vegetables_grid1">
-							<img src="<spring:url value="/resources/images/8.jpg"/> " alt=" " class="img-responsive" />
-						</div>
-					</div>
-					<div class="col-md-4 w3l_fresh_vegetables_grid">
-						<div class="w3l_fresh_vegetables_grid1">
-							<div class="w3l_fresh_vegetables_grid1_rel">
-								<img src="<spring:url value="/resources/images/7.jpg" /> " alt=" " class="img-responsive" />
-								<div class="w3l_fresh_vegetables_grid1_rel_pos">
-									<div class="more m1">
-										<a href="products.html"
-											class="button--saqui button--round-l button--text-thick"
-											data-text="Shop now">Shop now</a>
+							<li><a href="#">
+									<div class="language_flag">
+										<img
+											src="<spring:url value="/resources/images/flag_2.svg " />"
+											alt="https://www.flaticon.com/authors/freepik" />
 									</div>
-								</div>
-							</div>
+									<div class="dropdown_text">french</div>
+							</a></li>
+							<li><a href="#">
+									<div class="language_flag">
+										<img src="<spring:url value="/resources/images/flag_3.svg" />"
+											alt="https://www.flaticon.com/authors/freepik" />
+									</div>
+									<div class="dropdown_text">japanese</div>
+							</a></li>
+							<li><a href="#">
+									<div class="language_flag">
+										<img src="<spring:url value="/resources/images/flag_4.svg" />"
+											alt="https://www.flaticon.com/authors/freepik" />
+									</div>
+									<div class="dropdown_text">russian</div>
+							</a></li>
+							<li><a href="#">
+									<div class="language_flag">
+										<img src="<spring:url value="/resources/images/flag_5.svg" />"
+											alt="https://www.flaticon.com/authors/freepik" />
+									</div>
+									<div class="dropdown_text">spanish</div>
+							</a></li>
+						</ul>
+
+					</div>
+
+					<!-- Currency -->
+					<div class="info_currencies has_children">
+						<div class="dropdown_text">usd</div>
+						<div class="dropdown_arrow">
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
 						</div>
-						<div class="w3l_fresh_vegetables_grid1_bottom">
-							<img src="<spring:url value="/resources/images/10.jpg"/> " alt=" " class="img-responsive" />
-							<div class="w3l_fresh_vegetables_grid1_bottom_pos">
-								<h5>Special Offers</h5>
-							</div>
+
+						<!-- Currencies Dropdown Menu -->
+						<ul>
+							<li><a href="#"><div class="dropdown_text">EUR</div></a></li>
+							<li><a href="#"><div class="dropdown_text">YEN</div></a></li>
+							<li><a href="#"><div class="dropdown_text">GBP</div></a></li>
+							<li><a href="#"><div class="dropdown_text">CAD</div></a></li>
+						</ul>
+
+					</div>
+
+					<!-- Cart -->
+					<div
+						class="cart d-flex flex-row align-items-center justify-content-start">
+						<div class="cart_icon">
+							<a href="cart.html"> <img
+								src="<spring:url value="/resources/images/bag.png" />" alt="" />
+								<div class="cart_num">2</div>
+							</a>
 						</div>
 					</div>
-					<div class="col-md-4 w3l_fresh_vegetables_grid">
-						<div class="w3l_fresh_vegetables_grid1">
-							<img src="<spring:url value="/resources/images/9.jpg"/> " alt=" " class="img-responsive" />
-						</div>
-						<div class="w3l_fresh_vegetables_grid1_bottom">
-							<img src="<spring:url value="/resources/images/11.jpg"/> " alt=" " class="img-responsive" />
-						</div>
-					</div>
-					<div class="clearfix"></div>
-					<div class="agileinfo_move_text">
-						<div class="agileinfo_marquee">
-							<h4>
-								get <span class="blink_me">25% off</span> on first order and
-								also get gift voucher
-							</h4>
-						</div>
-						<div class="agileinfo_breaking_news">
-							<span> </span>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+
 				</div>
-				<div class="clearfix"></div>
+
 			</div>
-		</div>
-	</div>
-	<!-- //fresh-vegetables -->
-	<!-- newsletter -->
-	<div class="newsletter">
-		<div class="container">
-			<div class="w3agile_newsletter_left">
-				<h3>sign up for our newsletter</h3>
+		</header>
+
+		<!-- Menu -->
+
+		<div
+			class="menu d-flex flex-column align-items-start justify-content-start menu_mm trans_400">
+			<div class="menu_close_container">
+				<div class="menu_close">
+					<div></div>
+					<div></div>
+				</div>
 			</div>
-			<div class="w3agile_newsletter_right">
-				<form action="#" method="post">
-					<input type="email" name="Email" value="Email"
-						onfocus="this.value = '';"
-						onblur="if (this.value == '') {this.value = 'Email';}" required="">
-					<input type="submit" value="subscribe now">
+			<div
+				class="menu_top d-flex flex-row align-items-center justify-content-start">
+
+				<!-- Language -->
+				<div class="info_languages has_children">
+					<div class="language_flag">
+						<img src="<spring:url value="/resources/images/flag_1.svg" />"
+							alt="https://www.flaticon.com/authors/freepik" />
+					</div>
+					<div class="dropdown_text">english</div>
+					<div class="dropdown_arrow">
+						<i class="fa fa-angle-down" aria-hidden="true"></i>
+					</div>
+
+					<!-- Language Dropdown Menu -->
+					<ul>
+						<li><a href="#">
+								<div class="language_flag">
+									<img src="<spring:url value="/resources/images/flag_2.svg" />"
+										alt="https://www.flaticon.com/authors/freepik" />
+								</div>
+								<div class="dropdown_text">french</div>
+						</a></li>
+						<li><a href="#">
+								<div class="language_flag">
+									<img src="<spring:url value="/resources/images/flag_3.svg"/>"
+										alt=" https://www.flaticon.com/authors/freepik" />
+								</div>
+								<div class="dropdown_text">japanese</div>
+						</a></li>
+						<li><a href="#">
+								<div class="language_flag">
+									<img src="<spring:url value="/resources/images/flag_4.svg" />"
+										alt="https://www.flaticon.com/authors/freepik" />
+								</div>
+								<div class="dropdown_text">russian</div>
+						</a></li>
+						<li><a href="#">
+								<div class="language_flag">
+									<img src="<spring:url value="/resources/images/flag_5.svg" />"
+										alt="https://www.flaticon.com/authors/freepik" />
+								</div>
+								<div class="dropdown_text">spanish</div>
+						</a></li>
+					</ul>
+
+				</div>
+
+				<!-- Currency -->
+				<div class="info_currencies has_children">
+					<div class="dropdown_text">usd</div>
+					<div class="dropdown_arrow">
+						<i class="fa fa-angle-down" aria-hidden="true"></i>
+					</div>
+
+					<!-- Currencies Dropdown Menu -->
+					<ul>
+						<li><a href="#"><div class="dropdown_text">EUR</div></a></li>
+						<li><a href="#"><div class="dropdown_text">YEN</div></a></li>
+						<li><a href="#"><div class="dropdown_text">GBP</div></a></li>
+						<li><a href="#"><div class="dropdown_text">CAD</div></a></li>
+					</ul>
+
+				</div>
+
+			</div>
+			<div class="menu_search">
+				<form action="#" class="header_search_form menu_mm">
+					<input type="search" class="search_input menu_mm"
+						placeholder="Search" required="required">
+					<button
+						class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+						<i class="fa fa-search menu_mm" aria-hidden="true"></i>
+					</button>
 				</form>
 			</div>
-			<div class="clearfix"></div>
-		</div>
-	</div>
-	<!-- //newsletter -->
-	<!-- footer -->
-	<div class="footer">
-		<div class="container">
-			<div class="col-md-3 w3_footer_grid">
-				<h3>information</h3>
-				<ul class="w3_footer_grid_list">
-					<li><a href="events.html">Events</a></li>
-					<li><a href="about.html">About Us</a></li>
-					<li><a href="products.html">Best Deals</a></li>
-					<li><a href="services.html">Services</a></li>
-					<li><a href="short-codes.html">Short Codes</a></li>
+			<nav class="menu_nav">
+				<ul class="menu_mm">
+					<li class="menu_mm"><a href="index.html">home</a></li>
+					<li class="menu_mm"><a href="#">woman</a></li>
+					<li class="menu_mm"><a href="#">man</a></li>
+					<li class="menu_mm"><a href="#">lookbook</a></li>
+					<li class="menu_mm"><a href="blog.html">blog</a></li>
+					<li class="menu_mm"><a href="contact.html">contact</a></li>
 				</ul>
-			</div>
-			<div class="col-md-3 w3_footer_grid">
-				<h3>policy info</h3>
-				<ul class="w3_footer_grid_list">
-					<li><a href="faqs.html">FAQ</a></li>
-					<li><a href="privacy.html">privacy policy</a></li>
-					<li><a href="privacy.html">terms of use</a></li>
-				</ul>
-			</div>
-			<div class="col-md-3 w3_footer_grid">
-				<h3>what in stores</h3>
-				<ul class="w3_footer_grid_list">
-					<li><a href="pet.html">Pet Food</a></li>
-					<li><a href="frozen.html">Frozen Snacks</a></li>
-					<li><a href="kitchen.html">Kitchen</a></li>
-					<li><a href="products.html">Branded Foods</a></li>
-					<li><a href="household.html">Households</a></li>
-				</ul>
-			</div>
-			<div class="col-md-3 w3_footer_grid">
-				<h3>twitter posts</h3>
-				<ul class="w3_footer_grid_list1">
-					<li><label class="fa fa-twitter" aria-hidden="true"></label><i>01
-							day ago</i><span>Non numquam <a href="#">http://sd.ds/13jklf#</a>
-							eius modi tempora incidunt ut labore et <a href="#">http://sd.ds/1389kjklf#</a>quo
-							nulla.
-					</span></li>
-					<li><label class="fa fa-twitter" aria-hidden="true"></label><i>02
-							day ago</i><span>Con numquam <a href="#">http://fd.uf/56hfg#</a>
-							eius modi tempora incidunt ut labore et <a href="#">http://fd.uf/56hfg#</a>quo
-							nulla.
-					</span></li>
-				</ul>
-			</div>
-			<div class="clearfix"></div>
-			<div class="agile_footer_grids">
-				<div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
-					<div class="w3_footer_grid_bottom">
-						<h4>100% secure payments</h4>
-						<img src="<spring:url value="/resources/images/card.png"/> " alt=" " class="img-responsive" />
-					</div>
+			</nav>
+			<div class="menu_extra">
+				<div class="menu_social">
+					<ul>
+						<li><a href="#"><i class="fa fa-pinterest"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-facebook"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"
+								aria-hidden="true"></i></a></li>
+					</ul>
 				</div>
-				<div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
-					<div class="w3_footer_grid_bottom">
-						<h5>connect with us</h5>
-						<ul class="agileits_social_icons">
-							<li><a href="#" class="facebook"><i
-									class="fa fa-facebook" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="twitter"><i class="fa fa-twitter"
-									aria-hidden="true"></i></a></li>
-							<li><a href="#" class="google"><i
-									class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="instagram"><i
-									class="fa fa-instagram" aria-hidden="true"></i></a></li>
-							<li><a href="#" class="dribbble"><i
-									class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+			</div>
+		</div>
+
+		<!-- Sidebar -->
+
+		<div class="sidebar">
+			<!-- Logo -->
+			<div class="sidebar_logo">
+				<a href="#"><div>
+						e<span>Bangla</span>
+					</div></a>
+			</div>
+
+			<!-- Info -->
+			<div class="info">
+				<div
+					class="info_content d-flex flex-row align-items-center justify-content-start">
+
+					<!-- Language -->
+					<div class="info_languages has_children">
+						<div class="language_flag">
+							<img src="<spring:url value="/resources/images/flag_1.svg" />"
+								alt="https://www.flaticon.com/authors/freepik" />
+						</div>
+						<div class="dropdown_text">en</div>
+						<div class="dropdown_arrow">
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</div>
+
+						<!-- Language Dropdown Menu -->
+						<ul>
+							<li><a href="#">
+									<div class="language_flag">
+										<img src="<spring:url value="/resources/images/flag_2.svg" />"
+											alt="https://www.flaticon.com/authors/freepik" />
+									</div>
+									<div class="dropdown_text">Ban</div>
+							</a></li>
 						</ul>
 					</div>
+
+					<!-- Currency -->
+					<div class="info_currencies has_children">
+						<div class="dropdown_text">$usd</div>
+						<div class="dropdown_arrow">
+							<i class="fa fa-angle-down" aria-hidden="true"></i>
+						</div>
+
+						<!-- Currencies Dropdown Menu -->
+						<ul>
+							<li><a href="#"><div class="dropdown_text">bdt</div></a></li>
+						</ul>
+					</div>
+
 				</div>
-				<div class="clearfix"></div>
 			</div>
-			<div class="wthree_footer_copy">
-				<p>
-					© 2016 Grocery Store. All rights reserved | Design by <a
-						href="http://w3layouts.com/">W3layouts</a>
-				</p>
+
+			<!-- Search -->
+			<div class="search">
+				<form action="#" class="search_form" id="sidebar_search_form">
+					<input type="text" class="search_input"
+						placeholder="Search products e.g. banana" required="required">
+					<button class="search_button">
+						<i class="fa fa-search" aria-hidden="true"></i>
+					</button>
+				</form>
+			</div>
+
+			<!-- Sidebar Navigation -->
+			<nav class="sidebar_nav">
+				<ul>
+					<li><a href="index.html">home<i class="fa fa-angle-right"
+							aria-hidden="true"></i></a></li>
+					<li><a href="#">woman<i class="fa fa-angle-right"
+							aria-hidden="true"></i></a></li>
+					<li><a href="#">man<i class="fa fa-angle-right"
+							aria-hidden="true"></i></a></li>
+					<li><a href="#">lookbook<i class="fa fa-angle-right"
+							aria-hidden="true"></i></a></li>
+					<li><a href="blog.html">blog<i class="fa fa-angle-right"
+							aria-hidden="true"></i></a></li>
+					<li><a href="#">contact<i class="fa fa-angle-right"
+							aria-hidden="true"></i></a></li>
+				</ul>
+			</nav>
+
+			<!-- Cart -->
+			<div
+				class="cart d-flex flex-row align-items-center justify-content-start">
+				<div class="cart_icon">
+					<a href="cart.html"> <img
+						src="<spring:url value="/resources/images/bag.png" />" alt="">
+						<div class="cart_num">2</div>
+					</a>
+				</div>
+				<div class="cart_text">bag</div>
+				<div class="cart_price">$39.99 (1)</div>
 			</div>
 		</div>
+
+		<!-- Home -->
+
+		<div class="home">
+
+			<!-- Home Slider -->
+			<div class="home_slider_container">
+				<div class="owl-carousel owl-theme home_slider">
+
+					<!-- Slide -->
+					<div class="owl-item">
+						<div class="background_image"
+							style="background-image: url('${pageContext.request.contextPath}/resources/images/home_slider_1.jpg')">
+						</div>
+						<div class="home_content_container">
+							<div class="home_content">
+								<div
+									class="home_discount d-flex flex-row align-items-end justify-content-start">
+									<div class="home_discount_num">20</div>
+									<div class="home_discount_text">Discount on the</div>
+								</div>
+								<div class="home_title">New Collection</div>
+								<div class="button button_1 home_button trans_200">
+									<a href="categories.html">Shop NOW!</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Slide -->
+					<div class="owl-item">
+						<div class="background_image"
+							style="background-image: url('${pageContext.request.contextPath}/resources/images/home_slider_1.jpg')"></div>
+						<div class="home_content_container">
+							<div class="home_content">
+								<div
+									class="home_discount d-flex flex-row align-items-end justify-content-start">
+									<div class="home_discount_num">20</div>
+									<div class="home_discount_text">Discount on the</div>
+								</div>
+								<div class="home_title">New Collection</div>
+								<div class="button button_1 home_button trans_200">
+									<a href="categories.html">Shop NOW!</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Slide -->
+					<div class="owl-item">
+						<div class="background_image"
+							style="background-image: url('${pageContext.request.contextPath}/resources/images/home_slider_1.jpg')"></div>
+						<div class="home_content_container">
+							<div class="home_content">
+								<div
+									class="home_discount d-flex flex-row align-items-end justify-content-start">
+									<div class="home_discount_num">20</div>
+									<div class="home_discount_text">Discount on the</div>
+								</div>
+								<div class="home_title">New Collection</div>
+								<div class="button button_1 home_button trans_200">
+									<a href="categories.html">Shop NOW!</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<!-- Home Slider Navigation -->
+				<div class="home_slider_nav home_slider_prev trans_200">
+					<div
+						class=" d-flex flex-column align-items-center justify-content-center">
+						<img src="<spring:url value="/resources/images/prev.png" />"
+							alt="">
+					</div>
+				</div>
+				<div class="home_slider_nav home_slider_next trans_200">
+					<div
+						class=" d-flex flex-column align-items-center justify-content-center">
+						<img src="<spring:url value="/resources/images/next.png" />"
+							alt="">
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- Boxes -->
+
+		<div class="boxes">
+			<div class="section_container">
+				<div class="container">
+					<div class="row">
+
+						<!-- Box -->
+						<div class="col-lg-4 box_col">
+							<div class="box">
+								<div class="box_image">
+									<img src="<spring:url value="/resources/images/box_1.jpg" />"
+										alt="" />
+								</div>
+								<div class="box_title trans_200">
+									<a href="categories.html">summer collection</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Box -->
+						<div class="col-lg-4 box_col">
+							<div class="box">
+								<div class="box_image">
+									<img src="<spring:url value="/resources/images/box_2.jpg" />"
+										alt="">
+								</div>
+								<div class="box_title trans_200">
+									<a href="categories.html">eyewear collection</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- Box -->
+						<div class="col-lg-4 box_col">
+							<div class="box">
+								<div class="box_image">
+									<img src="<spring:url value="/resources/images/box_3.jpg" />"
+										alt="">
+								</div>
+								<div class="box_title trans_200">
+									<a href="categories.html">basic pieces</a>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Categories -->
+
+		<div class="categories">
+			<div class="section_container">
+				<div class="container">
+					<div class="row">
+						<div class="col text-center">
+							<div class="categories_list_container">
+								<ul
+									class="categories_list d-flex flex-row align-items-center justify-content-start">
+									<li><a href="categories.html">new arrivals</a></li>
+									<li><a href="categories.html">recommended</a></li>
+									<li><a href="categories.html">best sellers</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Products -->
+
+		<div class="products">
+			<div class="section_container">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="products_container grid">
+
+								<!-- Product -->
+								<div class="product grid-item hot">
+									<div class="product_inner">
+										<div class="product_image">
+											<img
+												src="<spring:url value="/resources/images/product_1.jpg" />"
+												alt="">
+											<div class="product_tag">hot</div>
+										</div>
+										<div class="product_content text-center">
+											<div class="product_title">
+												<a href="product.html">long red shirt</a>
+											</div>
+											<div class="product_price">$39.90</div>
+											<div class="product_button ml-auto mr-auto trans_200">
+												<a href="#">add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Product -->
+								<div class="product grid-item">
+									<div class="product_inner">
+										<div class="product_image">
+											<img
+												src="<spring:url value="/resources/images/product_2.jpg" />"
+												alt="">
+										</div>
+										<div class="product_content text-center">
+											<div class="product_title">
+												<a href="product.html">hype grey shirt</a>
+											</div>
+											<div class="product_price">$19.50</div>
+											<div class="product_button ml-auto mr-auto trans_200">
+												<a href="#">add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Product -->
+								<div class="product grid-item sale">
+									<div class="product_inner">
+										<div class="product_image">
+											<img
+												src="<spring:url value="/resources/images/product_3.jpg" />"
+												alt="">
+											<div class="product_tag">sale</div>
+										</div>
+										<div class="product_content text-center">
+											<div class="product_title">
+												<a href="product.html">long sleeve jacket</a>
+											</div>
+											<div class="product_price">
+												$32.20<span>RRP 64.40</span>
+											</div>
+											<div class="product_button ml-auto mr-auto trans_200">
+												<a href="#">add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Product -->
+								<div class="product grid-item">
+									<div class="product_inner">
+										<div class="product_image">
+											<img
+												src="<spring:url value="/resources/images/product_4.jpg" /> "
+												alt="">
+										</div>
+										<div class="product_content text-center">
+											<div class="product_title">
+												<a href="product.html">denim men shirt</a>
+											</div>
+											<div class="product_price">$59.90</div>
+											<div class="product_button ml-auto mr-auto trans_200">
+												<a href="#">add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Product -->
+								<div class="product grid-item">
+									<div class="product_inner">
+										<div class="product_image">
+											<img
+												src="<spring:url value="/resources/images/product_5.jpg" />"
+												alt="">
+										</div>
+										<div class="product_content text-center">
+											<div class="product_title">
+												<a href="product.html">long red shirt</a>
+											</div>
+											<div class="product_price">$79.90</div>
+											<div class="product_button ml-auto mr-auto trans_200">
+												<a href="#">add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Product -->
+								<div class="product grid-item new">
+									<div class="product_inner">
+										<div class="product_image">
+											<img
+												src="<spring:url value="/resources/images/product_6.jpg" /> "
+												alt="">
+											<div class="product_tag">new</div>
+										</div>
+										<div class="product_content text-center">
+											<div class="product_title">
+												<a href="product.html">hype grey shirt</a>
+											</div>
+											<div class="product_price">$59.90</div>
+											<div class="product_button ml-auto mr-auto trans_200">
+												<a href="#">add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Product -->
+								<div class="product grid-item">
+									<div class="product_inner">
+										<div class="product_image">
+											<img
+												src="<spring:url value="/resources/images/product_7.jpg" />"
+												alt="">
+										</div>
+										<div class="product_content text-center">
+											<div class="product_title">
+												<a href="product.html">long sleeve jacket</a>
+											</div>
+											<div class="product_price">$15.90</div>
+											<div class="product_button ml-auto mr-auto trans_200">
+												<a href="#">add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Product -->
+								<div class="product grid-item sale">
+									<div class="product_inner">
+										<div class="product_image">
+											<img
+												src="<spring:url value="/resources/images/product_8.jpg" />"
+												alt="">
+											<div class="product_tag">sale</div>
+										</div>
+										<div class="product_content text-center">
+											<div class="product_title">
+												<a href="product.html">denim men shirt</a>
+											</div>
+											<div class="product_price">
+												$43.99<span>RRP 64.40</span>
+											</div>
+											<div class="product_button ml-auto mr-auto trans_200">
+												<a href="#">add to cart</a>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Newsletter -->
+
+		<div class="newsletter">
+			<div class="parallax_background parallax-window"
+				data-parallax="scroll" data-image-src="images/newsletter.jpg"
+				data-speed="0.8"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2">
+						<div class="newsletter_content text-center">
+							<div class="newsletter_title_container">
+								<div class="newsletter_title">subscribe to our newsletter</div>
+								<div class="newsletter_subtitle">we won't spam, we
+									promise!</div>
+							</div>
+							<div class="newsletter_form_container">
+								<form action="#" id="newsletter_form" class="newsletter_form">
+									<input type="email" class="newsletter_input"
+										placeholder="your e-mail here" required="required">
+									<button class="newsletter_button">submit</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+
+		<footer class="footer">
+			<div class="footer_content">
+				<div class="section_container">
+					<div class="container">
+						<div class="row">
+
+							<!-- About -->
+							<div class="col-xxl-3 col-md-6 footer_col">
+								<div class="footer_about">
+									<!-- Logo -->
+									<div class="footer_logo">
+										<a href="#"><div>
+												a<span>star</span>
+											</div></a>
+									</div>
+									<div class="footer_about_text">
+										<p>Donec vitae purus nunc. Morbi faucibus erat sit amet
+											congue mattis. Nullam fringilla faucibus urna, id dapibus
+											erat iaculis ut. Integer ac sem.</p>
+									</div>
+									<div class="cards">
+										<ul
+											class="d-flex flex-row align-items-center justify-content-start">
+											<li><a href="#"><img
+													src="<spring:url value="/resources/images/card_1.jpg" />"
+													alt=""></a></li>
+											<li><a href="#"><img
+													src="<spring:url value="/resources/images/card_2.jpg" />"
+													alt=""></a></li>
+											<li><a href="#"><img
+													src="<spring:url value="/resources/images/card_3.jpg" />"
+													alt=""></a></li>
+											<li><a href="#"><img
+													src="<spring:url value="/resources/images/card_4.jpg" />"
+													alt=""></a></li>
+											<li><a href="#"><img
+													src="<spring:url value="/resources/images/card_5.jpg" />"
+													alt=""></a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Questions -->
+							<div class="col-xxl-3 col-md-6 footer_col">
+								<div class="footer_questions">
+									<div class="footer_title">questions</div>
+									<div class="footer_list">
+										<ul>
+											<li><a href="#">About us</a></li>
+											<li><a href="#">Track Orders</a></li>
+											<li><a href="#">Returns</a></li>
+											<li><a href="#">Jobs</a></li>
+											<li><a href="#">Shipping</a></li>
+											<li><a href="#">Blog</a></li>
+											<li><a href="#">Partners</a></li>
+											<li><a href="#">Bloggers</a></li>
+											<li><a href="#">Support</a></li>
+											<li><a href="#">Terms of Use</a></li>
+											<li><a href="#">Press</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<!-- Blog -->
+							<div class="col-xxl-3 col-md-6 footer_col">
+								<div class="footer_blog">
+									<div class="footer_title">blog</div>
+									<div class="footer_blog_container">
+
+										<!-- Blog Item -->
+										<div
+											class="footer_blog_item d-flex flex-row align-items-start justify-content-start">
+											<div class="footer_blog_image">
+												<a href="blog.html"><img
+													src="<spring:url value="/resources/images/footer_blog_1.jpg" />"
+													alt=""></a>
+											</div>
+											<div class="footer_blog_content">
+												<div class="footer_blog_title">
+													<a href="blog.html">what shoes to wear</a>
+												</div>
+												<div class="footer_blog_date">june 06, 2018</div>
+												<div class="footer_blog_link">
+													<a href="blog.html">Read More</a>
+												</div>
+											</div>
+										</div>
+
+										<!-- Blog Item -->
+										<div
+											class="footer_blog_item d-flex flex-row align-items-start justify-content-start">
+											<div class="footer_blog_image">
+												<a href="blog.html"><img
+													src="<spring:url value="/resources/images/footer_blog_2.jpg" />"
+													alt=""></a>
+											</div>
+											<div class="footer_blog_content">
+												<div class="footer_blog_title">
+													<a href="blog.html">trends this year</a>
+												</div>
+												<div class="footer_blog_date">june 06, 2018</div>
+												<div class="footer_blog_link">
+													<a href="blog.html">Read More</a>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<!-- Contact -->
+							<div class="col-xxl-3 col-md-6 footer_col">
+								<div class="footer_contact">
+									<div class="footer_title">contact</div>
+									<div class="footer_contact_list">
+										<ul>
+											<li
+												class="d-flex flex-row align-items-start justify-content-start"><span>C.</span>
+												<div>Your Company Ltd</div></li>
+											<li
+												class="d-flex flex-row align-items-start justify-content-start"><span>A.</span>
+												<div>1481 Creekside Lane Avila Beach, CA 93424, P.O.
+													BOX 68</div></li>
+											<li
+												class="d-flex flex-row align-items-start justify-content-start"><span>T.</span>
+												<div>+53 345 7953 32453</div></li>
+											<li
+												class="d-flex flex-row align-items-start justify-content-start"><span>E.</span>
+												<div>office@youremail.com</div></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Social -->
+			<div class="footer_social">
+				<div class="section_container">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<div
+									class="footer_social_container d-flex flex-row align-items-center justify-content-between">
+									<!-- Instagram -->
+									<a href="#">
+										<div
+											class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+											<div class="footer_social_icon">
+												<i class="fa fa-instagram" aria-hidden="true"></i>
+											</div>
+											<div class="footer_social_title">instagram</div>
+										</div>
+									</a>
+									<!-- Google + -->
+									<a href="#">
+										<div
+											class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+											<div class="footer_social_icon">
+												<i class="fa fa-google-plus" aria-hidden="true"></i>
+											</div>
+											<div class="footer_social_title">google +</div>
+										</div>
+									</a>
+									<!-- Pinterest -->
+									<a href="#">
+										<div
+											class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+											<div class="footer_social_icon">
+												<i class="fa fa-pinterest" aria-hidden="true"></i>
+											</div>
+											<div class="footer_social_title">pinterest</div>
+										</div>
+									</a>
+									<!-- Facebook -->
+									<a href="#">
+										<div
+											class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+											<div class="footer_social_icon">
+												<i class="fa fa-facebook" aria-hidden="true"></i>
+											</div>
+											<div class="footer_social_title">facebook</div>
+										</div>
+									</a>
+									<!-- Twitter -->
+									<a href="#">
+										<div
+											class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+											<div class="footer_social_icon">
+												<i class="fa fa-twitter" aria-hidden="true"></i>
+											</div>
+											<div class="footer_social_title">twitter</div>
+										</div>
+									</a>
+									<!-- YouTube -->
+									<a href="#">
+										<div
+											class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+											<div class="footer_social_icon">
+												<i class="fa fa-youtube" aria-hidden="true"></i>
+											</div>
+											<div class="footer_social_title">youtube</div>
+										</div>
+									</a>
+									<!-- Tumblr -->
+									<a href="#">
+										<div
+											class="footer_social_item d-flex flex-row align-items-center justify-content-start">
+											<div class="footer_social_icon">
+												<i class="fa fa-tumblr-square" aria-hidden="true"></i>
+											</div>
+											<div class="footer_social_title">tumblr</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Credits -->
+			<div class="credits">
+				<div class="section_container">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<div
+									class="credits_content d-flex flex-row align-items-center justify-content-end">
+									<div class="credits_text">
+										<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+										Copyright &copy;
+										<script>
+											document.write(new Date()
+													.getFullYear());
+										</script>
+										All rights reserved | This template is made with <i
+											class="fa fa-heart-o" aria-hidden="true"></i> by <a
+											href="https://colorlib.com" target="_blank">Colorlib</a>
+										<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
 	</div>
 </body>
 </html>
