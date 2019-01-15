@@ -285,7 +285,6 @@
 		</div>
 
 		<!-- Sidebar -->
-
 		<div class="sidebar">
 			<!-- Logo -->
 			<div class="sidebar_logo">
@@ -348,23 +347,57 @@
 					</button>
 				</form>
 			</div>
+			<!-- special functions -->
+			<nav class="specialFunctions">
+				<ul>
+					<li><a href="index.html">Offers </a>&nbsp;<span
+						class="offersCunt">50+</span></li>
+					<li><a href="#">Recipes</a>&nbsp;&nbsp;<span
+						class="offersCunt">40</span></li>
+					<li><a href="#">Discounts</a></li>
+					<li><a href="#">Gift Cart</a></li>
+					<li><a href="#">Popular</a></li>
+					<li><a href="#">Product Request </a></li>
+				</ul>
+			</nav>
 
-			<!-- Sidebar Navigation -->
+			<!-- Sidebar Navigation (categories) -->
+			<nav class="categoriesLabel">
+				<ul>
+					<li><span class="">--- Categories ---</span></li>
+				</ul>
+			</nav>
 			<nav class="sidebar_nav">
 				<ul>
-					<li><a href="index.html">home<i class="fa fa-angle-right"
+					<li><a href="#">Foods<i class="fa fa-angle-right"
 							aria-hidden="true"></i></a></li>
-					<li><a href="#">woman<i class="fa fa-angle-right"
+					<li><a href="#">Groceries<i class="fa fa-angle-right"
 							aria-hidden="true"></i></a></li>
-					<li><a href="#">man<i class="fa fa-angle-right"
-							aria-hidden="true"></i></a></li>
-					<li><a href="#">lookbook<i class="fa fa-angle-right"
-							aria-hidden="true"></i></a></li>
-					<li><a href="blog.html">blog<i class="fa fa-angle-right"
-							aria-hidden="true"></i></a></li>
-					<li><a href="#">contact<i class="fa fa-angle-right"
-							aria-hidden="true"></i></a></li>
+					<li><a href="#">Office Products<i
+							class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+					<li><a href="blog.html">Home Accessories<i
+							class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+					<li><a href="#" onclick="openTab('b1');">Health & Beauty<i
+							class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 				</ul>
+				<!--expand group Full-width columns: (hidden by default) -->
+				<div id="b1" class="containerTab"
+					style="display: none; background: green">
+					<span onclick="this.parentElement.style.display='none'"
+						class="closebtn">&times;</span>
+					<h2>Box 1</h2>
+					<p>Sandelina cosmics</p>
+				</div>
+				<script>
+					function openTab(tabName) {
+						var i, x;
+						x = document.getElementsByClassName("containerTab");
+						for (i = 0; i < x.length; i++) {
+							x[i].style.display = "none";
+						}
+						document.getElementById(tabName).style.display = "block";
+					}
+				</script>
 			</nav>
 
 			<!-- Cart -->
@@ -378,6 +411,20 @@
 				</div>
 				<div class="cart_text">bag</div>
 				<div class="cart_price">$39.99 (1)</div>
+			</div>
+			<div class="menu_extra_sidebar">
+				<div class="menu_social_sidebar">
+					<ul>
+						<li><a href="#"><i class="fa fa-pinterest"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-facebook"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-instagram"
+								aria-hidden="true"></i></a></li>
+						<li><a href="#"><i class="fa fa-twitter"
+								aria-hidden="true"></i></a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 

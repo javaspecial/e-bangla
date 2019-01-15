@@ -307,6 +307,7 @@ section {
 	/* background: #1a1a1a; */
 	background: #6B8E23;
 	z-index: 100;
+	overflow-y:auto;
 }
 
 .info {
@@ -433,35 +434,147 @@ section {
 
 .has_children
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 ul
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 li
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 (
 :last-child
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 )
 {
 margin-bottom
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
  
 
+
+
+
+
+
+
+
 8
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ;
@@ -505,10 +618,176 @@ px
 	/* text-transform: uppercase; */
 	color: #FFFFFF;
 }
+
+/* special Functions */
+.specialFunctions {
+	padding-left: 20px;
+	margin-top: 10px;
+}
+
+.specialFunctions ul {
+	display: inline-block;
+}
+
+.specialFunctions
+
+
+
+
+
+ 
+
+
+
+
+
+ul
+
+
+
+
+
+ 
+
+
+
+
+
+li
+
+
+
+
+
+
+
+
+
+
+:not
+
+
+
+
+
+ 
+
+
+
+
+
+(
+:last-child
+
+
+
+
+
+ 
+
+
+
+
+
+){
+margin-bottom
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+ 
+
+
+
+
+
+8
+px
+
+
+
+
+
+
+
+
+
+
+;
+}
+.specialFunctions ul li a {
+	font-family: 'Poppins', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: #FFFFFF;
+	/* text-transform: uppercase; */
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+
+.specialFunctions ul li a i {
+	margin-left: 10px;
+	-webkit-transition: all 500ms ease;
+	-moz-transition: all 500ms ease;
+	-ms-transition: all 500ms ease;
+	-o-transition: all 500ms ease;
+	transition: all 500ms ease;
+}
+
+.specialFunctions ul li a:hover {
+	color: #bbe432;
+}
+
+.specialFunctions ul li:hover a i {
+	color: #bbe432;
+	-webkit-transform: translateX(10px);
+	-moz-transform: translateX(10px);
+	-ms-transform: translateX(10px);
+	-o-transform: translateX(10px);
+	transform: translateX(10px);
+}
+
+.offersCunt {
+	color: coral;
+	width: 25px;
+	height: 20px;
+	text-align: center; 
+	padding: 1px;
+	font-weight: bold;
+	font-size: 12px;
+/* 	border: 1px solid #73AD21;
+ */
+ }
+ /* categories label */
+ .categoriesLabel{
+	text-align: center; 
+	padding: 1px;
+	font-weight: bold;
+	margin-top:10px;
+	font-family: 'Poppins', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: #FFFFFF;
+ }
 /* Navigation */
 .sidebar_nav {
-	padding-left: 45px;
-	margin-top: 77px;
+	padding-left: 20px;
+	margin-top: 10px;
 }
 
 .sidebar_nav ul {
@@ -516,38 +795,16 @@ px
 }
 
 .sidebar_nav
-
- 
-
 ul
-
- 
-
 li
-
-
 :not
-
- 
-
 (
 :last-child
-
- 
-
-)
-{
+){
 margin-bottom
-
-
 :
-
- 
-
 8
 px
-
-
 ;
 }
 .sidebar_nav ul li a {
@@ -555,8 +812,8 @@ px
 	font-size: 14px;
 	font-weight: 400;
 	color: #FFFFFF;
-	text-transform: uppercase;
-	-webkit-transition: all 500ms ease;
+/* 	text-transform: uppercase;*/
+ 	-webkit-transition: all 500ms ease;
 	-moz-transition: all 500ms ease;
 	-ms-transition: all 500ms ease;
 	-o-transition: all 500ms ease;
@@ -686,9 +943,10 @@ px
 }
 /* Cart */
 .cart {
-	padding-left: 45px;
-	padding-right: 43px;
-	margin-top: 78px;
+	margin-left: 30px;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	margin-top: 20px;
 }
 
 .cart_icon {
@@ -791,35 +1049,147 @@ px
 
 .header_nav
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 ul
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 li
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 (
 :last-child
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 )
 {
 margin-right
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
  
 
+
+
+
+
+
+
+
 25
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ;
@@ -1077,7 +1447,47 @@ px
 .header_search_button:hover i {
 	color: #bbe432;
 }
+/* start sidebar-menu-extra */
+.menu_extra_sidebar {
+	float: center;
+	margin-top:10px;
+	margin-left:20px;
+	margin-right:20px;
+	margin-bottom:20px;
+}
 
+.menu_social_sidebar {
+	font-size: 12px;
+	float: center;
+}
+
+.menu_social_sidebar ul {
+	display: inline-block;
+	float: center;
+}
+
+.menu_social_sidebar ul li {
+	display: inline-block;
+	float: center;
+}
+
+.menu_social_sidebar ul li a i {
+	float: center;
+	font-size: 14px;
+	color: rgba(255, 255, 255, 1);
+	padding: 6px;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+
+.menu_social_sidebar ul li a i:hover {
+	float: center;
+	color: #bbe432;
+}
+/* end sidebar-menu-extra */
 .menu_extra {
 	position: absolute;
 	right: 50px;
@@ -1115,7 +1525,38 @@ px
 .menu_social ul li a i:hover {
 	color: #bbe432;
 }
+/* expand group */
+/* The grid: Three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 50px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+  color: white;
+}
 
+.containerTab {
+  padding: 20px;
+  color: white;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Closable button inside the container tab */
+.closebtn {
+  float: right;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+/* end expanded group */
 /*********************************
 6. Home
 *********************************/
@@ -1298,31 +1739,129 @@ px
 
 .categories_list
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 li
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 (
 :last-child
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 )
 {
 margin-right
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
  
 
+
+
+
+
+
+
+
 70
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ;
@@ -1652,35 +2191,147 @@ px
 
 .cards
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 ul
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 li
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 (
 :last-child
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 )
 {
 margin-right
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
  
 
+
+
+
+
+
+
+
 7
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ;
@@ -1743,35 +2394,147 @@ px
 
 .footer_list
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 ul
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 li
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 (
 :last-child
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 )
 {
 margin-bottom
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
  
 
+
+
+
+
+
+
+
 9
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ;
@@ -1804,26 +2567,110 @@ px
 .footer_blog_item
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 (
 :last-child
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 )
 {
 margin-bottom
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
  
 
+
+
+
+
+
+
+
 30
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ;
@@ -1894,35 +2741,147 @@ px
 
 .footer_contact_list
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 ul
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 li
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :not
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 (
 :last-child
 
+
+
+
+
+
+
+
  
+
+
+
+
+
+
+
 
 )
 {
 margin-bottom
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :
+
+
+
+
+
+
+
 
  
 
+
+
+
+
+
+
+
 19
 px
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ;
