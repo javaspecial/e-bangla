@@ -57,6 +57,9 @@
 <script
 	src="<spring:url value="/resources/plugins/Isotope/fitcolumns.js" /> "></script>
 <script src="<spring:url value="/resources/js/custom.js" /> "></script>
+<script src="<spring:url value="/resources/js/ajax.login.js" /> "></script>
+<script src="<spring:url value="/resources/js/ajax.sidebar.js" /> "></script>
+
 </head>
 <body>
 	<div class="super_container">
@@ -294,7 +297,7 @@
 			</div>
 
 			<!-- Info -->
-			<div class="info">
+			<%-- 	<div class="info">
 				<div
 					class="info_content d-flex flex-row align-items-center justify-content-start">
 
@@ -336,7 +339,7 @@
 
 				</div>
 			</div>
-
+ --%>
 			<!-- Search -->
 			<div class="search">
 				<form action="#" class="search_form" id="sidebar_search_form">
@@ -369,35 +372,52 @@
 			</nav>
 			<nav class="sidebar_nav">
 				<ul>
-					<li><a href="#">Foods<i class="fa fa-angle-right"
-							aria-hidden="true"></i></a></li>
-					<li><a href="#">Groceries<i class="fa fa-angle-right"
-							aria-hidden="true"></i></a></li>
-					<li><a href="#">Office Products<i
-							class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-					<li><a href="blog.html">Home Accessories<i
-							class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-					<li><a href="#" onclick="openTab('b1');">Health & Beauty<i
-							class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+					<li><a href="#" onclick="openTab('b1');">Foods</a></li>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<div id="b1" class="expandMenuTab">
+						<i onclick="this.parentElement.style.display='none'"
+							class="fa fa-angle-down" aria-hidden="true"></i>
+						<h3>protine</h3>
+						<h3>sandelina</h3>
+					</div>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<li><a href="#" onclick="openTab('b2');">Groceries</a></li>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<div id="b2" class="expandMenuTab">
+						<i onclick="this.parentElement.style.display='none'"
+							class="fa fa-angle-down" aria-hidden="true"></i>
+						<h3>protine</h3>
+						<h3>sandelina</h3>
+					</div>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<li><a href="#" onclick="openTab('b3');">Office Products</a></li>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<div id="b3" class="expandMenuTab">
+						<i onclick="this.parentElement.style.display='none'"
+							class="fa fa-angle-down" aria-hidden="true"></i>
+						<h3>protine</h3>
+						<h3>sandelina</h3>
+					</div>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<li><a href="#" onclick="openTab('b4');">Home Accessories</a></li>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<div id="b4" class="expandMenuTab">
+						<i onclick="this.parentElement.style.display='none'"
+							class="fa fa-angle-down" aria-hidden="true"></i>
+						<h3>protine</h3>
+						<h3>sandelina</h3>
+					</div>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<li><a href="#" onclick="openTab('b5');">Health & Beauty</a></li>
+					<!--expand group Full-width columns: (hidden by default) -->
+					<div id="b5" class="expandMenuTab">
+						<i onclick="this.parentElement.style.display='none'"
+							class="fa fa-angle-down" aria-hidden="true"></i>
+						<h3>protine</h3>
+						<h3>sandelina</h3>
+					</div>
+					<!--expand group Full-width columns: (hidden by default) -->
 				</ul>
-				<!--expand group Full-width columns: (hidden by default) -->
-				<div id="b1" class="containerTab"
-					style="display: none; background: green">
-					<span onclick="this.parentElement.style.display='none'"
-						class="closebtn">&times;</span>
-					<h2>Box 1</h2>
-					<p>Sandelina cosmics</p>
-				</div>
-				<script>
-					function openTab(tabName) {
-						var i, x;
-						x = document.getElementsByClassName("containerTab");
-						for (i = 0; i < x.length; i++) {
-							x[i].style.display = "none";
-						}
-						document.getElementById(tabName).style.display = "block";
-					}
-				</script>
 			</nav>
 
 			<!-- Cart -->
