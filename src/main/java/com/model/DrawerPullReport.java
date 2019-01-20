@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @Table(name = "DRAWER_PULL_REPORT")
 public class DrawerPullReport implements Comparable<Object>, Serializable {
@@ -195,7 +198,8 @@ public class DrawerPullReport implements Comparable<Object>, Serializable {
 	@Column(name = DRAWER_PULLREPORT_TOTAL_VOID_WST)
 	private double drawerPullReportTotalVoidWst;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = CurrencyBalance.CURRENCY_BALANCE_ID)
 	private Set<CurrencyBalance> currencyBalance;
 
@@ -203,7 +207,8 @@ public class DrawerPullReport implements Comparable<Object>, Serializable {
 	@JoinColumn(name = DRAWER_PULL_VOID_TICKET_ENTRY)
 	private Set<DrawerPullVoidTicketEntry> drawerPullReportVoidTickets;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = Terminal.TERMINAL_ID, referencedColumnName = Terminal.TERMINAL_ID)
 	private Terminal terminal;
 
@@ -211,7 +216,8 @@ public class DrawerPullReport implements Comparable<Object>, Serializable {
 	@JoinColumn(name = User.USER_ID, referencedColumnName = User.USER_ID)
 	private User assignedUser;
 
-	@OneToOne(mappedBy = CashDrawerResetHistory.DRAWER_PULL_REPORT, cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	@OneToOne(mappedBy = CashDrawerResetHistory.DRAWER_PULL_REPORT, cascade = CascadeType.ALL, optional = false)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private CashDrawerResetHistory cashDrawerResetHistory;
 
 	public DrawerPullReport() {

@@ -14,6 +14,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.basemodel.BaseCashDrawerResetHistory;
 
 @Entity
@@ -34,7 +37,8 @@ public class CashDrawerResetHistory extends BaseCashDrawerResetHistory {
 	@JoinColumn(name = User.USER_ID, referencedColumnName = User.USER_ID)
 	private User user;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = DRAWER_PULL_REPORT)
 	private DrawerPullReport drawerPullReport;
 

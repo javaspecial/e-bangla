@@ -20,7 +20,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +28,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.interface_.ITicketItem;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * @author toxic-pc
@@ -67,7 +67,8 @@ public class TicketItemModifier {
 	@Column(name = TICKET_ITEM_MODIFIER_ID, unique = true, nullable = false)
 	private Integer ticketItemModifierId;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = TicketItem.TICKET_ITEM_ID, referencedColumnName = TicketItem.TICKET_ITEM_ID)
 	private TicketItem ticketItem;
 

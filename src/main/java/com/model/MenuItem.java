@@ -40,6 +40,9 @@ import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity(name = "MENU_ITEM")
 @Table(name = "MENU_ITEM")
 public class MenuItem {
@@ -124,7 +127,8 @@ public class MenuItem {
 	@JoinColumn(name = MENU_ITEM_GROUP, referencedColumnName = MenuGroup.MENU_GROUP_ID)
 	private MenuGroup parent;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = MENU_ITEM_ID)
 	private List<MenuItemModifierGroup> menuItemModifierGroup;
 

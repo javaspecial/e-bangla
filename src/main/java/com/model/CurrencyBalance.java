@@ -20,13 +20,15 @@ import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * @author toxic-pc
@@ -49,11 +51,13 @@ public class CurrencyBalance implements Serializable {
 	@Column(name = BALANCE)
 	private double currencyBalance;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = Currency.CURRENCY_ID, referencedColumnName = Currency.CURRENCY_ID)
 	private Currency currency;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = CashDrawer.CASH_DRAWER_ID, referencedColumnName = CashDrawer.CASH_DRAWER_ID)
 	private CashDrawer cashDrawer;
 

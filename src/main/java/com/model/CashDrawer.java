@@ -30,6 +30,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 /**
  * @author toxic-pc
  *
@@ -45,7 +48,8 @@ public class CashDrawer implements Serializable {
 	@Column(name = CASH_DRAWER_ID, unique = true, nullable = false)
 	private Integer cashDrawerId;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = TERMINAL, referencedColumnName = Terminal.TERMINAL_ID)
 	private Terminal terminal;
 

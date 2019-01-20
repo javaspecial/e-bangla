@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.format.Printer;
 
 @Entity
@@ -73,7 +75,8 @@ public class KitchenTicket implements Comparable<Object>, Serializable {
 	@JoinColumn(name = KITCHEN_TICKET_PRINTER_GROUP, referencedColumnName = PrinterGroup.PRINTER_GROUP_ID)
 	private PrinterGroup printerGroup;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = KITCHEN_TICKET_ID)
 	private List<KitchenTicketItem> kitchenTicketItem;
 

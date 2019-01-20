@@ -30,6 +30,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 /**
  * @author toxic-pc
  *
@@ -62,7 +65,8 @@ public class MenuGroup {
 	@Column(name = MENU_GROUP_SORT_ORDER)
 	private Integer sortOrder;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name = MENU_GROUP_DISCOUNT, joinColumns = @JoinColumn(name = MENU_GROUP_ID), inverseJoinColumns = @JoinColumn(name = Discount.DISCOUNT_ID))
 	private List<Discount> menuGroupDiscount;
 

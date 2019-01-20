@@ -2,16 +2,17 @@ package com.daoimpl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.UsersDao;
-import com.model.Users;
+import com.model.User;
 import com.resources.AESencryption;
 
 @Repository
@@ -21,22 +22,21 @@ public class UsersDaoImpl implements UsersDao {
 	@Autowired
 	SessionFactory session;
 
-	public boolean saveOrUpdate(Users users) {
+	public boolean saveOrUpdate(User users) {
 		session.getCurrentSession().saveOrUpdate(users);
 		return true;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Users> list() {
+	public List<User> list() {
 		return session.getCurrentSession().createQuery("from Users").list();
 	}
 
-	public boolean delete(Users users) {
+	public boolean delete(User users) {
 		session.getCurrentSession().delete(users);
 		return true;
 	}
 
-	public boolean save(Users users) throws Exception {
+	public boolean save(User users) throws Exception {
 		users.setPassword(AESencryption.getInstance().encrypt(users.getPassword()));
 		session.getCurrentSession().save(users);
 		return true;
@@ -47,11 +47,11 @@ public class UsersDaoImpl implements UsersDao {
 		try {
 			curentSession = session.openSession();
 			curentSession.beginTransaction();
-			Criteria criteria = curentSession.createCriteria(Users.class);
-			criteria.add(Restrictions.eq(Users.USER_EMAIL, username));
-			criteria.add(Restrictions.eq(Users.USER_PASSWORD, AESencryption.getInstance().encrypt(password)));
+			Criteria criteria = curentSession.createCriteria(User.class);
+			criteria.add(Restrictions.eq(User.USER_EMAIL, username));
+			criteria.add(Restrictions.eq(User.USER_PASSWORD, AESencryption.getInstance().encrypt(password)));
 			curentSession.getTransaction();
-			List<Users> users = criteria.list();
+			List<User> users = criteria.list();
 			if (!users.isEmpty()) {
 				return true;
 			}
@@ -66,10 +66,10 @@ public class UsersDaoImpl implements UsersDao {
 		try {
 			openSession = session.openSession();
 			openSession.beginTransaction();
-			Criteria criteria = openSession.createCriteria(Users.class);
-			criteria.add(Restrictions.eq(Users.USER_EMAIL, users));
+			Criteria criteria = openSession.createCriteria(User.class);
+			criteria.add(Restrictions.eq(User.USER_EMAIL, users));
 			openSession.getTransaction();
-			List<Users> list = criteria.list();
+			List<User> list = criteria.list();
 			if (!list.isEmpty()) {
 				return true;
 			}

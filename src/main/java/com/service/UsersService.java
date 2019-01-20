@@ -2,16 +2,16 @@ package com.service;
 
 import java.util.List;
 
-import com.model.Users;
+import com.model.User;
 
 public interface UsersService {
-	public List<Users> list();
+	public List<User> list();
 
-	public boolean delete(Users users);
+	public boolean delete(User users);
 
-	public boolean saveOrUpdate(Users users);
-	
-	public boolean save(Users users) throws Exception;
+	public boolean saveOrUpdate(User users);
+
+	public boolean save(User users) throws Exception;
 
 	public boolean validateUser(String username, String password) throws Exception;
 

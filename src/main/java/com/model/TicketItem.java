@@ -21,7 +21,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,6 +31,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 /**
  * @author toxic-pc
  *
@@ -162,7 +165,8 @@ public class TicketItem {
 	@Transient
 	private int hashCode = Integer.MIN_VALUE;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = TicketItemModifier.TICKET_ITEM_MODIFIER_ID, referencedColumnName = TicketItemModifier.TICKET_ITEM_MODIFIER_ID)
 	private TicketItemModifier ticketItemModifier;
 
@@ -170,15 +174,18 @@ public class TicketItem {
 	@JoinTable(name = TICKET_ITEM_MODIFIER_LIST, joinColumns = @JoinColumn(name = TicketItem.TICKET_ITEM_ID), inverseJoinColumns = @JoinColumn(name = TicketItemModifier.TICKET_ITEM_MODIFIER_ID))
 	private List<TicketItemModifier> ticketItemModifierList;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = Ticket.TICKET_ID, referencedColumnName = Ticket.TICKET_ID)
 	private Ticket ticket;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = TICKET_ITEM_ID)
 	private List<TicketItemDiscount> ticketItemDiscount;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = PrinterGroup.PRINTER_GROUP_ID, referencedColumnName = PrinterGroup.PRINTER_GROUP_ID)
 	private PrinterGroup printerGroup;
 

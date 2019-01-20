@@ -26,7 +26,6 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -37,8 +36,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.basemodel.BasePosTransaction;
-//import com.soft.pos.helper.GlobalIdGenerator;
 
 /**
  * @author toxic-pc
@@ -162,23 +163,27 @@ public class PosTransaction extends BasePosTransaction {
 	@Column(name = POS_TRANSACTION_NOTE)
 	private String posTransactionNote;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = User.USER_ID, referencedColumnName = User.USER_ID)
 	private User user;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = PayoutReason.PAYOUT_REASON_ID, referencedColumnName = PayoutReason.PAYOUT_REASON_ID)
 	private PayoutReason payoutReason;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = PayoutRecepient.PAYOUT_RECEPIENT_ID, referencedColumnName = PayoutRecepient.PAYOUT_RECEPIENT_ID)
 	private PayoutRecepient payoutRecepient;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinColumn(name = Ticket.TICKET_ID, referencedColumnName = Ticket.TICKET_ID)
 	private Ticket ticket;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = Terminal.TERMINAL_ID, referencedColumnName = Terminal.TERMINAL_ID)
 	private Terminal terminal;
 
@@ -207,8 +212,10 @@ public class PosTransaction extends BasePosTransaction {
 
 	@Override
 	protected void initialize() {
-		/*String generateGlobalId = GlobalIdGenerator.generateGlobalId();
-		setGlobalId(generateGlobalId);*/
+		/*
+		 * String generateGlobalId = GlobalIdGenerator.generateGlobalId();
+		 * setGlobalId(generateGlobalId);
+		 */
 	}
 
 	public Integer getPosTransactionId() {

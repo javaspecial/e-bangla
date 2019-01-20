@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.dao.UsersDao;
-import com.model.Users;
+import com.model.User;
 import com.service.UsersService;
 
 @Service
@@ -15,20 +15,20 @@ public class UsersServiceImpl implements UsersService {
 	@Autowired
 	UsersDao userDao;
 
-	public boolean save(Users users) throws Exception {
+	public boolean save(User users) throws Exception {
 		return userDao.save(users);
 	}
 
-	public boolean saveOrUpdate(Users users) {
+	public boolean saveOrUpdate(User users) {
 		return userDao.saveOrUpdate(users);
 	}
 
 	@Transactional
-	public List<Users> list() {
+	public List<User> list() {
 		return userDao.list();
 	}
 
-	public boolean delete(Users users) {
+	public boolean delete(User users) {
 		return userDao.delete(users);
 	}
 

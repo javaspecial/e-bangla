@@ -17,10 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.model.Book;
-import com.model.Users;
+import com.model.User;
 import com.resources.UsersCookie;
-import com.service.BookService;
 import com.service.UsersService;
 
 @Controller
@@ -28,8 +26,6 @@ public class UsersController {
 
 	@Autowired
 	UsersService userServices;
-	@Autowired
-	BookService bookService;
 
 	@RequestMapping(value = { "/", "index" }, method = RequestMethod.GET)
 	public ModelAndView getPage(HttpServletRequest request) {
@@ -42,7 +38,7 @@ public class UsersController {
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ExceptionHandler({ Exception.class })
-	public @ResponseBody Map<String, Object> saveUserRegistration(Users users) throws Exception {
+	public @ResponseBody Map<String, Object> saveUserRegistration(User users) throws Exception {
 		Map<String, Object> map = new HashMap<String, Object>();
 		try {
 			if (StringUtils.isEmpty(users.getEmail()) || StringUtils.isEmpty(users.getPassword())) {
@@ -90,7 +86,7 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = "/existEmail", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> emailExist(Users users) {
+	public @ResponseBody Map<String, Object> emailExist(User users) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (userServices.existEmail(users.getEmail())) {
 			map.put("message", "exist");
@@ -102,7 +98,7 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getSaved(Users users) {
+	public @ResponseBody Map<String, Object> getSaved(User users) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (userServices.saveOrUpdate(users)) {
 			map.put("status", "200");
@@ -112,9 +108,9 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> getAll(Users users) {
+	public @ResponseBody Map<String, Object> getAll(User users) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<Users> list = userServices.list();
+		List<User> list = userServices.list();
 		if (list != null) {
 			map.put("status", "200");
 			map.put("message", "Data found.");
@@ -127,65 +123,11 @@ public class UsersController {
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> delete(Users users) {
+	public @ResponseBody Map<String, Object> delete(User users) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (userServices.delete(users)) {
 			map.put("status", "200");
 			map.put("message", "Your record have been deleted successfully");
-		}
-		return map;
-	}
-
-	@RequestMapping(value = "/listOfBooks", method = RequestMethod.GET)
-	public ModelAndView getAllBooks(ModelAndView model) {
-		List<Book> list = bookService.list();
-		if (list != null) {
-			model.addObject("books", list);
-			model.setViewName("home");
-		}
-		return model;
-	}
-
-	@RequestMapping(value = "/deleteBook", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> deleteBook(Book book) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		if (bookService.delete(book)) {
-			map.put("status", "200");
-			map.put("message", "Your record have been deleted successfully");
-		}
-		return map;
-	}
-
-	@RequestMapping(value = "/saveBook", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> saveBook(Book book) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		if (StringUtils.isEmpty(book.getName()) || StringUtils.isEmpty(book.getDescription())
-				|| StringUtils.isEmpty(book.getCategory()) || StringUtils.isEmpty(book.getPrice())) {
-			map.put("BookField", "Field is mandetory");
-			return map;
-		} else if (bookService.save(book)) {
-			map.put("BookField", "Successfully saved");
-			return map;
-		}
-		return map;
-	}
-
-	@RequestMapping(value = "/updateBook", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> updateBook(Book book) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		if (bookService.update(book)) {
-			map.put("status", "200");
-			map.put("message", "Your record have been updated successfully");
-		}
-		return map;
-	}
-
-	@RequestMapping(value = "/saveOrUpdateBook", method = RequestMethod.POST)
-	public @ResponseBody Map<String, Object> saveOrUpdateBook(Book book) throws Exception {
-		Map<String, Object> map = new HashMap<String, Object>();
-		if (bookService.saveOrUpdate(book)) {
-			map.put("status", "200");
-			map.put("message", "Your record have been updated successfully");
 		}
 		return map;
 	}
