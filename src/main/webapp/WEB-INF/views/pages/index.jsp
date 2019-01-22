@@ -357,9 +357,9 @@
 						class="offersCunt">50+</span></li>
 					<li><a href="#">Recipes</a>&nbsp;&nbsp;<span
 						class="offersCunt">40</span></li>
-					<li><a href="#">Discounts</a></li>
-					<li><a href="#">Gift Cart</a></li>
 					<li><a href="#">Popular</a></li>
+					<li><a href="#">Gift Cart</a></li>
+					<li><a href="#">Discounts</a></li>
 					<li><a href="#">Product Request </a></li>
 				</ul>
 			</nav>
@@ -367,7 +367,7 @@
 			<!-- Sidebar Navigation (categories) -->
 			<nav class="categoriesLabel">
 				<ul>
-					<li><span class="">--- Categories ---</span></li>
+					<li><span class="">[Categories]</span></li>
 				</ul>
 			</nav>
 			<nav class="sidebar_nav">

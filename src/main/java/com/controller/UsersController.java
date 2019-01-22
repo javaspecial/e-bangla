@@ -28,12 +28,21 @@ public class UsersController {
 	UsersService userServices;
 
 	@RequestMapping(value = { "/", "index" }, method = RequestMethod.GET)
-	public ModelAndView getPage(HttpServletRequest request) {
+	public ModelAndView getIndex(HttpServletRequest request) {
 		ModelAndView view = new ModelAndView("index");
 		if (StringUtils.isEmpty(UsersCookie.getInstance().getCookie(request))) {
 			return view;
 		}
 		return new ModelAndView("home");
+	}
+
+	@RequestMapping(value = { "/", "admin" }, method = RequestMethod.GET)
+	public ModelAndView getAdmin(HttpServletRequest request) {
+		ModelAndView view = new ModelAndView("admin");
+		if (StringUtils.isEmpty(UsersCookie.getInstance().getCookie(request))) {
+			return view;
+		}
+		return new ModelAndView("admin");
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
