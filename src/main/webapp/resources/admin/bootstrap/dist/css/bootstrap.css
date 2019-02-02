@@ -5932,7 +5932,7 @@ button.close {
   opacity: .5;
 }
 .modal-header {
-  padding: 15px;
+  padding: 10px;
   border-bottom: 1px solid #e5e5e5;
 }
 .modal-header .close {
@@ -5944,10 +5944,10 @@ button.close {
 }
 .modal-body {
   position: relative;
-  padding: 15px;
+  padding: 25px;
 }
 .modal-footer {
-  padding: 15px;
+  padding: 5px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
 }
@@ -5968,9 +5968,9 @@ button.close {
   height: 50px;
   overflow: scroll;
 }
-@media (min-width: 768px) {
+@media (min-width: 368px) {
   .modal-dialog {
-    width: 600px;
+    width: 300px;
     margin: 30px auto;
   }
   .modal-content {

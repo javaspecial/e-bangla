@@ -533,4 +533,8 @@ public class MenuItem {
 	public void setOrderType(List<OrderType> orderType) {
 		this.orderType = orderType;
 	}
+
+	public String getUniqueId() {
+		return ("menu_item_" + getName() + "_" + getMenuItemId()).replaceAll("\\s+", "_");
+	}
 }

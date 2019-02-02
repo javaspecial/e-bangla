@@ -40,6 +40,8 @@
 <script src="<spring:url value="/resources/admin/chart.js/Chart.js" />"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script
+	src="<spring:url value="/resources/admin/js/sidebar.actions.js" />"></script>
+<script
 	src="<spring:url value="/resources/admin/js/pages/dashboard2.js" />"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<spring:url value="/resources/admin/js/demo.js" />"></script>
@@ -63,15 +65,16 @@
        folder instead of downloading all of them to reduce the load. -->
 <link rel="stylesheet"
 	href="<spring:url value="/resources/admin/css/skins/_all-skins.min.css"/>">
+<link rel="stylesheet"
+	href="<spring:url value="/resources/admin/css/modal.css"/>">
 <!-- Google Font -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+	<%@ include file="/WEB-INF/views/pages/exception.jsp"%>
 	<div class="wrapper">
-
 		<header class="main-header">
-
 			<!-- Logo -->
 			<a href="index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>e</b>Bangla</span> <!-- logo for regular state and mobile devices -->
@@ -346,22 +349,43 @@
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="pages/forms/editors.html"><i
-									class="fa fa-circle-o"></i>Users</a></li>
-							<li><a href="pages/forms/editors.html"><i
-									class="fa fa-circle-o"></i>Gratuity</a></li>
-							<li><a href="pages/forms/editors.html"><i
-									class="fa fa-circle-o"></i>Language</a></li>
-							<li><a href="pages/forms/editors.html"><i
-									class="fa fa-circle-o"></i>User types</a></li>
-							<li><a href="pages/forms/editors.html"><i
-									class="fa fa-circle-o"></i>Configurations</a></li>
-							<li><a href="pages/forms/editors.html"><i
-									class="fa fa-circle-o"></i> Export all menus</a></li>
-							<li><a href="pages/forms/general.html"><i
-									class="fa fa-circle-o"></i>Import default menus</a></li>
-							<li><a href="pages/forms/advanced.html"><i
-									class="fa fa-circle-o"></i> Import menus from file</a></li>
+							<li>
+								<button type="button" class="btn btn-block btn-success btn-sm">
+									Users<i class="fa fa-fw fa-users pull-right"></i>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-block btn-success btn-sm">
+									Gratuity</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-block btn-success btn-sm">
+									Language</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-block btn-success btn-sm">
+									User types</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-block btn-success btn-sm">
+									Configurations</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-block btn-success btn-sm">
+									Export all menus<i class="fa fa-cloud-download pull-right"></i>
+								</button>
+							</li>
+							<li>
+								<button onclick="createDefaultMenus();" type="button"
+									class="btn btn-block btn-success btn-sm">
+									Create default menus<i class="fa fa-plus-circle pull-right"></i>
+								</button>
+							</li>
+							<li>
+								<button type="button" class="btn btn-block btn-success btn-sm">
+									Import menus from file<i class="fa fa-cloud-upload pull-right"></i>
+								</button>
+							</li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i class="fa fa-book"></i>
 							<span>Explorers</span> <span class="pull-right-container">
@@ -433,7 +457,7 @@
 						</span>
 					</a>
 						<ul class="treeview-menu">
-						<li><a href="pages/layout/fixed.html"><i
+							<li><a href="pages/layout/fixed.html"><i
 									class="fa fa-circle-o"></i> About</a></li>
 							<li><a href="pages/layout/top-nav.html"><i
 									class="fa fa-circle-o"></i>Update</a></li>
@@ -1296,6 +1320,7 @@
 												</a> <span class="product-description"> Samsung 32" 1080p
 													60Hz LED Smart HDTV. </span>
 											</div>
+
 										</li>
 										<!-- /.item -->
 										<li class="item">
