@@ -1,7 +1,5 @@
 package com.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -11,14 +9,17 @@ import java.util.Map;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
+import org.apache.log4j.Logger;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.model.MenuCategory;
 import com.model.MenuGroup;
@@ -40,6 +41,8 @@ import com.service.TaxService;
 @Controller
 public class MenusImportExportController {
 
+	private static final Logger logger = Logger.getLogger(MenusImportExportController.class);
+
 	@Autowired
 	MenuCategoryService menuCategoryService;
 	@Autowired
@@ -57,12 +60,12 @@ public class MenusImportExportController {
 
 	@RequestMapping(value = "/createDefaultMenus", method = RequestMethod.POST)
 	@ExceptionHandler({ Exception.class })
-	public String createDefaultMenus(ModelMap model) {
+	@ResponseBody
+	public ResponseEntity<String> createDefaultMenus(ModelMap model) {
 		Map<String, Object> objectMap = new HashMap<String, Object>();
 		InputStream inputStream = null;
 		try {
-			File file = ResourceUtils.getFile("classpath:files/default-menu-items.xml");
-			inputStream = new FileInputStream(file);
+			inputStream = MenusImportExportController.class.getResourceAsStream("/default-menu-items.xml");
 			JAXBContext jaxbContext = JAXBContext.newInstance(Elements.class);
 			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 			Elements elements = (Elements) unmarshaller.unmarshal(inputStream);
@@ -167,8 +170,7 @@ public class MenusImportExportController {
 					List<MenuItemModifierGroup> menuItemModiferGroups = menuItem.getMenuItemModifierGroup();
 					if (menuItemModiferGroups != null) {
 						for (MenuItemModifierGroup menuItemModifierGroup : menuItemModiferGroups) {
-							MenuItemModifierGroup menuItemModifierGroup2 = (MenuItemModifierGroup) objectMap
-									.get(menuItemModifierGroup.getUniqueId());
+							MenuItemModifierGroup menuItemModifierGroup2 = (MenuItemModifierGroup) objectMap.get(menuItemModifierGroup.getUniqueId());
 							menuItemModifierGroup.setId(menuItemModifierGroup2.getId());
 							menuItemModifierGroup.setModifierGroup(menuItemModifierGroup2.getModifierGroup());
 						}
@@ -179,14 +181,15 @@ public class MenusImportExportController {
 			}
 
 		} catch (IOException e) {
-			model.addAttribute("exception", e.getMessage().toString());
-			return "modal/createDefaultMenus::modalContent";
+			logger.error("File not found exception:" + e.getMessage().toString());
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
-			model.addAttribute("exception", e.getMessage().toString());
-			return "modal/createDefaultMenus::modalContent";
+			logger.error("Unexpected error:" + e.getMessage().toString());
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		} finally {
 			IOUtils.closeQuietly(inputStream);
 		}
-		return "admin/createDefaultMenus::modalContent";
+		logger.debug("Default menus are created succesfull.");
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 }

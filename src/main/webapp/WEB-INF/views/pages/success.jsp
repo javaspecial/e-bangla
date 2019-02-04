@@ -18,7 +18,7 @@
 					<h4 class="modal-title">Success</h4>
 				</div>
 				<div class="modal-body">
-					<span id="modal-body"></span>
+					<span id="success"></span>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline pull-right"
