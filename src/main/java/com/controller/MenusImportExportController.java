@@ -175,21 +175,20 @@ public class MenusImportExportController {
 							menuItemModifierGroup.setModifierGroup(menuItemModifierGroup2.getModifierGroup());
 						}
 					}
-
 					menuItemService.save(menuItem);
 				}
 			}
 
 		} catch (IOException e) {
 			logger.error("File not found exception:" + e.getMessage().toString());
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("File not found!", HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
 			logger.error("Unexpected error:" + e.getMessage().toString());
-			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("Unexpected error!", HttpStatus.BAD_REQUEST);
 		} finally {
 			IOUtils.closeQuietly(inputStream);
 		}
 		logger.debug("Default menus are created succesfull.");
-		return new ResponseEntity<String>(HttpStatus.OK);
+		return new ResponseEntity<String>("Default menus are created successfull.", HttpStatus.OK);
 	}
 }

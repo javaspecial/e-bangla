@@ -1,18 +1,40 @@
 //create default menus
 function createDefaultMenus() {
-	$.ajax({
+	var ajaxReq = $.ajax({
 		type : 'POST',
 		url : 'createDefaultMenus',
 		data : '',
-		success : function(data) {
-			console.log("Success:", data);
-			$("#modal-success").modal("show");
-			document.getElementById("success").innerHTML = "Default menus are created successfull.";
+		cache : false,
+		contentType : false,
+		processData : false,
+		xhr : function() {
+			var xhr = $.ajaxSettings.xhr();
+			xhr.upload.onprogress = function(event) {
+				var perc = (event.loaded / event.total) * 100;
+				$('#progress-bar').text(perc + '%');
+				$('#progress-bar').css('width', perc + '%');
+			};
+			return xhr;
 		},
-		error : function(e) {
-			console.log("Error:", e);
-			$("#modal-danger").modal("show");
-			document.getElementById("modal-body").innerHTML = "An unexpected error occurred! Please try agin or you can go to system administrator to resolve it.";
+		beforeSend : function(xhr) {
+			$("#modal-success").modal("show");
+			$('#modal-title').text('Operation in progress')
+			$('#progress-bar').css('width', '0%');
 		}
+	});
+
+	ajaxReq.done(function(msg) {
+		$('#modal-title').text(msg);
+		$('#progress-bar').css('width', '100%');
+	});
+
+	ajaxReq.fail(function(jqXHR) {
+		$('#modal-title').text(jqXHR.responseText + ' (' + jqXHR.status + ' - ' + jqXHR.statusText + ')').css({
+			"background-color" : "red"
+		});
+		$('#progress-bar').css('width', '0%');
+		$('#progress-body').css({
+			"background-color" : "red"
+		});
 	});
 };

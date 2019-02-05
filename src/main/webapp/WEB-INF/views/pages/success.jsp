@@ -15,10 +15,16 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Success</h4>
+					<span class="modal-title" id="modal-title"></span>
 				</div>
 				<div class="modal-body">
-					<span id="success"></span>
+					<div class="progress" id="progress-body">
+						<div id="progress-bar" class="progress-bar progress-bar-yellow"
+							role="progressbar" aria-valuenow="60" aria-valuemin="0"
+							aria-valuemax="100" style="width: 60%">
+							<span class="sr-only">60% Complete (warning)</span>
+						</div>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-outline pull-right"
