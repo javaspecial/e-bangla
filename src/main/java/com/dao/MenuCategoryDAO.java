@@ -9,7 +9,7 @@ import com.model.MenuCategory;
  *
  */
 public interface MenuCategoryDAO {
-	public List<MenuCategory> menuCategoryList();
+	public List<MenuCategory> getAllMenuCategories();
 
 	public boolean delete(MenuCategory menuCategory);
 

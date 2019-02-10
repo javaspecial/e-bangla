@@ -28,21 +28,12 @@ public class UsersController {
 	UsersService userServices;
 
 	@RequestMapping(value = { "/", "index" }, method = RequestMethod.GET)
-	public ModelAndView getIndex(HttpServletRequest request) {
+	public ModelAndView getPage(HttpServletRequest request) {
 		ModelAndView view = new ModelAndView("index");
 		if (StringUtils.isEmpty(UsersCookie.getInstance().getCookie(request))) {
 			return view;
 		}
 		return new ModelAndView("home");
-	}
-
-	@RequestMapping(value = { "/", "admin" }, method = RequestMethod.GET)
-	public ModelAndView getAdmin(HttpServletRequest request) {
-		ModelAndView view = new ModelAndView("admin");
-		if (StringUtils.isEmpty(UsersCookie.getInstance().getCookie(request))) {
-			return view;
-		}
-		return new ModelAndView("admin");
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -67,9 +58,8 @@ public class UsersController {
 
 	@RequestMapping(value = "/home", method = { RequestMethod.GET, RequestMethod.POST })
 	@ExceptionHandler({ Exception.class })
-	public ModelAndView loginProcess(@RequestParam(value = "user_name", required = false) String username,
-			@RequestParam(value = "password", required = false) String password, HttpServletResponse response,
-			HttpServletRequest request) throws Exception {
+	public ModelAndView loginProcess(@RequestParam(value = "user_name", required = false) String username, @RequestParam(value = "password", required = false) String password, HttpServletResponse response, HttpServletRequest request)
+			throws Exception {
 		ModelAndView mv = new ModelAndView("home");
 		try {
 			if ("GET".equals(request.getMethod())) {
@@ -140,5 +130,4 @@ public class UsersController {
 		}
 		return map;
 	}
-
 }

@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 
-import org.apache.log4j.Logger;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -40,8 +39,6 @@ import com.service.TaxService;
 
 @Controller
 public class MenusImportExportController {
-
-	private static final Logger logger = Logger.getLogger(MenusImportExportController.class);
 
 	@Autowired
 	MenuCategoryService menuCategoryService;
@@ -180,15 +177,12 @@ public class MenusImportExportController {
 			}
 
 		} catch (IOException e) {
-			logger.error("File not found exception:" + e.getMessage().toString());
 			return new ResponseEntity<String>("File not found!", HttpStatus.BAD_REQUEST);
 		} catch (Exception e) {
-			logger.error("Unexpected error:" + e.getMessage().toString());
 			return new ResponseEntity<String>("Unexpected error!", HttpStatus.BAD_REQUEST);
 		} finally {
 			IOUtils.closeQuietly(inputStream);
 		}
-		logger.debug("Default menus are created succesfull.");
 		return new ResponseEntity<String>("Default menus are created successfull.", HttpStatus.OK);
 	}
 }

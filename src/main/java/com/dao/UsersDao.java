@@ -7,13 +7,13 @@ import com.model.User;
 public interface UsersDao {
 	public List<User> list();
 
-	public boolean delete(User users);
+	public boolean delete(User User);
 
-	public boolean saveOrUpdate(User users);
+	public boolean saveOrUpdate(User User);
 
-	public boolean save(User users) throws Exception;
+	public boolean save(User User) throws Exception;
 
 	public boolean validateUser(String username, String password) throws Exception;
 
-	public boolean existEmail(String users);
+	public boolean existEmail(String User);
 }
