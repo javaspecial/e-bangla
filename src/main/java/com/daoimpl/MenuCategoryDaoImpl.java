@@ -38,14 +38,22 @@ public class MenuCategoryDaoImpl implements MenuCategoryDAO {
 	}
 
 	@Override
-	public List<MenuCategory> getAllMenuCategories() {
-		Session currentSession = session.getCurrentSession();
-		Criteria criteria = currentSession.createCriteria(MenuCategory.class);
-		criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_SORT_ORDER));
-		List<MenuCategory> list = criteria.list();
-		if (list != null && list.size() > 0) {
-			return list;
+	public List<MenuCategory> getAllMenuCategories(int pageIndex, int pageSizeSelected) {
+		Session currentSession = session.openSession();
+		try {
+			Criteria criteria = currentSession.createCriteria(MenuCategory.class);
+			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_SORT_ORDER));
+			criteria.setFirstResult(pageIndex);
+			criteria.setMaxResults(pageSizeSelected);
+			List<MenuCategory> list = criteria.list();
+			if (list != null && list.size() > 0) {
+				return list;
+			}
+			return null;
+		} finally {
+			if (currentSession != null) {
+				currentSession.close();
+			}
 		}
-		return null;
 	}
 }

@@ -20,8 +20,8 @@ public class MenuCategoryServiceImpl implements MenuCategoryService {
 	}
 
 	@Override
-	public List<MenuCategory> getAllMenuCategories() throws Exception {
-		return menuCategoryDao.getAllMenuCategories();
+	public List<MenuCategory> getAllMenuCategories(int pageIndex, int pageSizeSelected) throws Exception {
+		return menuCategoryDao.getAllMenuCategories(pageIndex, pageSizeSelected);
 	}
 
 }

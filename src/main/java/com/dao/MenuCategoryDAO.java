@@ -9,11 +9,12 @@ import com.model.MenuCategory;
  *
  */
 public interface MenuCategoryDAO {
-	public List<MenuCategory> getAllMenuCategories();
+	public List<MenuCategory> getAllMenuCategories(int pageIndex, int pageSizeSelected);
 
 	public boolean delete(MenuCategory menuCategory);
 
 	public boolean saveOrUpdate(MenuCategory menuCategory);
 
 	public boolean save(MenuCategory menuCategory) throws Exception;
+
 }

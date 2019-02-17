@@ -168,6 +168,11 @@ public class MenuCategory {
 		this.menuGroups = menuGroups;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("MenuCategory[id=%d, name='%s', translatedName='%s',visible='%s',sortOrder='%s']", id, name, translatedName, visible, sortOrder);
+	}
+
 	public String getUniqueId() {
 		return ("menu_category_" + getName() + "_" + getId()).replaceAll("\\s+", "_");
 	}

@@ -69,10 +69,13 @@
 <link rel="stylesheet"
 	href="<spring:url value="/resources/admin/css/modal.css"/>">
 <!-- menu category js handler -->
-<script src="<spring:url value="/resources/js/menu.category.js" />"></script>
+
 <!-- Google Font -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<!-- js for dynamic pages -->
+<script src="<spring:url value="/resources/js/dynamic.pages.js" />"></script>
+
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<%@ include file="/WEB-INF/views/pages/exception.jsp"%>
@@ -343,7 +346,8 @@
 				<!-- /.search form -->
 				<!-- sidebar menu: : style can be found in sidebar.less -->
 				<ul class="sidebar-menu" data-widget="tree">
-					<li class="active treeview menu-open"><a href="#"> <i
+					<li class="active treeview menu-open"><a href="#"
+						onclick="displayPageById('dashboard')"> <i
 							class="fa fa-dashboard"></i> <span>Dashboard</span> <span
 							class="pull-right-container"> </span>
 					</a>
@@ -398,13 +402,14 @@
 					</a>
 						<ul class="treeview-menu">
 							<li>
-								<button type="button" onclick="getAllMenuCategories()"
+								<button onclick="displayPageById('menu_categories')"
 									class="btn btn-block btn-success btn-sm">
 									Menu categories<i class="fa fa-fw fa-clone pull-right"></i>
 								</button>
 							</li>
 							<li>
-								<button type="button" class="btn btn-block btn-success btn-sm">
+								<button onclick="displayPageById('menu_groups')"
+									class="btn btn-block btn-success btn-sm">
 									Menu groups<i class="fa fa-fw fa-clone pull-right"></i>
 								</button>
 							</li>
@@ -425,7 +430,7 @@
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Tax<i class="fa fa-fw fa-clone pull-right"></i></i>
+									Tax<i class="fa fa-fw fa-clone pull-right"></i>
 								</button>
 							</li>
 							<li>
@@ -508,8 +513,16 @@
 			<!-- /.sidebar -->
 		</aside>
 		<!-- start functional pages is displaying here-->
-	   <%-- <%@ include file="/WEB-INF/views/pages/dashboard.jsp"%> --%> 
-	  <%@ include file="/WEB-INF/views/pages/menu_categories.jsp"%> 
+		<%-- <%@ include file="/WEB-INF/views/pages/dashboard.jsp"%> --%>
+		<div id="dashboard">
+			<%@ include file="/resources/dynamic-pages/dashboard.jsp"%>
+		</div>
+		<div id="menu_categories" hidden>
+			<%@ include file="/resources/dynamic-pages/menu_categories.jsp"%>
+		</div>
+		<div id="menu_groups" hidden>
+			<%@ include file="/resources/dynamic-pages/menu_groups.jsp"%>
+		</div>
 		<!-- end functional pages is displaying here -->
 		<footer class="main-footer">
 			<div class="pull-right hidden-xs">
