@@ -8,6 +8,11 @@ public class Response {
 	public Response() {
 	}
 
+	public Response(String status, Object data) {
+		this.status = status;
+		this.data = data;
+	}
+
 	public Response(String status, Object data, int totalCount) {
 		this.status = status;
 		this.data = data;

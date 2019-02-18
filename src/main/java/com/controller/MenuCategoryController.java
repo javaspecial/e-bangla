@@ -22,8 +22,8 @@ public class MenuCategoryController {
 	@RequestMapping(value = "/categoryList/", method = RequestMethod.GET)
 	@ExceptionHandler({ Exception.class })
 	public Response categoryList(@RequestParam(value = "pageIndex") int pageIndex, @RequestParam(value = "pageSizeSelected") int pageSizeSelected) throws Exception {
-		List<MenuCategory> categories = menuCategoryService.getAllMenuCategories(pageIndex, pageSizeSelected);
-		int totalCount = categories.size();
-		return new Response("ok", categories, totalCount);
+		Response model = new Response();
+		List<MenuCategory> categories = menuCategoryService.getAllMenuCategories(model, pageIndex, pageSizeSelected);
+		return new Response("ok", categories, model.getTotalCount());
 	}
 }

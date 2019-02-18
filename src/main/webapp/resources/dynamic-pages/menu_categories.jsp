@@ -26,21 +26,20 @@ table tr th {
 </head>
 <body>
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper">
+	<div class="content-wrapper" ng-app="category"
+			ng-controller="getAllCategoriesController">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>Menu categories</h1>
 		<ol class="breadcrumb">
-			<li><button class="btn-primary">Add</button></li>
+			<li><button class="btn-primary" ng-click="getAllCategories()">Add</button></li>
 			<li><button class="btn-primary">Edit</button></li>
 			<li><button class="btn-primary">Delete</button></li>
 		</ol>
 		</section>
 		<hr style="border-top: 1px solid blue;">
 		<table id="example" class="table table-striped table-bordered"
-			style="width: 100%" ng-app="category"
-			ng-controller="getAllCategoriesController"
-			ng-init="getAllCategories()">
+			style="width: 100%">
 			<thead>
 				<tr>
 					<th>Id</th>

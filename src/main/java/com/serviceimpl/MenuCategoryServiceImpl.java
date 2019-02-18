@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.dao.MenuCategoryDAO;
 import com.model.MenuCategory;
+import com.resources.Response;
 import com.service.MenuCategoryService;
 
 @Service
@@ -20,8 +21,8 @@ public class MenuCategoryServiceImpl implements MenuCategoryService {
 	}
 
 	@Override
-	public List<MenuCategory> getAllMenuCategories(int pageIndex, int pageSizeSelected) throws Exception {
-		return menuCategoryDao.getAllMenuCategories(pageIndex, pageSizeSelected);
+	public List<MenuCategory> getAllMenuCategories(Response model, int pageIndex, int pageSizeSelected) throws Exception {
+		return menuCategoryDao.getAllMenuCategories(model, pageIndex, pageSizeSelected);
 	}
 
 }

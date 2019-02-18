@@ -3,13 +3,14 @@ package com.dao;
 import java.util.List;
 
 import com.model.MenuCategory;
+import com.resources.Response;
 
 /**
  * @author toxic-pc
  *
  */
 public interface MenuCategoryDAO {
-	public List<MenuCategory> getAllMenuCategories(int pageIndex, int pageSizeSelected);
+	public List<MenuCategory> getAllMenuCategories(Response model, int pageIndex, int pageSizeSelected);
 
 	public boolean delete(MenuCategory menuCategory);
 

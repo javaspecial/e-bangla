@@ -8,11 +8,13 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dao.MenuCategoryDAO;
 import com.model.MenuCategory;
+import com.resources.Response;
 
 @Repository
 @Transactional
@@ -38,11 +40,16 @@ public class MenuCategoryDaoImpl implements MenuCategoryDAO {
 	}
 
 	@Override
-	public List<MenuCategory> getAllMenuCategories(int pageIndex, int pageSizeSelected) {
+	public List<MenuCategory> getAllMenuCategories(Response model, int pageIndex, int pageSizeSelected) {
 		Session currentSession = session.openSession();
 		try {
 			Criteria criteria = currentSession.createCriteria(MenuCategory.class);
+			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_ID));
 			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_SORT_ORDER));
+			criteria.setProjection(Projections.rowCount());
+			Number uniqueResult = (Number) criteria.uniqueResult();
+			model.setTotalCount(uniqueResult.intValue());
+			criteria.setProjection(null);
 			criteria.setFirstResult(pageIndex);
 			criteria.setMaxResults(pageSizeSelected);
 			List<MenuCategory> list = criteria.list();
@@ -51,9 +58,7 @@ public class MenuCategoryDaoImpl implements MenuCategoryDAO {
 			}
 			return null;
 		} finally {
-			if (currentSession != null) {
-				currentSession.close();
-			}
+			currentSession.close();
 		}
 	}
 }

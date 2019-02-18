@@ -4,7 +4,7 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 	$scope.maxSize = 5; // Limit number for pagination display number.
 	$scope.totalCount = 0; // Total number of items in all pages. initialize as
 	$scope.pageIndex = 1; // Current page number. First page is 1.-->
-	$scope.pageSizeSelected = 5; // Maximum number of items per page.
+	$scope.pageSizeSelected = 10; // Maximum number of items per page.
 
 	$scope.getAllCategories = function() {
 		var url = 'http://localhost:8080/ebangla/categoryList/?pageIndex=' + $scope.pageIndex + '&pageSizeSelected=' + $scope.pageSizeSelected;

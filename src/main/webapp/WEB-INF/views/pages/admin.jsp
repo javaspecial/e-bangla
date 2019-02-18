@@ -513,7 +513,6 @@
 			<!-- /.sidebar -->
 		</aside>
 		<!-- start functional pages is displaying here-->
-		<%-- <%@ include file="/WEB-INF/views/pages/dashboard.jsp"%> --%>
 		<div id="dashboard">
 			<%@ include file="/resources/dynamic-pages/dashboard.jsp"%>
 		</div>
