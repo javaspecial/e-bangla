@@ -13,6 +13,8 @@ public class Response<E> {
 	private int startNumber = 0;
 	private int endNumber;
 	private int totalNumber;
+	private boolean hasPrevious;
+	private boolean hasNext;
 
 	public Response() {
 	}
@@ -68,14 +70,6 @@ public class Response<E> {
 		this.rows = list;
 	}
 
-	public boolean hasNext() {
-		return (currentRowIndex + pageSize) < numRows;
-	}
-
-	public boolean hasPrevious() {
-		return currentRowIndex > 0;
-	}
-
 	public int getNextPage() {
 		if (numRows == 0) {
 			return 0;
@@ -92,8 +86,10 @@ public class Response<E> {
 	}
 
 	public int getLastPage() {
-		int totalPage = getNumRows() / getPageSize();
-		return totalPage * getPageSize();
+		if (numRows == 0 || numRows < pageSize) {
+			return 0;
+		}
+		return numRows - pageSize;
 	}
 
 	public Object getModel() {
@@ -134,6 +130,34 @@ public class Response<E> {
 
 	public void setNumRows(int numRows) {
 		this.numRows = numRows;
+	}
+
+	public void updateCurrentRowIndex(String actionCommand) {
+		if (actionCommand.equals("firstPage")) {
+			setCurrentRowIndex(0);
+		} else if (actionCommand.equals("prevPage")) {
+			setCurrentRowIndex(getPreviousPage());
+		} else if (actionCommand.equals("nextPage")) {
+			setCurrentRowIndex(getNextPage());
+		} else if (actionCommand.equals("lastPage")) {
+			setCurrentRowIndex(getLastPage());
+		}
+	}
+
+	public boolean isHasPrevious() {
+		return hasPrevious;
+	}
+
+	public void setHasPrevious(boolean hasPrevious) {
+		this.hasPrevious = hasPrevious;
+	}
+
+	public boolean isHasNext() {
+		return hasNext;
+	}
+
+	public void setHasNext(boolean hasNext) {
+		this.hasNext = hasNext;
 	}
 
 }

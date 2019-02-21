@@ -8,17 +8,17 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dao.MenuCategoryDAO;
+import com.helper.CategoryFunctionImpl;
 import com.model.MenuCategory;
 import com.resources.Response;
 
 @Repository
 @Transactional
-public class MenuCategoryDaoImpl implements MenuCategoryDAO {
+public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCategoryDAO {
 
 	@Autowired
 	SessionFactory session;
@@ -55,7 +55,7 @@ public class MenuCategoryDaoImpl implements MenuCategoryDAO {
 			criteria.setMaxResults(model.getPageSize());
 			List<MenuCategory> list = criteria.list();
 			model.setRows(list);
-			updateDisplayText(model);
+			updatePagination(model);
 			if (list != null && list.size() > 0) {
 				return list;
 			}
@@ -63,28 +63,5 @@ public class MenuCategoryDaoImpl implements MenuCategoryDAO {
 		} finally {
 			currentSession.close();
 		}
-	}
-
-	private Criteria rowCount(Criteria criteria, Response model) {
-		criteria.setProjection(Projections.rowCount());
-		Number uniqueResult = (Number) criteria.uniqueResult();
-		model.setNumRows(uniqueResult.intValue());
-		criteria.setProjection(null);
-		return criteria;
-	}
-
-	private void updateDisplayText(Response model) {
-		int startNumber = model.getCurrentRowIndex() + 1;
-		int endNumber = model.getNextPage();
-		int totalNumber = model.getNumRows();
-		if (endNumber > totalNumber) {
-			endNumber = totalNumber;
-		}
-		if (totalNumber < startNumber) {
-			startNumber = 1;
-		}
-		model.setStartNumber(startNumber);
-		model.setEndNumber(endNumber);
-		model.setTotalNumber(totalNumber);
 	}
 }

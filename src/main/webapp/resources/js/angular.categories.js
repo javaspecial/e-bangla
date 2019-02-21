@@ -19,6 +19,10 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 				$scope.startNumber = response.data.model.startNumber;
 				$scope.endNumber = response.data.model.endNumber;
 				$scope.totalNumber = response.data.model.totalNumber;
+				$scope.btnFirst = response.data.model.hasPrevious;
+				$scope.btnPrev = response.data.model.hasPrevious;
+				$scope.btnNext = response.data.model.hasNext;
+				$scope.btnLast = response.data.model.hasNext;
 			} else if (response.data.status == "err") {
 				$scope.err = response.data;
 			}

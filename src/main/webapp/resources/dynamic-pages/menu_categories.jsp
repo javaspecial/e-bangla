@@ -76,28 +76,31 @@ table tr th {
 							<table>
 								<tr>
 									<td><label class="paginationText">Showing
-											{{startNumber}} to {{endNumber}} of {{totalNumber}} &nbsp;
-									</label></td>
+											{{startNumber}} to {{endNumber}} of {{totalNumber}} &nbsp; </label></td>
 									<td>
-										<button ng-click="showFirstPage()" type="button" id="btnFirst"
+										<button ng-disabled="btnFirst !== true"
+											ng-click="showFirstPage()" type="button" id="btnFirst"
 											class="btn btn-block btn-primary btn-xs">
 											<i class="fa fa-fast-backward"></i>
 										</button>
 									</td>
 									<td>
-										<button ng-click="showPrevPage()" type="button" id="btnPrev"
+										<button ng-disabled="btnPrev !== true"
+											ng-click="showPrevPage()" type="button" id="btnPrev"
 											class="btn btn-block btn-primary btn-xs">
 											<i class="fa fa-step-backward"></i>
 										</button>
 									</td>
 									<td>
-										<button ng-click="showNextPage()" type="button" id="btnNext"
+										<button ng-disabled="btnNext !== true"
+											ng-click="showNextPage()" type="button" id="btnNext"
 											class="btn btn-block btn-primary btn-xs">
 											<i class="fa fa-step-forward"></i>
 										</button>
 									</td>
 									<td>
-										<button ng-click="showLastPage()" type="button" id="btnLast"
+										<button ng-disabled="btnLast !== true"
+											ng-click="showLastPage()" type="button" id="btnLast"
 											class="btn btn-block btn-primary btn-xs">
 											<i class="fa fa-fast-forward"></i>
 										</button>
