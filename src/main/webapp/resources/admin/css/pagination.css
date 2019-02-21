@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+
+#btnFirst {
+	width: 60px;
+	margin-right: 2px;
+}
+
+#btnPrev {
+	width: 60px;
+	margin-right: 2px;
+}
+
+#btnNext {
+	width: 60px;
+	margin-right: 2px;
+}
+
+#btnLast {
+	width: 60px;
+	margin-right: 2px;
+}
+
+.paginationText {
+	margin-top: 5px;
+}

@@ -10,7 +10,7 @@ import com.resources.Response;
  *
  */
 public interface MenuCategoryDAO {
-	public List<MenuCategory> getAllMenuCategories(Response model, int pageIndex, int pageSizeSelected);
+	public List<MenuCategory> getAllMenuCategories(Response model, String name);
 
 	public boolean delete(MenuCategory menuCategory);
 

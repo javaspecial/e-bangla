@@ -18,12 +18,25 @@ public class MenuCategoryController {
 
 	@Autowired
 	MenuCategoryService menuCategoryService;
+	Response model = new Response();
 
 	@RequestMapping(value = "/categoryList/", method = RequestMethod.GET)
 	@ExceptionHandler({ Exception.class })
-	public Response categoryList(@RequestParam(value = "pageIndex") int pageIndex, @RequestParam(value = "pageSizeSelected") int pageSizeSelected) throws Exception {
-		Response model = new Response();
-		List<MenuCategory> categories = menuCategoryService.getAllMenuCategories(model, pageIndex, pageSizeSelected);
-		return new Response("ok", categories, model.getTotalCount());
+	public Response categoryList(@RequestParam(value = "actionCommand") String actionCommand, @RequestParam(value = "nameSearch") String name) throws Exception {
+		try {
+			if (actionCommand.equals("firstPage")) {
+				model.setCurrentRowIndex(0);
+			} else if (actionCommand.equals("prevPage")) {
+				model.setCurrentRowIndex(model.getPreviousPage());
+			} else if (actionCommand.equals("nextPage")) {
+				model.setCurrentRowIndex(model.getNextPage());
+			} else if (actionCommand.equals("lastPage")) {
+				model.setCurrentRowIndex(model.getLastPage());
+			}
+			List<MenuCategory> categories = menuCategoryService.getAllMenuCategories(model, name);
+			return new Response("ok", categories, model);
+		} catch (Exception e) {
+			return new Response("err", e.getMessage());
+		}
 	}
 }

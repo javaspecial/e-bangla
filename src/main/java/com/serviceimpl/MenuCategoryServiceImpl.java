@@ -21,8 +21,8 @@ public class MenuCategoryServiceImpl implements MenuCategoryService {
 	}
 
 	@Override
-	public List<MenuCategory> getAllMenuCategories(Response model, int pageIndex, int pageSizeSelected) throws Exception {
-		return menuCategoryDao.getAllMenuCategories(model, pageIndex, pageSizeSelected);
+	public List<MenuCategory> getAllMenuCategories(Response model, String name) throws Exception {
+		return menuCategoryDao.getAllMenuCategories(model, name);
 	}
 
 }

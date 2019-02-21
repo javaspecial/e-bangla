@@ -40,19 +40,22 @@ public class MenuCategoryDaoImpl implements MenuCategoryDAO {
 	}
 
 	@Override
-	public List<MenuCategory> getAllMenuCategories(Response model, int pageIndex, int pageSizeSelected) {
+	public List<MenuCategory> getAllMenuCategories(Response model, String name) {
 		Session currentSession = session.openSession();
 		try {
 			Criteria criteria = currentSession.createCriteria(MenuCategory.class);
+			// if (name != null) {
+			// criteria.add(Restrictions.ilike(MenuCategory.MENU_CATEGORY_NAME, name,
+			// MatchMode.ANYWHERE));
+			// }
 			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_ID));
 			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_SORT_ORDER));
-			criteria.setProjection(Projections.rowCount());
-			Number uniqueResult = (Number) criteria.uniqueResult();
-			model.setTotalCount(uniqueResult.intValue());
-			criteria.setProjection(null);
-			criteria.setFirstResult(pageIndex);
-			criteria.setMaxResults(pageSizeSelected);
+			rowCount(criteria, model);
+			criteria.setFirstResult(model.getCurrentRowIndex());
+			criteria.setMaxResults(model.getPageSize());
 			List<MenuCategory> list = criteria.list();
+			model.setRows(list);
+			updateDisplayText(model);
 			if (list != null && list.size() > 0) {
 				return list;
 			}
@@ -60,5 +63,28 @@ public class MenuCategoryDaoImpl implements MenuCategoryDAO {
 		} finally {
 			currentSession.close();
 		}
+	}
+
+	private Criteria rowCount(Criteria criteria, Response model) {
+		criteria.setProjection(Projections.rowCount());
+		Number uniqueResult = (Number) criteria.uniqueResult();
+		model.setNumRows(uniqueResult.intValue());
+		criteria.setProjection(null);
+		return criteria;
+	}
+
+	private void updateDisplayText(Response model) {
+		int startNumber = model.getCurrentRowIndex() + 1;
+		int endNumber = model.getNextPage();
+		int totalNumber = model.getNumRows();
+		if (endNumber > totalNumber) {
+			endNumber = totalNumber;
+		}
+		if (totalNumber < startNumber) {
+			startNumber = 1;
+		}
+		model.setStartNumber(startNumber);
+		model.setEndNumber(endNumber);
+		model.setTotalNumber(totalNumber);
 	}
 }

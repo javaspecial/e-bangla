@@ -9,6 +9,8 @@
 <title></title>
 <link rel="stylesheet"
 	href="<spring:url value="/resources/admin/css/bootstrap.min.css" />">
+<link rel="stylesheet"
+	href="<spring:url value="/resources/admin/css/pagination.css" />">
 <script src="<spring:url value="/resources/js/angular.js"/>"></script>
 <script
 	src="<spring:url value="/resources/js/ui-bootstrap-tpls-0.13.4.min.js" />"></script>
@@ -27,19 +29,19 @@ table tr th {
 <body>
 	<!-- Content Wrapper. Contains page content -->
 	<div class="content-wrapper" ng-app="category"
-			ng-controller="getAllCategoriesController">
+		ng-controller="getAllCategoriesController">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h1>Menu categories</h1>
 		<ol class="breadcrumb">
-			<li><button class="btn-primary" ng-click="getAllCategories()">Add</button></li>
+			<li><button class="btn-primary">Add</button></li>
 			<li><button class="btn-primary">Edit</button></li>
 			<li><button class="btn-primary">Delete</button></li>
 		</ol>
 		</section>
 		<hr style="border-top: 1px solid blue;">
 		<table id="example" class="table table-striped table-bordered"
-			style="width: 100%">
+			style="width: 100%" ng-init="getAllCategories()">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -62,24 +64,48 @@ table tr th {
 			</tbody>
 			<tfoot>
 				<tr>
-					<td align="center" colspan="6"><span
-						class="form-group pull-left page-size form-inline"> <select
-							id="ddlPageSize" class="form-control control-color"
-							ng-model="pageSizeSelected" ng-change="changePageSize()">
-								<option value="5">5</option>
-								<option value="10">10</option>
-								<option value="25">25</option>
-								<option value="50">50</option>
-						</select>
-					</span>
+					<td align="center" colspan="6">
+						<div class="pull-left">
+							<table>
+								<tr>
+									<td><label class="paginationText">{{err}}</label></td>
+								</tr>
+							</table>
+						</div>
 						<div class="pull-right">
-							<pagination total-items="totalCount" ng-change="pageChanged()"
-								items-per-page="pageSizeSelected" direction-links="true"
-								ng-model="pageIndex" max-size="maxSize" class="pagination"
-								boundary-links="true" rotate="false" num-pages="numPages">
-							</pagination>
-							<a class="btn btn-primary">Page: {{pageIndex}} / {{numPages}}</a>
-						</div></td>
+							<table>
+								<tr>
+									<td><label class="paginationText">Showing
+											{{startNumber}} to {{endNumber}} of {{totalNumber}} &nbsp;
+									</label></td>
+									<td>
+										<button ng-click="showFirstPage()" type="button" id="btnFirst"
+											class="btn btn-block btn-primary btn-xs">
+											<i class="fa fa-fast-backward"></i>
+										</button>
+									</td>
+									<td>
+										<button ng-click="showPrevPage()" type="button" id="btnPrev"
+											class="btn btn-block btn-primary btn-xs">
+											<i class="fa fa-step-backward"></i>
+										</button>
+									</td>
+									<td>
+										<button ng-click="showNextPage()" type="button" id="btnNext"
+											class="btn btn-block btn-primary btn-xs">
+											<i class="fa fa-step-forward"></i>
+										</button>
+									</td>
+									<td>
+										<button ng-click="showLastPage()" type="button" id="btnLast"
+											class="btn btn-block btn-primary btn-xs">
+											<i class="fa fa-fast-forward"></i>
+										</button>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</td>
 				</tr>
 			</tfoot>
 		</table>
