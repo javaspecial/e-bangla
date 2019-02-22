@@ -1,9 +1,34 @@
 'use strict';
 var app = angular.module('category', [ 'ui.bootstrap' ]);
+app.controller('addEditDeleteCategoriesController', function($scope, $http) {
+	$scope.doAdd = function() {
+		var element = angular.element('#category_form');
+		element.modal('show');
+	}
+	$scope.doEdit = function() {
+		var element = angular.element('#category_form');
+		element.modal('show');
+	}
+	$scope.doDelete = function() {
+
+	}
+});
+app.controller('saveOrEditCategoryController', function($scope, $http) {
+	$scope.saveCategory = function() {
+		var url = 'http://localhost:8080/ebangla/saveCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder;
+		$http.post(url).then(function(response) {
+			if (response.data.status == "ok") {
+
+			} else if (response.data.status == "err") {
+
+			}
+		});
+	}
+	$scope.saveCategory();
+});
 app.controller('getAllCategoriesController', function($scope, $http) {
 	$scope.totalCount = 0; // Total number of items in all pages. initialize as
 	$scope.actionCommand = 'firstPage';
-	$scope.nameSearch = 'null';
 
 	$scope.getAllCategories = function() {
 		var url = 'http://localhost:8080/ebangla/categoryList/?actionCommand=' + $scope.actionCommand + '&nameSearch=' + $scope.nameSearch;
@@ -24,13 +49,13 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 				$scope.btnNext = response.data.model.hasNext;
 				$scope.btnLast = response.data.model.hasNext;
 			} else if (response.data.status == "err") {
-				$scope.err = response.data;
+				$scope.err = response.data.message;
 			}
 		}, function(err) {
 		});
 	}
 
-	// Loading employees list on first time
+	// Loading categories list on first time
 	$scope.getAllCategories();
 
 	// This method is calling from first button
@@ -53,4 +78,9 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 		$scope.actionCommand = 'lastPage';
 		$scope.getAllCategories();
 	};
+	// This method is calling from search button
+	$scope.showSearchResult = function() {
+		$scope.actionCommand = 'searchButton';
+		$scope.getAllCategories();
+	}
 });

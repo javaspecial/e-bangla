@@ -28,7 +28,15 @@ public class MenuCategoryController {
 			List<MenuCategory> categories = menuCategoryService.getAllMenuCategories(model, name);
 			return new Response("ok", categories, model);
 		} catch (Exception e) {
-			return new Response("err", "Unexpected error! please try to reload again.");
+			Response response = new Response("err");
+			response.setMessage("Unexpected error! please try to reload again.");
+			return response;
 		}
+	}
+
+	@RequestMapping(value = "/saveCategory/", method = RequestMethod.POST)
+	@ExceptionHandler({ Exception.class })
+	public Response saveCategory() {
+		return new Response();
 	}
 }

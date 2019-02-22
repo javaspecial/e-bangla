@@ -32,11 +32,18 @@ table tr th {
 		ng-controller="getAllCategoriesController">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
-		<h1>Menu categories</h1>
+		<h4>Menu categories</h4>
 		<ol class="breadcrumb">
-			<li><button class="btn-primary">Add</button></li>
-			<li><button class="btn-primary">Edit</button></li>
-			<li><button class="btn-primary">Delete</button></li>
+			<li>
+				<div class="input-group input-group-sm">
+					<input type="text" class="form-control"
+						placeholder="Search:e.g beer" ng-model="nameSearch"> <span
+						class="input-group-btn">
+						<button type="button" class="btn btn-info btn-flat"
+							ng-click="showSearchResult()">Search</button>
+					</span>
+				</div>
+			</li>
 		</ol>
 		</section>
 		<hr style="border-top: 1px solid blue;">
@@ -49,7 +56,6 @@ table tr th {
 					<th>Translated name</th>
 					<th>Visible</th>
 					<th>Sort order</th>
-					<th>Special</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -59,22 +65,39 @@ table tr th {
 					<td>{{MENU_CATEGORY.translatedName}}</td>
 					<td>{{MENU_CATEGORY.visible}}</td>
 					<td>{{MENU_CATEGORY.sortOrder}}</td>
-					<td></td>
 				</tr>
 			</tbody>
 			<tfoot>
 				<tr>
 					<td align="center" colspan="6">
 						<div class="pull-left">
-							<table>
+							<table ng-controller="addEditDeleteCategoriesController">
 								<tr>
-									<td><label class="paginationText">{{err}}</label></td>
+									<td>
+										<button id="add" ng-click="doAdd()"
+											class="btn btn-block btn-primary btn-xs">
+											<i class="fa fa-plus-square"></i>
+										</button>
+									</td>
+									<td>
+										<button id="edit" ng-click="doEdit()"
+											class="btn btn-block btn-primary btn-xs">
+											<i class="fa fa-edit"></i>
+										</button>
+									</td>
+									<td>
+										<button id="delete" ng-click="doDelete()"
+											class="btn btn-block btn-primary btn-xs">
+											<i class="fa fa-trash"></i>
+										</button>
+									</td>
 								</tr>
 							</table>
 						</div>
 						<div class="pull-right">
 							<table>
 								<tr>
+									<td><label class="paginationText">{{err}}</label></td>
 									<td><label class="paginationText">Showing
 											{{startNumber}} to {{endNumber}} of {{totalNumber}} &nbsp; </label></td>
 									<td>
@@ -113,5 +136,38 @@ table tr th {
 			</tfoot>
 		</table>
 	</div>
+	<!-- /start modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="category_form" ng-controller="saveOrEditCategoryController">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">×</span>
+					</button>
+					<h4 class="modal-title">Create menu categories</h4>
+				</div>
+				<div class="modal-body">
+					<input style="margin-top: 3px;" type="text" class="form-control"
+						placeholder="Enter name" ng-model="name"> <input style="margin-top: 3px;"
+						type="text" class="form-control"
+						placeholder="Enter translated name" ng-model="translatedName"> <input
+						style="margin-top: 3px;" type="number" min="0" max="99999"
+						class="form-control" placeholder="Enter sort order" ng-model="sortOrder">
+					<div style="margin-top: 3px;" class="checkbox">
+						<label> <input type="checkbox"> Visible
+						</label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" ng-click="saveCategory()">Save</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /end modal -->
 </body>
 </html>

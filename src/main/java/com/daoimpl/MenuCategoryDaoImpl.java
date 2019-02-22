@@ -7,7 +7,9 @@ import javax.transaction.Transactional;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -44,10 +46,9 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 		Session currentSession = session.openSession();
 		try {
 			Criteria criteria = currentSession.createCriteria(MenuCategory.class);
-			// if (name != null) {
-			// criteria.add(Restrictions.ilike(MenuCategory.MENU_CATEGORY_NAME, name,
-			// MatchMode.ANYWHERE));
-			// }
+			if (!name.equals("undefined")) {
+				criteria.add(Restrictions.ilike(MenuCategory.MENU_CATEGORY_NAME, name, MatchMode.ANYWHERE));
+			}
 			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_ID));
 			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_SORT_ORDER));
 			rowCount(criteria, model);

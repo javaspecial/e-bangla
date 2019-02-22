@@ -15,8 +15,13 @@ public class Response<E> {
 	private int totalNumber;
 	private boolean hasPrevious;
 	private boolean hasNext;
+	private String message;
 
 	public Response() {
+	}
+
+	public Response(String status) {
+		this.status = status;
 	}
 
 	public Response(String status, Object data) {
@@ -133,7 +138,7 @@ public class Response<E> {
 	}
 
 	public void updateCurrentRowIndex(String actionCommand) {
-		if (actionCommand.equals("firstPage")) {
+		if (actionCommand.equals("firstPage") || actionCommand.equals("searchButton")) {
 			setCurrentRowIndex(0);
 		} else if (actionCommand.equals("prevPage")) {
 			setCurrentRowIndex(getPreviousPage());
@@ -141,6 +146,8 @@ public class Response<E> {
 			setCurrentRowIndex(getNextPage());
 		} else if (actionCommand.equals("lastPage")) {
 			setCurrentRowIndex(getLastPage());
+		} else {
+			setCurrentRowIndex(0);
 		}
 	}
 
@@ -160,4 +167,11 @@ public class Response<E> {
 		this.hasNext = hasNext;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
 }
