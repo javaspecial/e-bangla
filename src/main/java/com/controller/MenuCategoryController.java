@@ -36,7 +36,20 @@ public class MenuCategoryController {
 
 	@RequestMapping(value = "/saveCategory/", method = RequestMethod.POST)
 	@ExceptionHandler({ Exception.class })
-	public Response saveCategory() {
-		return new Response();
+	public Response saveCategory(@RequestParam("name") String name, @RequestParam("translatedName") String translatedName, @RequestParam("sortOrder") String sortOrder, @RequestParam("visible") String visible) throws Exception {
+		Response response = new Response();
+		try {
+			MenuCategory category = new MenuCategory();
+			category.setName(name);
+			category.setTranslatedName(translatedName);
+			category.setSortOrder(Integer.valueOf(sortOrder));
+			category.setVisible(Boolean.parseBoolean(visible));
+			if (menuCategoryService.save(category)) {
+				return new Response("ok", "Menu category is created successfully.");
+			}
+			return new Response("err", "Menu category was not created.");
+		} catch (Exception e) {
+			return new Response("err", "Unexpected error! please try to add again.");
+		}
 	}
 }

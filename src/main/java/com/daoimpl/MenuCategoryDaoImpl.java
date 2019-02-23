@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +23,7 @@ import com.resources.Response;
 @Repository
 @Transactional
 public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCategoryDAO {
-
+	private static final Logger LOGGER = Logger.getLogger(MenuCategoryDaoImpl.class.getName());
 	@Autowired
 	SessionFactory session;
 
@@ -37,8 +39,17 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 
 	@Override
 	public boolean save(MenuCategory menuCategory) throws Exception {
-		session.getCurrentSession().save(menuCategory);
-		return true;
+		Session currentSession = session.openSession();
+		try {
+			session.getCurrentSession().save(menuCategory);
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.ERROR, "Exception occur:", e);
+			return false;
+		} finally {
+			currentSession.close();
+		}
+
 	}
 
 	@Override

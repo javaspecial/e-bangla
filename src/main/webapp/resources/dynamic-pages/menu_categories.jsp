@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html ng-app="category">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
@@ -28,8 +28,7 @@ table tr th {
 </head>
 <body>
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper" ng-app="category"
-		ng-controller="getAllCategoriesController">
+	<div class="content-wrapper" ng-controller="getAllCategoriesController">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h4>Menu categories</h4>
@@ -92,6 +91,7 @@ table tr th {
 										</button>
 									</td>
 								</tr>
+
 							</table>
 						</div>
 						<div class="pull-right">
@@ -137,9 +137,9 @@ table tr th {
 		</table>
 	</div>
 	<!-- /start modal -->
-	<div class="modal fade" tabindex="-1" role="dialog" id="category_form" ng-controller="saveOrEditCategoryController">
+	<div class="modal fade" tabindex="-1" role="dialog" id="category_form">
 		<div class="modal-dialog" role="document">
-			<div class="modal-content">
+			<div class="modal-content" ng-controller="addEditController">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
@@ -149,19 +149,22 @@ table tr th {
 				</div>
 				<div class="modal-body">
 					<input style="margin-top: 3px;" type="text" class="form-control"
-						placeholder="Enter name" ng-model="name"> <input style="margin-top: 3px;"
-						type="text" class="form-control"
-						placeholder="Enter translated name" ng-model="translatedName"> <input
-						style="margin-top: 3px;" type="number" min="0" max="99999"
-						class="form-control" placeholder="Enter sort order" ng-model="sortOrder">
+						placeholder="Enter name" ng-model="name"> <input
+						style="margin-top: 3px;" type="text" class="form-control"
+						placeholder="Enter translated name" ng-model="translatedName">
+					<input style="margin-top: 3px;" type="number" min="0" max="99999"
+						class="form-control" placeholder="Enter sort order"
+						ng-model="sortOrder">
 					<div style="margin-top: 3px;" class="checkbox">
-						<label> <input type="checkbox"> Visible
+						<label> <input type="checkbox" ng-model="visible"> Visible
 						</label>
 					</div>
 				</div>
 				<div class="modal-footer">
+					<span style="color:red;float:left">{{validation}}</span>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary" ng-click="saveCategory()">Save</button>
+					<button type="button" class="btn btn-primary"
+						ng-click="saveCategory()">Save</button>
 				</div>
 			</div>
 			<!-- /.modal-content -->

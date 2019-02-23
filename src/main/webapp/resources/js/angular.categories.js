@@ -1,30 +1,39 @@
 'use strict';
 var app = angular.module('category', [ 'ui.bootstrap' ]);
+
 app.controller('addEditDeleteCategoriesController', function($scope, $http) {
+	var element = angular.element('#category_form');
+
 	$scope.doAdd = function() {
-		var element = angular.element('#category_form');
 		element.modal('show');
 	}
 	$scope.doEdit = function() {
-		var element = angular.element('#category_form');
 		element.modal('show');
 	}
 	$scope.doDelete = function() {
-
+		element.modal('show');
 	}
 });
-app.controller('saveOrEditCategoryController', function($scope, $http) {
+app.controller('addEditController', function($scope, $http) {
 	$scope.saveCategory = function() {
-		var url = 'http://localhost:8080/ebangla/saveCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder;
+		if (typeof $scope.name === "undefined") {
+			$scope.validation = "Name is requered";
+			return;
+		}
+		if (typeof $scope.translatedName === "undefined") {
+			$scope.translatedName = "";
+		}
+		if (typeof $scope.sortOrder === "undefined") {
+			$scope.sortOrder = "0";
+		}
+		if (typeof $scope.visible === "undefined") {
+			$scope.visible = "false";
+		}
+		var url = 'http://localhost:8080/ebangla/saveCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder + '&visible=' + $scope.visible;
 		$http.post(url).then(function(response) {
-			if (response.data.status == "ok") {
-
-			} else if (response.data.status == "err") {
-
-			}
+			$scope.validation = response.data.message;
 		});
 	}
-	$scope.saveCategory();
 });
 app.controller('getAllCategoriesController', function($scope, $http) {
 	$scope.totalCount = 0; // Total number of items in all pages. initialize as

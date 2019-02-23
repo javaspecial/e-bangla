@@ -24,9 +24,9 @@ public class Response<E> {
 		this.status = status;
 	}
 
-	public Response(String status, Object data) {
+	public Response(String status, String message) {
 		this.status = status;
-		this.data = data;
+		this.message = message;
 	}
 
 	public Response(String status, Object data, Object model) {
