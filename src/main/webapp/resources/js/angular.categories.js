@@ -17,7 +17,8 @@ app.controller('addEditDeleteCategoriesController', function($scope, $http) {
 app.controller('addEditController', function($scope, $http) {
 	$scope.saveCategory = function() {
 		if (typeof $scope.name === "undefined") {
-			$scope.validation = "Name is requered";
+			$scope.success = "";
+			$scope.err = "Name is requered";
 			return;
 		}
 		if (typeof $scope.translatedName === "undefined") {
@@ -31,7 +32,13 @@ app.controller('addEditController', function($scope, $http) {
 		}
 		var url = 'http://localhost:8080/ebangla/saveCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder + '&visible=' + $scope.visible;
 		$http.post(url).then(function(response) {
-			$scope.validation = response.data.message;
+			if (response.data.status === "ok") {
+				$scope.err = "";
+				$scope.success = response.data.message;
+			} else {
+				$scope.success = "";
+				$scope.err = response.data.message;
+			}
 		});
 	}
 });
@@ -92,4 +99,9 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 		$scope.actionCommand = 'searchButton';
 		$scope.getAllCategories();
 	}
+
+	$scope.selectRow = function(menuCategory) {
+		$scope.id = menuCategory.id;
+	}
+
 });

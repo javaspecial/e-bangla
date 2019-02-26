@@ -58,7 +58,7 @@ table tr th {
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="MENU_CATEGORY in categories.data">
+				<tr ng-repeat="MENU_CATEGORY in categories.data" ng-click="selectRow(MENU_CATEGORY)">
 					<td>{{MENU_CATEGORY.id}}</td>
 					<td>{{MENU_CATEGORY.name }}</td>
 					<td>{{MENU_CATEGORY.translatedName}}</td>
@@ -156,15 +156,20 @@ table tr th {
 						class="form-control" placeholder="Enter sort order"
 						ng-model="sortOrder">
 					<div style="margin-top: 3px;" class="checkbox">
-						<label> <input type="checkbox" ng-model="visible"> Visible
+						<label> <input type="checkbox" ng-model="visible">
+							Visible
 						</label>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<span style="color:red;float:left">{{validation}}</span>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<span id="err" style="color: red; float: left">{{err}}</span> <span
+						id="success" style="color: green; float: left">{{success}}</span>
 					<button type="button" class="btn btn-primary"
 						ng-click="saveCategory()">Save</button>
+					<button id=type= "button" class="btn btn-primary"
+						ng-click="saveCategory()">Ok</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
 				</div>
 			</div>
 			<!-- /.modal-content -->
