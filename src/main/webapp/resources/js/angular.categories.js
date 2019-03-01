@@ -1,47 +1,5 @@
 'use strict';
 var app = angular.module('category', [ 'ui.bootstrap' ]);
-
-app.controller('addEditDeleteCategoriesController', function($scope, $http) {
-	var element = angular.element('#category_form');
-
-	$scope.doAdd = function() {
-		element.modal('show');
-	}
-	$scope.doEdit = function() {
-		element.modal('show');
-	}
-	$scope.doDelete = function() {
-		element.modal('show');
-	}
-});
-app.controller('addEditController', function($scope, $http) {
-	$scope.saveCategory = function() {
-		if (typeof $scope.name === "undefined") {
-			$scope.success = "";
-			$scope.err = "Name is requered";
-			return;
-		}
-		if (typeof $scope.translatedName === "undefined") {
-			$scope.translatedName = "";
-		}
-		if (typeof $scope.sortOrder === "undefined") {
-			$scope.sortOrder = "0";
-		}
-		if (typeof $scope.visible === "undefined") {
-			$scope.visible = "false";
-		}
-		var url = 'http://localhost:8080/ebangla/saveCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder + '&visible=' + $scope.visible;
-		$http.post(url).then(function(response) {
-			if (response.data.status === "ok") {
-				$scope.err = "";
-				$scope.success = response.data.message;
-			} else {
-				$scope.success = "";
-				$scope.err = response.data.message;
-			}
-		});
-	}
-});
 app.controller('getAllCategoriesController', function($scope, $http) {
 	$scope.totalCount = 0; // Total number of items in all pages. initialize as
 	$scope.actionCommand = 'firstPage';
@@ -99,9 +57,64 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 		$scope.actionCommand = 'searchButton';
 		$scope.getAllCategories();
 	}
-
+	// open add categories dialog
+	var element = angular.element('#category_form');
+	$scope.doAdd = function() {
+		$scope.title = "Create menu category";
+		$scope.error = "";
+		$scope.success = "";
+		$scope.name = "";
+		$scope.translatedName = "";
+		$scope.sortOrder = "";
+		$scope.visible = "false";
+		element.modal('show');
+		$scope.update = false;
+	}
+	// select a row to edit
 	$scope.selectRow = function(menuCategory) {
 		$scope.id = menuCategory.id;
+		$scope.name = menuCategory.name;
+		$scope.translatedName = menuCategory.translatedName;
+		$scope.sortOrder = menuCategory.sortOrder;
+		$scope.visible = menuCategory.visible;
 	}
-
+	// open edit category dialogue
+	$scope.doEdit = function() {
+		$scope.error = "";
+		$scope.success = "";
+		$scope.title = "Edit menu category";
+		$scope.update = true;
+		element.modal('show');
+	}
+	// save categories
+	$scope.saveCategory = function() {
+		if (typeof $scope.name === "undefined") {
+			$scope.success = "";
+			$scope.err = "Name is required";
+			return;
+		}
+		if (typeof $scope.translatedName === "undefined") {
+			$scope.translatedName = "";
+		}
+		if (typeof $scope.sortOrder === "undefined") {
+			$scope.sortOrder = "0";
+		}
+		if (typeof $scope.visible === "undefined") {
+			$scope.visible = "false";
+		}
+		var url = 'http://localhost:8080/ebangla/saveCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder + '&visible=' + $scope.visible+ '&update=' + $scope.update;
+		$http.post(url).then(function(response) {
+			if (response.data.status === "ok") {
+				$scope.error = "";
+				$scope.success = response.data.message;
+			} else {
+				$scope.success = "";
+				$scope.error = response.data.message;
+			}
+		});
+	}
+	//delete categories
+	$scope.doDelete = function() {
+		element.modal('show');
+	}
 });

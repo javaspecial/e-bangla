@@ -10,7 +10,7 @@
 <link rel="stylesheet"
 	href="<spring:url value="/resources/admin/css/bootstrap.min.css" />">
 <link rel="stylesheet"
-	href="<spring:url value="/resources/admin/css/pagination.css" />">
+	href="<spring:url value="/resources/admin/css/category.css" />">
 <script src="<spring:url value="/resources/js/angular.js"/>"></script>
 <script
 	src="<spring:url value="/resources/js/ui-bootstrap-tpls-0.13.4.min.js" />"></script>
@@ -58,7 +58,8 @@ table tr th {
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="MENU_CATEGORY in categories.data" ng-click="selectRow(MENU_CATEGORY)">
+				<tr ng-repeat="MENU_CATEGORY in categories.data"
+					ng-click="selectRow(MENU_CATEGORY)" ng-class="{selected : MENU_CATEGORY.id === id}">
 					<td>{{MENU_CATEGORY.id}}</td>
 					<td>{{MENU_CATEGORY.name }}</td>
 					<td>{{MENU_CATEGORY.translatedName}}</td>
@@ -70,7 +71,7 @@ table tr th {
 				<tr>
 					<td align="center" colspan="6">
 						<div class="pull-left">
-							<table ng-controller="addEditDeleteCategoriesController">
+							<table>
 								<tr>
 									<td>
 										<button id="add" ng-click="doAdd()"
@@ -91,7 +92,6 @@ table tr th {
 										</button>
 									</td>
 								</tr>
-
 							</table>
 						</div>
 						<div class="pull-right">
@@ -135,47 +135,48 @@ table tr th {
 				</tr>
 			</tfoot>
 		</table>
-	</div>
-	<!-- /start modal -->
-	<div class="modal fade" tabindex="-1" role="dialog" id="category_form">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content" ng-controller="addEditController">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-					<h4 class="modal-title">Create menu categories</h4>
-				</div>
-				<div class="modal-body">
-					<input style="margin-top: 3px;" type="text" class="form-control"
-						placeholder="Enter name" ng-model="name"> <input
-						style="margin-top: 3px;" type="text" class="form-control"
-						placeholder="Enter translated name" ng-model="translatedName">
-					<input style="margin-top: 3px;" type="number" min="0" max="99999"
-						class="form-control" placeholder="Enter sort order"
-						ng-model="sortOrder">
-					<div style="margin-top: 3px;" class="checkbox">
-						<label> <input type="checkbox" ng-model="visible">
-							Visible
-						</label>
+		<!-- /start modal -->
+		<div class="modal fade" tabindex="-1" role="dialog" id="category_form">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+						<h4 class="modal-title">{{title}}</h4>
+					</div>
+					<div class="modal-body">
+						<input style="margin-top: 3px;" type="text" class="form-control"
+							placeholder="Enter name" ng-model="name" ng-bind="name">
+						<input style="margin-top: 3px;" type="text" class="form-control"
+							placeholder="Enter translated name" ng-model="translatedName"
+							ng-bind="translatedName"> <input style="margin-top: 3px;"
+							type="number" min="0" max="99999" class="form-control"
+							placeholder="Enter sort order" ng-model="sortOrder"
+							ng-bind="sortOrder">
+						<div style="margin-top: 3px;" class="checkbox">
+							<label> <input type="checkbox" ng-model="visible"
+								ng-bind="visible"> Visible
+							</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<span id="err" style="color: red; float: left">{{error}}</span> <span
+							id="success" style="color: green; float: left">{{success}}</span>
+						<button type="button" class="btn btn-primary"
+							ng-click="saveCategory()">Save</button>
+						<button id=type= "button" class="btn btn-primary"
+							ng-click="saveCategory()">Ok</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+
 					</div>
 				</div>
-				<div class="modal-footer">
-					<span id="err" style="color: red; float: left">{{err}}</span> <span
-						id="success" style="color: green; float: left">{{success}}</span>
-					<button type="button" class="btn btn-primary"
-						ng-click="saveCategory()">Save</button>
-					<button id=type= "button" class="btn btn-primary"
-						ng-click="saveCategory()">Ok</button>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
-				</div>
+				<!-- /.modal-content -->
 			</div>
-			<!-- /.modal-content -->
+			<!-- /.modal-dialog -->
 		</div>
-		<!-- /.modal-dialog -->
+		<!-- /end modal -->
 	</div>
-	<!-- /end modal -->
 </body>
 </html>

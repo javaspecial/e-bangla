@@ -33,8 +33,17 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 	}
 
 	@Override
-	public boolean saveOrUpdate(MenuCategory menuCategory) {
-		return false;
+	public boolean update(MenuCategory menuCategory) {
+		Session currentSession = session.openSession();
+		try {
+			session.getCurrentSession().update(menuCategory);
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.ERROR, "Exception occur:", e);
+			return false;
+		} finally {
+			currentSession.close();
+		}
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public interface MenuCategoryDAO {
 
 	public boolean delete(MenuCategory menuCategory);
 
-	public boolean saveOrUpdate(MenuCategory menuCategory);
+	public boolean update(MenuCategory menuCategory);
 
 	public boolean save(MenuCategory menuCategory) throws Exception;
 }

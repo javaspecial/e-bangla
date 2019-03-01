@@ -25,4 +25,9 @@ public class MenuCategoryServiceImpl implements MenuCategoryService {
 		return menuCategoryDao.getAllMenuCategories(model, name);
 	}
 
+	@Override
+	public boolean update(MenuCategory menuCategory) throws Exception {
+		return menuCategoryDao.update(menuCategory);
+	}
+
 }
