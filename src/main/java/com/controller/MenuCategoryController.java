@@ -3,7 +3,9 @@ package com.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,16 +36,21 @@ public class MenuCategoryController {
 		}
 	}
 
-	@RequestMapping(value = "/saveCategory/", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveOrUpdateCategory/", method = RequestMethod.POST)
 	@ExceptionHandler({ Exception.class })
-	public Response saveCategory(@RequestParam("name") String name, @RequestParam("translatedName") String translatedName, @RequestParam("sortOrder") String sortOrder, @RequestParam("visible") String visible, @RequestParam("update") boolean update)
-			throws Exception {
-		Response response = new Response();
+	public Response saveCategory(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("translatedName") String translatedName, @RequestParam("sortOrder") String sortOrder, @RequestParam("visible") String visible,
+			@RequestParam("update") boolean update) throws Exception {
+		MenuCategory category = new MenuCategory();
 		try {
-			MenuCategory category = new MenuCategory();
+			if (sortOrder.equals("") || sortOrder.equals("undefined")) {
+				sortOrder = String.valueOf(0);
+			}
+			if (!id.equals("") && !id.equals("undefined")) {
+				category.setId(Integer.valueOf(id));
+			}
 			category.setName(name);
 			category.setTranslatedName(translatedName);
-			category.setSortOrder(Integer.valueOf(sortOrder));
+			category.setSortOrder(Integer.parseInt(sortOrder));
 			category.setVisible(Boolean.parseBoolean(visible));
 			if (update) {
 				if (menuCategoryService.update(category)) {
@@ -52,9 +59,22 @@ public class MenuCategoryController {
 			} else if (menuCategoryService.save(category)) {
 				return new Response("ok", "Menu category was created successfully.");
 			}
-			return new Response("err", "Menu category was not created.");
+			return new Response("err", "Unexpected error! please try again.");
 		} catch (Exception e) {
-			return new Response("err", "Unexpected error! please try to add again.");
+			return new Response("err", "Unexpected error! please try again.");
+		}
+	}
+
+	@RequestMapping(value = "/deleteCategory/", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.DELETE)
+	@ExceptionHandler({ Exception.class })
+	public Response deleteCategory(@RequestBody MenuCategory selectedCategory) throws Exception {
+		try {
+			if (menuCategoryService.delete(selectedCategory)) {
+				return new Response("ok", "Menu category was deleted successfully.");
+			}
+			return new Response("err", "Menu category was not deleted");
+		} catch (Exception e) {
+			return new Response("err", "Unexpected error! please try again.");
 		}
 	}
 }

@@ -174,6 +174,6 @@ public class MenuCategory {
 	}
 
 	public String getUniqueId() {
-		return ("menu_category_" + getName() + "_" + getId()).replaceAll("\\s+", "_");
+		return ("category_" + getName() + "_" + getId());
 	}
 }

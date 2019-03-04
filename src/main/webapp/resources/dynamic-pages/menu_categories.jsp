@@ -17,12 +17,25 @@
 <script src="<spring:url value="/resources/js/angular.categories.js" />"></script>
 <script
 	src="<spring:url value="https://code.jquery.com/jquery-3.3.1.js" />"></script>
+<!-- sweet alert -->
+<script src="<spring:url value="/resources/js/messages.popup.js" />"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
 <style>
 table tr th {
 	background: #337ab7;
 	color: white;
 	text-align: left;
 	vertical-align: center;
+}
+
+.selected {
+	background-color:#337ab7;
+	color: white;
+	font-weight: bold;
 }
 </style>
 </head>
@@ -46,7 +59,7 @@ table tr th {
 		</ol>
 		</section>
 		<hr style="border-top: 1px solid blue;">
-		<table id="example" class="table table-striped table-bordered"
+		<table id="example" class="table table-bordered"
 			style="width: 100%" ng-init="getAllCategories()">
 			<thead>
 				<tr>
@@ -59,7 +72,8 @@ table tr th {
 			</thead>
 			<tbody>
 				<tr ng-repeat="MENU_CATEGORY in categories.data"
-					ng-click="selectRow(MENU_CATEGORY)" ng-class="{selected : MENU_CATEGORY.id === id}">
+					ng-click="setClickedRow(MENU_CATEGORY)"
+					ng-class="{selected:MENU_CATEGORY.id === selectedRow}">
 					<td>{{MENU_CATEGORY.id}}</td>
 					<td>{{MENU_CATEGORY.name }}</td>
 					<td>{{MENU_CATEGORY.translatedName}}</td>
@@ -165,9 +179,9 @@ table tr th {
 						<span id="err" style="color: red; float: left">{{error}}</span> <span
 							id="success" style="color: green; float: left">{{success}}</span>
 						<button type="button" class="btn btn-primary"
-							ng-click="saveCategory()">Save</button>
+							ng-click="saveCategory('false')">Save</button>
 						<button id=type= "button" class="btn btn-primary"
-							ng-click="saveCategory()">Ok</button>
+							ng-click="saveCategory('true')">Ok</button>
 						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 
 					</div>

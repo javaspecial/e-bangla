@@ -30,4 +30,9 @@ public class MenuCategoryServiceImpl implements MenuCategoryService {
 		return menuCategoryDao.update(menuCategory);
 	}
 
+	@Override
+	public boolean delete(MenuCategory menuCategory) throws Exception {
+		return menuCategoryDao.delete(menuCategory);
+	}
+
 }

@@ -63,6 +63,7 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 		$scope.title = "Create menu category";
 		$scope.error = "";
 		$scope.success = "";
+		$scope.id = "";
 		$scope.name = "";
 		$scope.translatedName = "";
 		$scope.sortOrder = "";
@@ -71,8 +72,11 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 		$scope.update = false;
 	}
 	// select a row to edit
-	$scope.selectRow = function(menuCategory) {
-		$scope.id = menuCategory.id;
+	$scope.selectedRow = null;
+	$scope.selectedCategory = null;
+	$scope.setClickedRow = function(menuCategory) {
+		$scope.selectedCategory = menuCategory;
+		$scope.selectedRow = menuCategory.id;
 		$scope.name = menuCategory.name;
 		$scope.translatedName = menuCategory.translatedName;
 		$scope.sortOrder = menuCategory.sortOrder;
@@ -80,6 +84,10 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 	}
 	// open edit category dialogue
 	$scope.doEdit = function() {
+		if ($scope.selectedRow === null) {
+			ErrorToastMSG('Please select a row to edit.');
+			return;
+		}
 		$scope.error = "";
 		$scope.success = "";
 		$scope.title = "Edit menu category";
@@ -87,24 +95,21 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 		element.modal('show');
 	}
 	// save categories
-	$scope.saveCategory = function() {
-		if (typeof $scope.name === "undefined") {
+	$scope.saveCategory = function(isCloseModal) {
+		$scope.isCloseModal = isCloseModal;
+		if ($scope.name === "undefined" || $scope.name === "" || $scope.name == null) {
 			$scope.success = "";
-			$scope.err = "Name is required";
+			$scope.error = "Name is required";
 			return;
 		}
-		if (typeof $scope.translatedName === "undefined") {
-			$scope.translatedName = "";
-		}
-		if (typeof $scope.sortOrder === "undefined") {
-			$scope.sortOrder = "0";
-		}
-		if (typeof $scope.visible === "undefined") {
-			$scope.visible = "false";
-		}
-		var url = 'http://localhost:8080/ebangla/saveCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder + '&visible=' + $scope.visible+ '&update=' + $scope.update;
+		var url = 'http://localhost:8080/ebangla/saveOrUpdateCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder + '&visible=' + $scope.visible + '&update=' + $scope.update + '&id=' + $scope.selectedRow;
 		$http.post(url).then(function(response) {
 			if (response.data.status === "ok") {
+				if ($scope.isCloseModal === 'true') {
+					element.modal('hide');
+					SuccessToastMSG(response.data.message);
+					return;
+				}
 				$scope.error = "";
 				$scope.success = response.data.message;
 			} else {
@@ -113,8 +118,26 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 			}
 		});
 	}
-	//delete categories
+
+	// delete categories
 	$scope.doDelete = function() {
-		element.modal('show');
+		if ($scope.selectedCategory === null) {
+			ErrorToastMSG('Please select a row to delete.');
+			return;
+		}
+		$http({
+			method : 'DELETE',
+			url : 'http://localhost:8080/ebangla/deleteCategory/',
+			data : angular.toJson($scope.selectedCategory),
+			headers : {
+				'Content-Type' : 'application/json'
+			}
+		}).then(function(response) {
+			if (response.data.status === "ok") {
+				SuccessToastMSG(response.data.message);
+			} else {
+				ErrorToastMSG(response.data.message);
+			}
+		});
 	}
 });

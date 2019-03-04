@@ -29,14 +29,23 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 
 	@Override
 	public boolean delete(MenuCategory menuCategory) {
-		return false;
+		Session currentSession = session.openSession();
+		try {
+			currentSession.delete(menuCategory);
+			return true;
+		} catch (Exception e) {
+			LOGGER.log(Level.ERROR, "Exception occur:", e);
+			return false;
+		} finally {
+			currentSession.close();
+		}
 	}
 
 	@Override
 	public boolean update(MenuCategory menuCategory) {
 		Session currentSession = session.openSession();
 		try {
-			session.getCurrentSession().update(menuCategory);
+			currentSession.update(menuCategory);
 			return true;
 		} catch (Exception e) {
 			LOGGER.log(Level.ERROR, "Exception occur:", e);
@@ -50,7 +59,7 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 	public boolean save(MenuCategory menuCategory) throws Exception {
 		Session currentSession = session.openSession();
 		try {
-			session.getCurrentSession().save(menuCategory);
+			currentSession.save(menuCategory);
 			return true;
 		} catch (Exception e) {
 			LOGGER.log(Level.ERROR, "Exception occur:", e);
