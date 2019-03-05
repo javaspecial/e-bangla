@@ -31,8 +31,8 @@ public class MenuCategoryServiceImpl implements MenuCategoryService {
 	}
 
 	@Override
-	public boolean delete(MenuCategory menuCategory) throws Exception {
-		return menuCategoryDao.delete(menuCategory);
+	public boolean delete(MenuCategory menuCategory, Response model) throws Exception {
+		return menuCategoryDao.delete(menuCategory, model);
 	}
 
 }

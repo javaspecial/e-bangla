@@ -3,27 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html ng-app="category">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title></title>
-<link rel="stylesheet"
-	href="<spring:url value="/resources/admin/css/bootstrap.min.css" />">
-<link rel="stylesheet"
-	href="<spring:url value="/resources/admin/css/category.css" />">
-<script src="<spring:url value="/resources/js/angular.js"/>"></script>
-<script
-	src="<spring:url value="/resources/js/ui-bootstrap-tpls-0.13.4.min.js" />"></script>
-<script src="<spring:url value="/resources/js/angular.categories.js" />"></script>
-<script
-	src="<spring:url value="https://code.jquery.com/jquery-3.3.1.js" />"></script>
-<!-- sweet alert -->
-<script src="<spring:url value="/resources/js/messages.popup.js" />"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
 <style>
 table tr th {
 	background: #337ab7;
@@ -33,7 +16,7 @@ table tr th {
 }
 
 .selected {
-	background-color:#337ab7;
+	background-color: #337ab7;
 	color: white;
 	font-weight: bold;
 }
@@ -59,8 +42,8 @@ table tr th {
 		</ol>
 		</section>
 		<hr style="border-top: 1px solid blue;">
-		<table id="example" class="table table-bordered"
-			style="width: 100%" ng-init="getAllCategories()">
+		<table id="example" class="table table-bordered" style="width: 100%"
+			ng-init="getAllCategories()">
 			<thead>
 				<tr>
 					<th>Id</th>
@@ -176,8 +159,6 @@ table tr th {
 						</div>
 					</div>
 					<div class="modal-footer">
-						<span id="err" style="color: red; float: left">{{error}}</span> <span
-							id="success" style="color: green; float: left">{{success}}</span>
 						<button type="button" class="btn btn-primary"
 							ng-click="saveCategory('false')">Save</button>
 						<button id=type= "button" class="btn btn-primary"

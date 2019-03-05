@@ -2,11 +2,14 @@ package com.daoimpl;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dao.MenuItemModifierGroupDAO;
+import com.helper.PosLog;
 import com.model.MenuItemModifierGroup;
 
 @Transactional
@@ -18,8 +21,17 @@ public class MenuItemModifierGroupDaoImpl implements MenuItemModifierGroupDAO {
 
 	@Override
 	public boolean save(MenuItemModifierGroup menuItemModifierGroup) throws Exception {
-		session.getCurrentSession().save(menuItemModifierGroup);
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.save(menuItemModifierGroup);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuItemModifierGroupDaoImpl.class, e.getMessage());
+			return false;
+		}
 		return true;
+
 	}
 
 	@Override

@@ -2,11 +2,14 @@ package com.daoimpl;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dao.TaxDAO;
+import com.helper.PosLog;
 import com.model.Tax;
 
 @Repository
@@ -30,7 +33,15 @@ public class TaxDaoImpl implements TaxDAO {
 
 	@Override
 	public boolean save(Tax tax) throws Exception {
-		session.getCurrentSession().save(tax);
+		Session currentSession = session.getCurrentSession();
+		Transaction trans = currentSession.beginTransaction();
+		try {
+			currentSession.save(tax);
+			trans.commit();
+		} catch (Exception e) {
+			PosLog.error(TaxDaoImpl.class, e.getMessage());
+			return false;
+		}
 		return true;
 	}
 

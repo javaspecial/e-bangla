@@ -2,20 +2,13 @@ package com.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "MENU_CATEGORY")
@@ -25,7 +18,6 @@ public class MenuCategory {
 	public final static String MENU_CATEGORY_TRANSLATED_NAME = "translatedName";
 	public final static String MENU_CATEGORY_VISIBLE = "visible";
 	public final static String MENU_CATEGORY_SORT_ORDER = "sortOrder";
-	public final static String MENU_CATEGORY_DISCOUNT = "menuCategoryDiscount";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,11 +39,6 @@ public class MenuCategory {
 	@Transient
 	private List<MenuGroup> menuGroups;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinTable(name = MENU_CATEGORY_DISCOUNT, joinColumns = @JoinColumn(name = MENU_CATEGORY_ID), inverseJoinColumns = @JoinColumn(name = Discount.DISCOUNT_ID))
-	private List<Discount> menuCategoryDiscount;
-
 	public MenuCategory() {
 
 	}
@@ -59,21 +46,6 @@ public class MenuCategory {
 	public MenuCategory(Integer id, String name) {
 		setId(id);
 		setName(name);
-	}
-
-	/**
-	 * @return the discount
-	 */
-	public List<Discount> getMenuCategoryDiscount() {
-		return menuCategoryDiscount;
-	}
-
-	/**
-	 * @param discount
-	 *            the discount to set
-	 */
-	public void setMenuCategoryDiscount(List<Discount> menuCategoryDiscount) {
-		this.menuCategoryDiscount = menuCategoryDiscount;
 	}
 
 	/**

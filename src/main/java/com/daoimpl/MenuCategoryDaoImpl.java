@@ -4,11 +4,10 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -17,38 +16,39 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.MenuCategoryDAO;
 import com.helper.CategoryFunctionImpl;
+import com.helper.PosLog;
 import com.model.MenuCategory;
 import com.resources.Response;
 
 @Repository
 @Transactional
 public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCategoryDAO {
-	private static final Logger LOGGER = Logger.getLogger(MenuCategoryDaoImpl.class.getName());
 	@Autowired
-	SessionFactory session;
+	SessionFactory sessionFactory;
 
 	@Override
-	public boolean delete(MenuCategory menuCategory) {
-		Session currentSession = session.openSession();
+	public boolean delete(MenuCategory menuCategory, Response model) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
 		try {
 			currentSession.delete(menuCategory);
+			transaction.commit();
 			return true;
 		} catch (Exception e) {
-			LOGGER.log(Level.ERROR, "Exception occur:", e);
+			PosLog.error(MenuCategoryDaoImpl.class, e.getMessage());
+			transaction.rollback();
 			return false;
-		} finally {
-			currentSession.close();
 		}
 	}
 
 	@Override
 	public boolean update(MenuCategory menuCategory) {
-		Session currentSession = session.openSession();
+		Session currentSession = sessionFactory.openSession();
 		try {
 			currentSession.update(menuCategory);
 			return true;
 		} catch (Exception e) {
-			LOGGER.log(Level.ERROR, "Exception occur:", e);
+			PosLog.error(MenuCategoryDaoImpl.class, e.getMessage());
 			return false;
 		} finally {
 			currentSession.close();
@@ -57,22 +57,21 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 
 	@Override
 	public boolean save(MenuCategory menuCategory) throws Exception {
-		Session currentSession = session.openSession();
+		Session currentSession = sessionFactory.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
 		try {
 			currentSession.save(menuCategory);
-			return true;
+			transaction.commit();
 		} catch (Exception e) {
-			LOGGER.log(Level.ERROR, "Exception occur:", e);
+			PosLog.error(MenuCategoryDaoImpl.class, e.getMessage());
 			return false;
-		} finally {
-			currentSession.close();
 		}
-
+		return true;
 	}
 
 	@Override
 	public List<MenuCategory> getAllMenuCategories(Response model, String name) {
-		Session currentSession = session.openSession();
+		Session currentSession = sessionFactory.openSession();
 		try {
 			Criteria criteria = currentSession.createCriteria(MenuCategory.class);
 			if (!name.equals("undefined")) {
@@ -89,9 +88,11 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 			if (list != null && list.size() > 0) {
 				return list;
 			}
-			return null;
+		} catch (Exception e) {
+			PosLog.error(MenuCategoryDaoImpl.class, e.getMessage());
 		} finally {
 			currentSession.close();
 		}
+		return null;
 	}
 }

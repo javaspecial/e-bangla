@@ -99,9 +99,6 @@ public class Discount {
 	@Column(name = DISCOUNT_UUID)
 	private String discountUUID;
 
-	@ManyToMany(mappedBy = MenuCategory.MENU_CATEGORY_DISCOUNT)
-	private List<MenuCategory> menuCategory;
-
 	@ManyToMany(mappedBy = MenuGroup.MENU_GROUP_DISCOUNT)
 	private List<MenuGroup> menuGroup;
 
@@ -109,21 +106,6 @@ public class Discount {
 	private List<MenuItem> menuItem;
 
 	public Discount() {
-	}
-
-	/**
-	 * @return the menuCategory
-	 */
-	public List<MenuCategory> getMenuCategory() {
-		return menuCategory;
-	}
-
-	/**
-	 * @param menuCategory
-	 *            the menuCategory to set
-	 */
-	public void setMenuCategory(List<MenuCategory> menuCategory) {
-		this.menuCategory = menuCategory;
 	}
 
 	/**

@@ -4,11 +4,14 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dao.MenuGroupDAO;
+import com.helper.PosLog;
 import com.model.MenuGroup;
 
 @Repository
@@ -38,8 +41,17 @@ public class MenuGroupDaoImpl implements MenuGroupDAO {
 
 	@Override
 	public boolean save(MenuGroup menuGroup) throws Exception {
-		session.getCurrentSession().save(menuGroup);
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.save(menuGroup);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuGroupDaoImpl.class, e.getMessage());
+			return false;
+		}
 		return true;
+
 	}
 
 }

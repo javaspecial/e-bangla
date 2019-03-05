@@ -30,28 +30,23 @@ public class MenuCategoryController {
 			List<MenuCategory> categories = menuCategoryService.getAllMenuCategories(model, name);
 			return new Response("ok", categories, model);
 		} catch (Exception e) {
-			Response response = new Response("err");
-			response.setMessage("Unexpected error! please try to reload again.");
-			return response;
+			return new Response("err", "Unexpected error! please try to reload again.");
 		}
 	}
 
 	@RequestMapping(value = "/saveOrUpdateCategory/", method = RequestMethod.POST)
 	@ExceptionHandler({ Exception.class })
-	public Response saveCategory(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("translatedName") String translatedName, @RequestParam("sortOrder") String sortOrder, @RequestParam("visible") String visible,
+	public Response saveCategory(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("translatedName") String translatedName, @RequestParam("sortOrder") String sortOrder, @RequestParam("visible") boolean visible,
 			@RequestParam("update") boolean update) throws Exception {
 		MenuCategory category = new MenuCategory();
 		try {
-			if (sortOrder.equals("") || sortOrder.equals("undefined")) {
-				sortOrder = String.valueOf(0);
-			}
-			if (!id.equals("") && !id.equals("undefined")) {
+			if (!id.equals("null")) {
 				category.setId(Integer.valueOf(id));
 			}
 			category.setName(name);
 			category.setTranslatedName(translatedName);
 			category.setSortOrder(Integer.parseInt(sortOrder));
-			category.setVisible(Boolean.parseBoolean(visible));
+			category.setVisible(visible);
 			if (update) {
 				if (menuCategoryService.update(category)) {
 					return new Response("ok", "Menu category was updated successfully.");
@@ -69,7 +64,7 @@ public class MenuCategoryController {
 	@ExceptionHandler({ Exception.class })
 	public Response deleteCategory(@RequestBody MenuCategory selectedCategory) throws Exception {
 		try {
-			if (menuCategoryService.delete(selectedCategory)) {
+			if (menuCategoryService.delete(selectedCategory, model)) {
 				return new Response("ok", "Menu category was deleted successfully.");
 			}
 			return new Response("err", "Menu category was not deleted");

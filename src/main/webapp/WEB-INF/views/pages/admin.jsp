@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html ng-app="admin">
 <head>
 <title>eBangla</title>
 <%@ page isELIgnored="false"%>
@@ -75,7 +75,24 @@
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <!-- js for dynamic pages -->
 <script src="<spring:url value="/resources/js/dynamic.pages.js" />"></script>
-
+<!-- angular js configuration -->
+<link rel="stylesheet"
+	href="<spring:url value="/resources/admin/css/bootstrap.min.css" />">
+<link rel="stylesheet"
+	href="<spring:url value="/resources/admin/css/category.css" />">
+<script src="<spring:url value="/resources/js/angular.js"/>"></script>
+<script
+	src="<spring:url value="/resources/js/ui-bootstrap-tpls-0.13.4.min.js" />"></script>
+<script src="<spring:url value="/resources/js/angular.admin.js" />"></script>
+<script
+	src="<spring:url value="https://code.jquery.com/jquery-3.3.1.js" />"></script>
+<!-- sweet alert -->
+<script src="<spring:url value="/resources/js/messages.popup.js" />"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<%@ include file="/WEB-INF/views/pages/exception.jsp"%>
@@ -356,11 +373,10 @@
 								<i class="fa fa-angle-left pull-right"></i>
 						</span>
 					</a>
-						<ul class="treeview-menu">
+						<ul class="treeview-menu" ng-controller="adminController">
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Users<i class="fa fa-fw fa-users pull-right"></i>
-								</button>
+									Users</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
@@ -380,19 +396,16 @@
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Export all menus<i class="fa fa-cloud-download pull-right"></i>
-								</button>
+									Export all menus</button>
 							</li>
 							<li>
-								<button onclick="createDefaultMenus();" type="button"
-									class="btn btn-block btn-success btn-sm">
-									Create default menus<i class="fa fa-plus-circle pull-right"></i>
-								</button>
+								<button ng-click="createDefaultMenus()"
+									class="btn btn-block btn-success btn-sm">Create
+									default menus</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Import menus from file<i class="fa fa-cloud-upload pull-right"></i>
-								</button>
+									Import menus from file</button>
 							</li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i class="fa fa-book"></i>

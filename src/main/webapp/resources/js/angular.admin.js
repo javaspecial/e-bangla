@@ -1,6 +1,6 @@
 'use strict';
-var app = angular.module('category', [ 'ui.bootstrap' ]);
-app.controller('getAllCategoriesController', function($scope, $http) {
+var admin = angular.module('admin', [ 'ui.bootstrap' ]);
+admin.controller('getAllCategoriesController', function($scope, $http) {
 	$scope.totalCount = 0; // Total number of items in all pages. initialize as
 	$scope.actionCommand = 'firstPage';
 
@@ -61,13 +61,10 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 	var element = angular.element('#category_form');
 	$scope.doAdd = function() {
 		$scope.title = "Create menu category";
-		$scope.error = "";
-		$scope.success = "";
-		$scope.id = "";
 		$scope.name = "";
 		$scope.translatedName = "";
-		$scope.sortOrder = "";
-		$scope.visible = "false";
+		$scope.sortOrder = 0;
+		$scope.visible = true;
 		element.modal('show');
 		$scope.update = false;
 	}
@@ -88,8 +85,6 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 			ErrorToastMSG('Please select a row to edit.');
 			return;
 		}
-		$scope.error = "";
-		$scope.success = "";
 		$scope.title = "Edit menu category";
 		$scope.update = true;
 		element.modal('show');
@@ -98,23 +93,19 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 	$scope.saveCategory = function(isCloseModal) {
 		$scope.isCloseModal = isCloseModal;
 		if ($scope.name === "undefined" || $scope.name === "" || $scope.name == null) {
-			$scope.success = "";
-			$scope.error = "Name is required";
+			ErrorToastMSG('Name is required');
 			return;
 		}
 		var url = 'http://localhost:8080/ebangla/saveOrUpdateCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder + '&visible=' + $scope.visible + '&update=' + $scope.update + '&id=' + $scope.selectedRow;
 		$http.post(url).then(function(response) {
 			if (response.data.status === "ok") {
 				if ($scope.isCloseModal === 'true') {
+					$scope.getAllCategories();
 					element.modal('hide');
-					SuccessToastMSG(response.data.message);
-					return;
 				}
-				$scope.error = "";
-				$scope.success = response.data.message;
+				SuccessToastMSG(response.data.message);
 			} else {
-				$scope.success = "";
-				$scope.error = response.data.message;
+				ErrorToastMSG(response.data.message);
 			}
 		});
 	}
@@ -134,9 +125,25 @@ app.controller('getAllCategoriesController', function($scope, $http) {
 			}
 		}).then(function(response) {
 			if (response.data.status === "ok") {
+				$scope.getAllCategories();
 				SuccessToastMSG(response.data.message);
 			} else {
 				ErrorToastMSG(response.data.message);
+			}
+		});
+	}
+});
+admin.controller('adminController', function($scope, $http) {
+	// create default item angular controller
+	// focus menus import export controller
+	$scope.createDefaultMenus = function() {
+		var url = 'http://localhost:8080/ebangla/createDefaultMenus/';
+		$http.post(url).then(function(response) {
+			if (response.data.status === "ok") {
+				SuccessToastMSG(response.data.message);
+				return;
+			} else {
+				$scope.error = response.data.message;
 			}
 		});
 	}

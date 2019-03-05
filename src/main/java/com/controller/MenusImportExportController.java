@@ -11,14 +11,10 @@ import javax.xml.bind.Unmarshaller;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.model.MenuCategory;
 import com.model.MenuGroup;
@@ -29,6 +25,7 @@ import com.model.ModifierGroup;
 import com.model.Tax;
 import com.model.TaxGroup;
 import com.resources.Elements;
+import com.resources.Response;
 import com.service.MenuCategoryService;
 import com.service.MenuGroupService;
 import com.service.MenuItemModifierGroupService;
@@ -37,7 +34,7 @@ import com.service.ModifierGroupService;
 import com.service.ModifierService;
 import com.service.TaxService;
 
-@Controller
+@RestController
 public class MenusImportExportController {
 
 	@Autowired
@@ -55,10 +52,9 @@ public class MenusImportExportController {
 	@Autowired
 	TaxService taxService;
 
-	@RequestMapping(value = "/createDefaultMenus", method = RequestMethod.POST)
+	@RequestMapping(value = "/createDefaultMenus/", method = RequestMethod.POST)
 	@ExceptionHandler({ Exception.class })
-	@ResponseBody
-	public ResponseEntity<String> createDefaultMenus(ModelMap model) {
+	public Response createDefaultMenus() throws Exception {
 		Map<String, Object> objectMap = new HashMap<String, Object>();
 		InputStream inputStream = null;
 		try {
@@ -177,12 +173,12 @@ public class MenusImportExportController {
 			}
 
 		} catch (IOException e) {
-			return new ResponseEntity<String>("File not found!", HttpStatus.BAD_REQUEST);
+			return new Response("err", "File not found!");
 		} catch (Exception e) {
-			return new ResponseEntity<String>("Unexpected error!", HttpStatus.BAD_REQUEST);
+			return new Response("err", "Unexpected error!");
 		} finally {
 			IOUtils.closeQuietly(inputStream);
 		}
-		return new ResponseEntity<String>("Default menus are created successfull.", HttpStatus.OK);
+		return new Response("ok", "Default menus are created successfull.");
 	}
 }
