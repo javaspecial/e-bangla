@@ -64,7 +64,7 @@ public class MenuCategoryController {
 	@ExceptionHandler({ Exception.class })
 	public Response deleteCategory(@RequestBody MenuCategory selectedCategory) throws Exception {
 		try {
-			if (menuCategoryService.delete(selectedCategory, model)) {
+			if (menuCategoryService.delete(selectedCategory)) {
 				return new Response("ok", "Menu category was deleted successfully.");
 			}
 			return new Response("err", "Menu category was not deleted");

@@ -1,6 +1,7 @@
 'use strict';
 var admin = angular.module('admin', [ 'ui.bootstrap' ]);
 admin.controller('getAllCategoriesController', function($scope, $http) {
+	// focus menu category controller
 	$scope.totalCount = 0; // Total number of items in all pages. initialize as
 	$scope.actionCommand = 'firstPage';
 
@@ -81,7 +82,7 @@ admin.controller('getAllCategoriesController', function($scope, $http) {
 	}
 	// open edit category dialogue
 	$scope.doEdit = function() {
-		if ($scope.selectedRow === null) {
+		if ($scope.selectedCategory === null) {
 			ErrorToastMSG('Please select a row to edit.');
 			return;
 		}
@@ -91,6 +92,7 @@ admin.controller('getAllCategoriesController', function($scope, $http) {
 	}
 	// save categories
 	$scope.saveCategory = function(isCloseModal) {
+		// focus menu category controller
 		$scope.isCloseModal = isCloseModal;
 		if ($scope.name === "undefined" || $scope.name === "" || $scope.name == null) {
 			ErrorToastMSG('Name is required');
@@ -100,9 +102,9 @@ admin.controller('getAllCategoriesController', function($scope, $http) {
 		$http.post(url).then(function(response) {
 			if (response.data.status === "ok") {
 				if ($scope.isCloseModal === 'true') {
-					$scope.getAllCategories();
 					element.modal('hide');
 				}
+				$scope.getAllCategories();
 				SuccessToastMSG(response.data.message);
 			} else {
 				ErrorToastMSG(response.data.message);
@@ -112,6 +114,7 @@ admin.controller('getAllCategoriesController', function($scope, $http) {
 
 	// delete categories
 	$scope.doDelete = function() {
+		// focus menu category controller
 		if ($scope.selectedCategory === null) {
 			ErrorToastMSG('Please select a row to delete.');
 			return;
@@ -127,6 +130,7 @@ admin.controller('getAllCategoriesController', function($scope, $http) {
 			if (response.data.status === "ok") {
 				$scope.getAllCategories();
 				SuccessToastMSG(response.data.message);
+				$scope.selectedCategory = null;
 			} else {
 				ErrorToastMSG(response.data.message);
 			}

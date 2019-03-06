@@ -27,7 +27,7 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 	SessionFactory sessionFactory;
 
 	@Override
-	public boolean delete(MenuCategory menuCategory, Response model) {
+	public boolean delete(MenuCategory menuCategory) {
 		Session currentSession = sessionFactory.getCurrentSession();
 		Transaction transaction = currentSession.beginTransaction();
 		try {
@@ -43,16 +43,17 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 
 	@Override
 	public boolean update(MenuCategory menuCategory) {
-		Session currentSession = sessionFactory.openSession();
+		Session currentSession = sessionFactory.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
 		try {
 			currentSession.update(menuCategory);
-			return true;
+			transaction.commit();
 		} catch (Exception e) {
 			PosLog.error(MenuCategoryDaoImpl.class, e.getMessage());
+			transaction.rollback();
 			return false;
-		} finally {
-			currentSession.close();
 		}
+		return true;
 	}
 
 	@Override

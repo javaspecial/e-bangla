@@ -12,7 +12,7 @@ import com.resources.Response;
 public interface MenuCategoryDAO {
 	public List<MenuCategory> getAllMenuCategories(Response model, String name);
 
-	public boolean delete(MenuCategory menuCategory, Response model);
+	public boolean delete(MenuCategory menuCategory);
 
 	public boolean update(MenuCategory menuCategory);
 
