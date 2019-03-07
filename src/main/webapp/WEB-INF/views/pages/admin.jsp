@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html ng-app="admin">
 <head>
-<title>eBangla</title>
+<title>ebangla</title>
 <%@ page isELIgnored="false"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -101,8 +101,8 @@
 		<header class="main-header">
 			<!-- Logo -->
 			<a href="index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
-				<span class="logo-mini"><b>e</b>Bangla</span> <!-- logo for regular state and mobile devices -->
-				<span class="logo-lg"><b>e</b>Bangla</span>
+				<span class="logo-mini"><b>e</b>bangla</span> <!-- logo for regular state and mobile devices -->
+				<span class="logo-lg"><b>e</b>bangla</span>
 			</a>
 
 			<!-- Header Navbar: style can be found in header.less -->
@@ -541,7 +541,7 @@
 				<b>Version</b> 1.0.1
 			</div>
 			<strong>Copyright &copy; 2019<a href="https://adminlte.io">
-					&nbsp;eBangla.com</a>,
+					&nbsp;ebangla.com</a>,
 			</strong> All rights reserved.
 		</footer>
 

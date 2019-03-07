@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.helper.PosLog;
 import com.model.MenuCategory;
 import com.model.MenuGroup;
 import com.model.MenuItem;
@@ -67,18 +68,17 @@ public class MenusImportExportController {
 			if (taxes != null) {
 				for (Tax tax : taxes) {
 					objectMap.put(tax.getUniqueId(), tax);
-					tax.setTaxId(null);
-					taxService.save(tax);
+					taxService.saveOrUpdate(tax);
+					PosLog.debug(MenusImportExportController.class, tax.getName());
 				}
 			}
 
 			List<MenuCategory> menuCategories = elements.getMenuCategories();
 			if (menuCategories != null) {
 				for (MenuCategory menuCategory : menuCategories) {
-					String uniqueId = menuCategory.getUniqueId();
-					objectMap.put(uniqueId, menuCategory);
-					menuCategory.setId(null);
-					menuCategoryService.save(menuCategory);
+					objectMap.put(menuCategory.getUniqueId(), menuCategory);
+					menuCategoryService.saveOrUpdate(menuCategory);
+					PosLog.debug(MenusImportExportController.class, menuCategory.getName());
 				}
 			}
 
@@ -91,17 +91,17 @@ public class MenusImportExportController {
 						menuGroup.setParent(menuCategory);
 					}
 					objectMap.put(menuGroup.getUniqueId(), menuGroup);
-					menuGroup.setGroupId(null);
-					menuGroupService.save(menuGroup);
+					menuGroupService.saveOrUpdate(menuGroup);
+					PosLog.debug(MenusImportExportController.class, menuGroup.getName());
 				}
 			}
 
 			List<ModifierGroup> modifierGroups = elements.getModifierGroups();
 			if (modifierGroups != null) {
-				for (ModifierGroup ModifierGroup : modifierGroups) {
-					objectMap.put(ModifierGroup.getUniqueId(), ModifierGroup);
-					ModifierGroup.setModifierGroupId(null);
-					modifierGroupService.save(ModifierGroup);
+				for (ModifierGroup modifierGroup : modifierGroups) {
+					objectMap.put(modifierGroup.getUniqueId(), modifierGroup);
+					modifierGroupService.saveOrUpdate(modifierGroup);
+					PosLog.debug(MenusImportExportController.class, modifierGroup.getName());
 				}
 			}
 
@@ -109,8 +109,6 @@ public class MenusImportExportController {
 			if (modifiers != null) {
 				for (Modifier modifier : modifiers) {
 					objectMap.put(modifier.getUniqueId(), modifier);
-					modifier.setModifierId(null);
-
 					ModifierGroup modifierGroup = modifier.getModifierGroup();
 					if (modifierGroup != null) {
 						modifierGroup = (ModifierGroup) objectMap.get(modifierGroup.getUniqueId());
@@ -122,8 +120,8 @@ public class MenusImportExportController {
 						tax = (Tax) objectMap.get(tax.getUniqueId());
 						modifier.setTax(tax);
 					}
-
-					modifierService.save(modifier);
+					modifierService.saveOrUpdate(modifier);
+					PosLog.debug(MenusImportExportController.class, modifier.getName());
 				}
 			}
 
@@ -131,14 +129,14 @@ public class MenusImportExportController {
 			if (menuItemModifierGroups != null) {
 				for (MenuItemModifierGroup mimg : menuItemModifierGroups) {
 					objectMap.put(mimg.getUniqueId(), mimg);
-					mimg.setId(null);
 
 					ModifierGroup ModifierGroup = mimg.getModifierGroup();
 					if (ModifierGroup != null) {
 						ModifierGroup = (ModifierGroup) objectMap.get(ModifierGroup.getUniqueId());
 						mimg.setModifierGroup(ModifierGroup);
 					}
-					menuItemModifierGroupService.save(mimg);
+					menuItemModifierGroupService.saveOrUpdate(mimg);
+					PosLog.debug(MenusImportExportController.class, mimg.getUniqueId());
 				}
 			}
 
@@ -146,8 +144,6 @@ public class MenusImportExportController {
 			if (menuItems != null) {
 				for (MenuItem menuItem : menuItems) {
 					objectMap.put(menuItem.getUniqueId(), menuItem);
-					menuItem.setMenuItemId(null);
-
 					MenuGroup menuGroup = menuItem.getParent();
 					if (menuGroup != null) {
 						menuGroup = (MenuGroup) objectMap.get(menuGroup.getUniqueId());
@@ -168,7 +164,8 @@ public class MenusImportExportController {
 							menuItemModifierGroup.setModifierGroup(menuItemModifierGroup2.getModifierGroup());
 						}
 					}
-					menuItemService.save(menuItem);
+					menuItemService.saveOrUpdate(menuItem);
+					PosLog.debug(MenusImportExportController.class, menuItem.getName());
 				}
 			}
 

@@ -36,14 +36,49 @@ public class MenuItemDaoImpl implements MenuItemDAO {
 
 	@Override
 	public boolean delete(MenuItem menuItem) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.delete(menuItem);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuItemDaoImpl.class, e.getMessage());
+			transaction.rollback();
+			return false;
+		}
+		return true;
+
 	}
 
 	@Override
 	public boolean saveOrUpdate(MenuItem menuItem) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.saveOrUpdate(menuItem);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuItemDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
+
+	}
+
+	@Override
+	public boolean update(MenuItem menuItem) {
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.update(menuItem);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuItemDaoImpl.class, e.getMessage());
+			transaction.rollback();
+			return false;
+		}
+		return true;
+
 	}
 
 }

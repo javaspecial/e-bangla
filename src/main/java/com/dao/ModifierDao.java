@@ -8,4 +8,6 @@ public interface ModifierDao {
 	public boolean delete(Modifier modifier);
 
 	public boolean saveOrUpdate(Modifier modifier);
+
+	public boolean update(Modifier modifier);
 }

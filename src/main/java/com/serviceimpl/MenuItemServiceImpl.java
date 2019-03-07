@@ -18,4 +18,19 @@ public class MenuItemServiceImpl implements MenuItemService {
 		return menuItemDao.save(menuItem);
 	}
 
+	@Override
+	public boolean update(MenuItem menuItem) throws Exception {
+		return menuItemDao.update(menuItem);
+	}
+
+	@Override
+	public boolean delete(MenuItem menuItem) throws Exception {
+		return menuItemDao.delete(menuItem);
+	}
+
+	@Override
+	public boolean saveOrUpdate(MenuItem menuItem) throws Exception {
+		return menuItemDao.saveOrUpdate(menuItem);
+	}
+
 }

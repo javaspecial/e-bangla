@@ -18,4 +18,19 @@ public class ModifierGroupServiceImpl implements ModifierGroupService {
 		return modifierGroupDao.save(modifierGroup);
 	}
 
+	@Override
+	public boolean update(ModifierGroup modifierGroup) throws Exception {
+		return modifierGroupDao.update(modifierGroup);
+	}
+
+	@Override
+	public boolean saveOrUpdate(ModifierGroup modifierGroup) throws Exception {
+		return modifierGroupDao.saveOrUpdate(modifierGroup);
+	}
+
+	@Override
+	public boolean delete(ModifierGroup modifierGroup) throws Exception {
+		return modifierGroupDao.delete(modifierGroup);
+	}
+
 }

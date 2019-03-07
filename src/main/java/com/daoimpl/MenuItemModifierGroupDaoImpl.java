@@ -36,14 +36,48 @@ public class MenuItemModifierGroupDaoImpl implements MenuItemModifierGroupDAO {
 
 	@Override
 	public boolean delete(MenuItemModifierGroup menuItemModifierGroup) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.delete(menuItemModifierGroup);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuItemModifierGroupDaoImpl.class, e.getMessage());
+			transaction.rollback();
+			return false;
+		}
+		return true;
+
 	}
 
 	@Override
 	public boolean saveOrUpdate(MenuItemModifierGroup menuItemModifierGroup) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.saveOrUpdate(menuItemModifierGroup);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuItemModifierGroupDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
+
+	}
+
+	@Override
+	public boolean update(MenuItemModifierGroup menuItemModifierGroup) throws Exception {
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.update(menuItemModifierGroup);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuItemModifierGroupDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
+
 	}
 
 }

@@ -7,6 +7,8 @@ public interface MenuItemDAO {
 
 	public boolean delete(MenuItem menuItem);
 
+	public boolean update(MenuItem menuItem);
+
 	public boolean saveOrUpdate(MenuItem menuItem);
 
 }

@@ -8,4 +8,6 @@ public interface ModifierGroupDAO {
 	public boolean delete(ModifierGroup modifierGroup);
 
 	public boolean saveOrUpdate(ModifierGroup modifierGroup);
+
+	public boolean update(ModifierGroup modifierGroup);
 }

@@ -17,4 +17,14 @@ public class MenuGroupServiceImpl implements MenuGroupService {
 		return menuGroupDao.save(menuGroup);
 	}
 
+	@Override
+	public boolean saveOrUpdate(MenuGroup menuGroup) throws Exception {
+		return menuGroupDao.saveOrUpdate(menuGroup);
+	}
+
+	@Override
+	public boolean delete(MenuGroup menuGroup) throws Exception {
+		return menuGroupDao.delete(menuGroup);
+	}
+
 }

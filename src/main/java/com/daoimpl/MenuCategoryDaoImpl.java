@@ -78,7 +78,6 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 			if (!name.equals("undefined")) {
 				criteria.add(Restrictions.ilike(MenuCategory.MENU_CATEGORY_NAME, name, MatchMode.ANYWHERE));
 			}
-			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_ID));
 			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_SORT_ORDER));
 			rowCount(criteria, model);
 			criteria.setFirstResult(model.getCurrentRowIndex());
@@ -95,5 +94,19 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 			currentSession.close();
 		}
 		return null;
+	}
+
+	@Override
+	public boolean saveOrUpdate(MenuCategory menuCategory) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.saveOrUpdate(menuCategory);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuCategoryDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
 	}
 }

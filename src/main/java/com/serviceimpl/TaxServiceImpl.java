@@ -18,4 +18,14 @@ public class TaxServiceImpl implements TaxService {
 		return taxDao.save(tax);
 	}
 
+	@Override
+	public boolean saveOrUpdate(Tax tax) throws Exception {
+		return taxDao.saveOrUpdate(tax);
+	}
+
+	@Override
+	public boolean delete(Tax tax) throws Exception {
+		return taxDao.delete(tax);
+	}
+
 }

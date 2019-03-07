@@ -18,4 +18,19 @@ public class ModifierServiceImpl implements ModifierService {
 		return modifierDao.save(modifier);
 	}
 
+	@Override
+	public boolean update(Modifier modifier) throws Exception {
+		return modifierDao.update(modifier);
+	}
+
+	@Override
+	public boolean saveOrUpdate(Modifier modifier) throws Exception {
+		return modifierDao.saveOrUpdate(modifier);
+	}
+
+	@Override
+	public boolean delete(Modifier modifier) throws Exception {
+		return modifierDao.delete(modifier);
+	}
+
 }

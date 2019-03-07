@@ -27,8 +27,16 @@ public class TaxDaoImpl implements TaxDAO {
 
 	@Override
 	public boolean saveOrUpdate(Tax tax) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = session.getCurrentSession();
+		Transaction trans = currentSession.beginTransaction();
+		try {
+			currentSession.saveOrUpdate(tax);
+			trans.commit();
+		} catch (Exception e) {
+			PosLog.error(TaxDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 	@Override

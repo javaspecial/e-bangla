@@ -35,8 +35,16 @@ public class MenuGroupDaoImpl implements MenuGroupDAO {
 
 	@Override
 	public boolean saveOrUpdate(MenuGroup menuGroup) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.saveOrUpdate(menuGroup);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(MenuGroupDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 	@Override

@@ -42,8 +42,32 @@ public class ModifierDaoImpl implements ModifierDao {
 
 	@Override
 	public boolean saveOrUpdate(Modifier modifier) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.saveOrUpdate(modifier);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(ModifierDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
+
+	}
+
+	@Override
+	public boolean update(Modifier modifier) {
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.update(modifier);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(ModifierDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
+
 	}
 
 }

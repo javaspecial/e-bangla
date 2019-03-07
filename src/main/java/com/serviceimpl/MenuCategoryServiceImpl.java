@@ -35,4 +35,9 @@ public class MenuCategoryServiceImpl implements MenuCategoryService {
 		return menuCategoryDao.delete(menuCategory);
 	}
 
+	@Override
+	public boolean saveOrUpdate(MenuCategory menuCategory) throws Exception {
+		return menuCategoryDao.saveOrUpdate(menuCategory);
+	}
+
 }

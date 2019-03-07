@@ -18,4 +18,19 @@ public class MenuItemModifierGroupServiceImpl implements MenuItemModifierGroupSe
 		return menuItemModifierGroupDao.save(menuItemModifierGroup);
 	}
 
+	@Override
+	public boolean update(MenuItemModifierGroup menuItemModifierGroup) throws Exception {
+		return menuItemModifierGroupDao.update(menuItemModifierGroup);
+	}
+
+	@Override
+	public boolean saveOrUpdate(MenuItemModifierGroup menuItemModifierGroup) throws Exception {
+		return menuItemModifierGroupDao.saveOrUpdate(menuItemModifierGroup);
+	}
+
+	@Override
+	public boolean delete(MenuItemModifierGroup menuItemModifierGroup) throws Exception {
+		return menuItemModifierGroupDao.delete(menuItemModifierGroup);
+	}
+
 }

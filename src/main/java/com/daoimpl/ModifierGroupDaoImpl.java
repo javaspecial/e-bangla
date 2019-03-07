@@ -41,8 +41,30 @@ public class ModifierGroupDaoImpl implements ModifierGroupDAO {
 
 	@Override
 	public boolean saveOrUpdate(ModifierGroup modifierGroup) {
-		// TODO Auto-generated method stub
-		return false;
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.saveOrUpdate(modifierGroup);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(ModifierGroupDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public boolean update(ModifierGroup modifierGroup) {
+		Session currentSession = session.getCurrentSession();
+		Transaction transaction = currentSession.beginTransaction();
+		try {
+			currentSession.update(modifierGroup);
+			transaction.commit();
+		} catch (Exception e) {
+			PosLog.error(ModifierGroupDaoImpl.class, e.getMessage());
+			return false;
+		}
+		return true;
 	}
 
 }
