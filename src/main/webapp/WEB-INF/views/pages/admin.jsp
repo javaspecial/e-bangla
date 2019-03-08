@@ -89,10 +89,13 @@
 <!-- sweet alert -->
 <script src="<spring:url value="/resources/js/messages.popup.js" />"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<%@ include file="/WEB-INF/views/pages/exception.jsp"%>
@@ -401,7 +404,8 @@
 							<li>
 								<button ng-click="createDefaultMenus()"
 									class="btn btn-block btn-success btn-sm">Create
-									default menus</button>
+									default menus</button> <%@ include
+									file="/resources/dynamic-pages/progressbar.jsp"%>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">

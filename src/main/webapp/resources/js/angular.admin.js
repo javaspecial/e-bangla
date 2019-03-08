@@ -6,7 +6,8 @@ admin.controller('getAllCategoriesController', function($scope, $http) {
 	$scope.actionCommand = 'firstPage';
 
 	$scope.getAllCategories = function() {
-		var url = 'http://localhost:8080/ebangla/categoryList/?actionCommand=' + $scope.actionCommand + '&nameSearch=' + $scope.nameSearch;
+		var url = 'http://localhost:8080/ebangla/categoryList/?actionCommand='
+				+ $scope.actionCommand + '&nameSearch=' + $scope.nameSearch;
 		var config = {
 			headers : {
 				'Content-Type' : 'application/json;charset=utf-8;'
@@ -94,11 +95,16 @@ admin.controller('getAllCategoriesController', function($scope, $http) {
 	$scope.saveCategory = function(isCloseModal) {
 		// focus menu category controller
 		$scope.isCloseModal = isCloseModal;
-		if ($scope.name === "undefined" || $scope.name === "" || $scope.name == null) {
+		if ($scope.name === "undefined" || $scope.name === ""
+				|| $scope.name == null) {
 			ErrorToastMSG('Name is required');
 			return;
 		}
-		var url = 'http://localhost:8080/ebangla/saveOrUpdateCategory/?name=' + $scope.name + '&translatedName=' + $scope.translatedName + '&sortOrder=' + $scope.sortOrder + '&visible=' + $scope.visible + '&update=' + $scope.update + '&id=' + $scope.selectedRow;
+		var url = 'http://localhost:8080/ebangla/saveOrUpdateCategory/?name='
+				+ $scope.name + '&translatedName=' + $scope.translatedName
+				+ '&sortOrder=' + $scope.sortOrder + '&visible='
+				+ $scope.visible + '&update=' + $scope.update + '&id='
+				+ $scope.selectedRow;
 		$http.post(url).then(function(response) {
 			if (response.data.status === "ok") {
 				if ($scope.isCloseModal === 'true') {
@@ -137,7 +143,26 @@ admin.controller('getAllCategoriesController', function($scope, $http) {
 		});
 	}
 });
-admin.controller('adminController', function($scope, $http) {
+admin.controller('adminController', function($scope, $http, $timeout) {
+	// progressbar working ...
+	$scope.status = "Working...";
+	$scope.progress = 0;
+	$scope.labels = [ "Installing start menu items", "Registering components",
+			"Having a coffee" ];
+	var i = -1;
+	function update() {
+		$scope.progress += random(0, 10);
+		if ($scope.progress > random(70, 90)) {
+			$scope.progress = random(5, 50);
+			i = (i + 1) % $scope.labels.length;
+			$scope.status = $scope.labels[i];
+		}
+		$timeout(update, 200);
+	}
+	function random(a, b) {
+		return a + Math.floor(Math.random() * (b - a));
+	}
+	update();
 	// create default item angular controller
 	// focus menus import export controller
 	$scope.createDefaultMenus = function() {
