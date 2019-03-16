@@ -76,7 +76,7 @@ public class MenuGroupDaoImpl extends GroupFunctionImpl implements MenuGroupDAO 
 			if (name != null && !name.equals("undefined")) {
 				criteria.add(Restrictions.ilike(MenuGroup.MENU_GROUP_NAME, name, MatchMode.ANYWHERE));
 			}
-			if (category != null) {
+			if (category.getId() != null) {
 				criteria.add(Restrictions.ilike(MenuGroup.MENU_GROUP_CATEGORY, category.getName(), MatchMode.ANYWHERE));
 			}
 			criteria.addOrder(Order.asc(MenuGroup.MENU_GROUP_SORT_ORDER));

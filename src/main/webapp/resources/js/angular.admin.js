@@ -150,7 +150,7 @@ admin.controller('MenuGroupsController', function($scope, $http) {
 
 	$scope.getAllMenuGroups = function() {
 		var url = 'http://localhost:8080/ebangla/groupList/?actionCommand='
-				+ $scope.actionCommand + '&nameSearch=' + $scope.nameSearch;
+				+ $scope.actionCommand + '&nameSearch=' + $scope.nameSearch+'&selectedCat='+$scope.selectedCat;
 		var config = {
 			headers : {
 				'Content-Type' : 'application/json;charset=utf-8;'

@@ -32,16 +32,12 @@ table tr th {
 			<li>
 				<div class="input-group input-group-sm">
 					<ul class="nav nav-tabs">
-						<li class="dropdown" ng-init="getAllMenuGroups()"><a
-							data-toggle="dropdown" href="#" ng-model="MENU_GROUP.parent.name"> Category wise search <span
-								class="caret"></span>
-						</a>
-							<ul class="dropdown-menu">
-								<li role="presentation" ng-repeat="MENU_GROUP in groups.data"
-									ng-click="setClickedRow(MENU_GROUP.parent)"
-									ng-class="{selected:MENU_GROUP.parent.id === selectedRow}"><a
-									role="menuitem" tabindex="-1" href="#">{{MENU_GROUP.parent.name}}</a></li>
-							</ul></li>
+						<li><select ng-model="selectedCat" ng-init="getAllMenuGroups()" style="height:34px;">
+								<option value="">Search in all categories</option>
+								<option ng-repeat="MENU_GROUP in groups.data"
+									ng-selected="selectedCat == MENU_GROUP.parent.id"
+									value="{{MENU_GROUP.parent.name}}">{{MENU_GROUP.parent.name}}</option>
+						</select></li>
 						<li><input type="text" class="form-control"
 							placeholder="Search:e.g breakfast" ng-model="nameSearch">
 						</li>

@@ -26,16 +26,13 @@ public class MenuGroupController {
 	@RequestMapping(value = "/groupList/", method = RequestMethod.GET)
 	@ExceptionHandler({ Exception.class })
 	public Response groupList(@RequestParam(value = "actionCommand") String actionCommand,
-			@RequestParam(value = "nameSearch") String name) throws Exception {
+			@RequestParam(value = "nameSearch") String name,MenuCategory selectedCat) throws Exception {
 		try {
 			menuGroupModel.updateCurrentRowIndex(actionCommand);
-			List<MenuGroup> groups = menuGroupService.getAllMenuGroups(menuGroupModel, null, name);
-			for (MenuGroup menuGroup : groups) {
-				menuGroup.getSortOrder();
-			}
+			List<MenuGroup> groups = menuGroupService.getAllMenuGroups(menuGroupModel, selectedCat, name);
 			return new Response("ok", groups, menuGroupModel);
 		} catch (Exception e) {
-			return new Response("err", "Unexpected error! please try to reload again.");
+			return new Response("err", "Unexpected error");
 		}
 	}
 
