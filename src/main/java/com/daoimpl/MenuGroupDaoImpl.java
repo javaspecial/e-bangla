@@ -4,20 +4,26 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dao.MenuGroupDAO;
+import com.helper.GroupFunctionImpl;
 import com.helper.PosLog;
+import com.model.MenuCategory;
 import com.model.MenuGroup;
+import com.resources.Response;
 
 @Repository
 @Transactional
-public class MenuGroupDaoImpl implements MenuGroupDAO {
-
+public class MenuGroupDaoImpl extends GroupFunctionImpl implements MenuGroupDAO {
 	@Autowired
 	SessionFactory session;
 
@@ -60,6 +66,35 @@ public class MenuGroupDaoImpl implements MenuGroupDAO {
 		}
 		return true;
 
+	}
+
+	@Override
+	public List<MenuGroup> getAllMenuGroups(Response model, MenuCategory category, String name) {
+		Session currentSession = session.openSession();
+		try {
+			Criteria criteria = currentSession.createCriteria(MenuGroup.class);
+			if (name != null && !name.equals("undefined")) {
+				criteria.add(Restrictions.ilike(MenuGroup.MENU_GROUP_NAME, name, MatchMode.ANYWHERE));
+			}
+			if (category != null) {
+				criteria.add(Restrictions.ilike(MenuGroup.MENU_GROUP_CATEGORY, category.getName(), MatchMode.ANYWHERE));
+			}
+			criteria.addOrder(Order.asc(MenuGroup.MENU_GROUP_SORT_ORDER));
+			rowCount(criteria, model);
+			criteria.setFirstResult(model.getCurrentRowIndex());
+			criteria.setMaxResults(model.getPageSize());
+			List<MenuGroup> list = criteria.list();
+			model.setRows(list);
+			updatePagination(model);
+			if (list != null && list.size() > 0) {
+				return list;
+			}
+		} catch (Exception e) {
+			PosLog.error(MenuCategoryDaoImpl.class, e.getMessage());
+		} finally {
+			currentSession.close();
+		}
+		return null;
 	}
 
 }

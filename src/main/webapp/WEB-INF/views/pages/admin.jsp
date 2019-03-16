@@ -404,12 +404,12 @@
 							<li>
 								<button ng-click="createDefaultMenus()"
 									class="btn btn-block btn-success btn-sm">Create
-									default menus</button> <%@ include
-									file="/resources/dynamic-pages/progressbar.jsp"%>
+									default menus</button>
 							</li>
 							<li>
-								<button type="button" class="btn btn-block btn-success btn-sm">
-									Import menus from file</button>
+								<button type="button" id="import_menus"
+									class="btn btn-block btn-success btn-sm">Import menus
+									from file</button>
 							</li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i class="fa fa-book"></i>
@@ -421,69 +421,69 @@
 							<li>
 								<button onclick="displayPageById('menu_categories')"
 									class="btn btn-block btn-success btn-sm">
-									Menu categories<i class="fa fa-fw fa-clone pull-right"></i>
+									Menu categories
 								</button>
 							</li>
 							<li>
 								<button onclick="displayPageById('menu_groups')"
 									class="btn btn-block btn-success btn-sm">
-									Menu groups<i class="fa fa-fw fa-clone pull-right"></i>
+									Menu groups
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Menu items<i class="fa fa-fw fa-clone pull-right"></i>
+									Menu items
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Modifier groups<i class="fa fa-fw fa-clone pull-right"></i>
+									Modifier groups
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Modifiers<i class="fa fa-fw fa-clone pull-right"></i>
+									Modifiers
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Tax<i class="fa fa-fw fa-clone pull-right"></i>
+									Tax
 								</button>
 							</li>
 							<li>
 								<button onclick="createDefaultMenus();" type="button"
 									class="btn btn-block btn-success btn-sm">
-									Shifts<i class="fa fa-fw fa-clone pull-right"></i>
+									Shifts
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Multipliers<i class="fa fa-fw fa-clone pull-right"></i>
+									Multipliers
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Order types<i class="fa fa-fw fa-clone pull-right"></i>
+									Order types
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Closed tickets<i class="fa fa-fw fa-clone pull-right"></i>
+									Closed tickets
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Attendance history<i class="fa fa-fw fa-clone pull-right"></i>
+									Attendance history
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Coupons & discounts<i class="fa fa-fw fa-clone pull-right"></i>
+									Coupons & discounts
 								</button>
 							</li>
 							<li>
 								<button type="button" class="btn btn-block btn-success btn-sm">
-									Cooking instructions<i class="fa fa-fw fa-clone pull-right"></i>
+									Cooking instructions
 								</button>
 							</li>
 						</ul></li>

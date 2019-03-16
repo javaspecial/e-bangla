@@ -24,7 +24,7 @@ table tr th {
 </head>
 <body>
 	<!-- Content Wrapper. Contains page content -->
-	<div class="content-wrapper" ng-controller="getAllCategoriesController">
+	<div class="content-wrapper" ng-controller="MenuCategoriesController">
 		<!-- Content Header (Page header) -->
 		<section class="content-header">
 		<h4>Menu categories</h4>
@@ -43,7 +43,7 @@ table tr th {
 		</section>
 		<hr style="border-top: 1px solid blue;">
 		<table id="example" class="table table-bordered" style="width: 100%"
-			ng-init="getAllCategories()">
+			ng-init="getAllMenuCategories()">
 			<thead>
 				<tr>
 					<th>Id</th>

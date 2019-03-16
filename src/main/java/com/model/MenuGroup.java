@@ -63,7 +63,7 @@ public class MenuGroup {
 	private Boolean visible;
 
 	@Column(name = MENU_GROUP_SORT_ORDER)
-	private Integer sortOrder;
+	private Integer sortOrder = 9999;
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
@@ -90,8 +90,7 @@ public class MenuGroup {
 	}
 
 	/**
-	 * @param menuCategory
-	 *            the menuCategory to set
+	 * @param menuCategory the menuCategory to set
 	 */
 	public void setParent(MenuCategory parent) {
 		this.parent = parent;
@@ -113,8 +112,7 @@ public class MenuGroup {
 	}
 
 	/**
-	 * @param discount
-	 *            the discount to set
+	 * @param discount the discount to set
 	 */
 	public void setMenuGroupDiscount(List<Discount> menuGroupDiscount) {
 		this.menuGroupDiscount = menuGroupDiscount;
@@ -128,8 +126,7 @@ public class MenuGroup {
 	}
 
 	/**
-	 * @param name
-	 *            the name to set
+	 * @param name the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -143,8 +140,7 @@ public class MenuGroup {
 	}
 
 	/**
-	 * @param translatedName
-	 *            the translatedName to set
+	 * @param translatedName the translatedName to set
 	 */
 	public void setTranslatedName(String translatedName) {
 		this.translatedName = translatedName;
@@ -158,8 +154,7 @@ public class MenuGroup {
 	}
 
 	/**
-	 * @param visible
-	 *            the visible to set
+	 * @param visible the visible to set
 	 */
 	public void setVisible(Boolean visible) {
 		this.visible = visible;
@@ -173,8 +168,7 @@ public class MenuGroup {
 	}
 
 	/**
-	 * @param sortOrder
-	 *            the sortOrder to set
+	 * @param sortOrder the sortOrder to set
 	 */
 	public void setSortOrder(Integer sortOrder) {
 		this.sortOrder = sortOrder;
@@ -182,5 +176,12 @@ public class MenuGroup {
 
 	public String getUniqueId() {
 		return ("menu_group_" + getName() + "_" + getGroupId()).replaceAll("\\s+", "_");
+	}
+
+	@Override
+	public String toString() {
+		return String.format(
+				"MenuGroup[groupId=%d, name='%s', translatedName='%s',visible='%s',sortOrder=%d,parent='%s']", groupId,
+				name, translatedName, visible, sortOrder, parent);
 	}
 }

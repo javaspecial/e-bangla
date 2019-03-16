@@ -34,7 +34,7 @@ public class MenuCategory {
 	private boolean visible;
 
 	@Column(name = MENU_CATEGORY_SORT_ORDER)
-	private Integer sortOrder;
+	private Integer sortOrder = 9999;
 
 	@Transient
 	private List<MenuGroup> menuGroups;

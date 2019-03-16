@@ -20,15 +20,15 @@ public class MenuCategoryController {
 
 	@Autowired
 	MenuCategoryService menuCategoryService;
-	Response model = new Response();
+	Response menuCategoryModel = new Response();
 
 	@RequestMapping(value = "/categoryList/", method = RequestMethod.GET)
 	@ExceptionHandler({ Exception.class })
 	public Response categoryList(@RequestParam(value = "actionCommand") String actionCommand, @RequestParam(value = "nameSearch") String name) throws Exception {
 		try {
-			model.updateCurrentRowIndex(actionCommand);
-			List<MenuCategory> categories = menuCategoryService.getAllMenuCategories(model, name);
-			return new Response("ok", categories, model);
+			menuCategoryModel.updateCurrentRowIndex(actionCommand);
+			List<MenuCategory> categories = menuCategoryService.getAllMenuCategories(menuCategoryModel, name);
+			return new Response("ok", categories, menuCategoryModel);
 		} catch (Exception e) {
 			return new Response("err", "Unexpected error! please try to reload again.");
 		}

@@ -24,11 +24,11 @@ import com.resources.Response;
 @Transactional
 public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCategoryDAO {
 	@Autowired
-	SessionFactory sessionFactory;
+	SessionFactory session;
 
 	@Override
 	public boolean delete(MenuCategory menuCategory) {
-		Session currentSession = sessionFactory.getCurrentSession();
+		Session currentSession = session.getCurrentSession();
 		Transaction transaction = currentSession.beginTransaction();
 		try {
 			currentSession.delete(menuCategory);
@@ -43,7 +43,7 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 
 	@Override
 	public boolean update(MenuCategory menuCategory) {
-		Session currentSession = sessionFactory.getCurrentSession();
+		Session currentSession = session.getCurrentSession();
 		Transaction transaction = currentSession.beginTransaction();
 		try {
 			currentSession.update(menuCategory);
@@ -58,7 +58,7 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 
 	@Override
 	public boolean save(MenuCategory menuCategory) throws Exception {
-		Session currentSession = sessionFactory.getCurrentSession();
+		Session currentSession = session.getCurrentSession();
 		Transaction transaction = currentSession.beginTransaction();
 		try {
 			currentSession.save(menuCategory);
@@ -72,7 +72,7 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 
 	@Override
 	public List<MenuCategory> getAllMenuCategories(Response model, String name) {
-		Session currentSession = sessionFactory.openSession();
+		Session currentSession = session.openSession();
 		try {
 			Criteria criteria = currentSession.createCriteria(MenuCategory.class);
 			if (!name.equals("undefined")) {
@@ -98,7 +98,7 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 
 	@Override
 	public boolean saveOrUpdate(MenuCategory menuCategory) {
-		Session currentSession = sessionFactory.getCurrentSession();
+		Session currentSession = session.getCurrentSession();
 		Transaction transaction = currentSession.beginTransaction();
 		try {
 			currentSession.saveOrUpdate(menuCategory);
