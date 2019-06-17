@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 import com.dao.MenuGroupDAO;
 import com.helper.GroupFunctionImpl;
 import com.helper.PosLog;
-import com.model.MenuCategory;
 import com.model.MenuGroup;
 import com.resources.Response;
 
@@ -69,15 +68,16 @@ public class MenuGroupDaoImpl extends GroupFunctionImpl implements MenuGroupDAO 
 	}
 
 	@Override
-	public List<MenuGroup> getAllMenuGroups(Response model, MenuCategory category, String name) {
+	public List<MenuGroup> getAllMenuGroups(Response model, String category, String name) {
 		Session currentSession = session.openSession();
 		try {
 			Criteria criteria = currentSession.createCriteria(MenuGroup.class);
 			if (name != null && !name.equals("undefined")) {
 				criteria.add(Restrictions.ilike(MenuGroup.MENU_GROUP_NAME, name, MatchMode.ANYWHERE));
 			}
-			if (category.getId() != null) {
-				criteria.add(Restrictions.ilike(MenuGroup.MENU_GROUP_CATEGORY, category.getName(), MatchMode.ANYWHERE));
+			if (category != null && !category.equals("undefined")) {
+				//need to fix by me for category seach
+				criteria.add(Restrictions.ilike(MenuGroup.MENU_CATEGORY_NAME, category, MatchMode.ANYWHERE));
 			}
 			criteria.addOrder(Order.asc(MenuGroup.MENU_GROUP_SORT_ORDER));
 			rowCount(criteria, model);

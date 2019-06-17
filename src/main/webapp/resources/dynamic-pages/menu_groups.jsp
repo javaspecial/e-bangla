@@ -32,11 +32,12 @@ table tr th {
 			<li>
 				<div class="input-group input-group-sm">
 					<ul class="nav nav-tabs">
-						<li><select ng-model="selectedCat" ng-init="getAllMenuGroups()" style="height:34px;">
+						<li><select ng-model="selectedCat"
+							ng-init="initMenuCategories()" style="height: 34px;">
 								<option value="">Search in all categories</option>
-								<option ng-repeat="MENU_GROUP in groups.data"
-									ng-selected="selectedCat == MENU_GROUP.parent.id"
-									value="{{MENU_GROUP.parent.name}}">{{MENU_GROUP.parent.name}}</option>
+								<option ng-repeat="MENU_CATEGORY in categories.data"
+									ng-selected="selectedCat == MENU_CATEGORY.id"
+									value="{{MENU_CATEGORY.name}}">{{MENU_CATEGORY.name}}</option>
 						</select></li>
 						<li><input type="text" class="form-control"
 							placeholder="Search:e.g breakfast" ng-model="nameSearch">

@@ -109,4 +109,22 @@ public class MenuCategoryDaoImpl extends CategoryFunctionImpl implements MenuCat
 		}
 		return true;
 	}
+
+	@Override
+	public List<MenuCategory> getMenuCategoriesForMenuGroupSearch() {
+		Session currentSession = session.openSession();
+		try {
+			Criteria criteria = currentSession.createCriteria(MenuCategory.class);
+			criteria.addOrder(Order.asc(MenuCategory.MENU_CATEGORY_NAME));
+			List<MenuCategory> list = criteria.list();
+			if (list != null && list.size() > 0) {
+				return list;
+			}
+		} catch (Exception e) {
+			PosLog.error(MenuCategoryDaoImpl.class, e.getMessage());
+		} finally {
+			currentSession.close();
+		}
+		return null;
+	}
 }

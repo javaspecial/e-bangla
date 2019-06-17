@@ -15,5 +15,5 @@ public interface MenuGroupDAO {
 
 	public boolean save(MenuGroup menuGroup) throws Exception;
 
-	public List<MenuGroup> getAllMenuGroups(Response model, MenuCategory category, String name);
+	public List<MenuGroup> getAllMenuGroups(Response model, String category, String name);
 }

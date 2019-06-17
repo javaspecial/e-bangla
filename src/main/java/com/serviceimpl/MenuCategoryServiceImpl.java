@@ -40,4 +40,9 @@ public class MenuCategoryServiceImpl implements MenuCategoryService {
 		return menuCategoryDao.saveOrUpdate(menuCategory);
 	}
 
+	@Override
+	public List<MenuCategory> getMenuCategoriesForMenuGroupSearch() {
+		return menuCategoryDao.getMenuCategoriesForMenuGroupSearch();
+	}
+
 }

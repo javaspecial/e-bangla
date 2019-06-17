@@ -19,4 +19,6 @@ public interface MenuCategoryDAO {
 	public boolean saveOrUpdate(MenuCategory menuCategory);
 
 	public boolean save(MenuCategory menuCategory) throws Exception;
+
+	public List<MenuCategory> getMenuCategoriesForMenuGroupSearch();
 }

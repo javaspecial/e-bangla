@@ -35,6 +35,11 @@ public class Response<E> {
 		this.model = model;
 	}
 
+	public Response(String status, Object data) {
+		this.status = status;
+		this.data = data;
+	}
+
 	public String getStatus() {
 		return status;
 	}

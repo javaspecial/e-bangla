@@ -150,7 +150,8 @@ admin.controller('MenuGroupsController', function($scope, $http) {
 
 	$scope.getAllMenuGroups = function() {
 		var url = 'http://localhost:8080/ebangla/groupList/?actionCommand='
-				+ $scope.actionCommand + '&nameSearch=' + $scope.nameSearch+'&selectedCat='+$scope.selectedCat;
+				+ $scope.actionCommand + '&nameSearch=' + $scope.nameSearch
+				+ '&selectedCat=' + $scope.selectedCat;
 		var config = {
 			headers : {
 				'Content-Type' : 'application/json;charset=utf-8;'
@@ -202,89 +203,105 @@ admin.controller('MenuGroupsController', function($scope, $http) {
 		$scope.actionCommand = 'searchButton';
 		$scope.getAllMenuGroups();
 	}
-//	// open add categories dialog
-//	var element = angular.element('#category_form');
-//	$scope.doAdd = function() {
-//		$scope.title = "Create menu category";
-//		$scope.name = "";
-//		$scope.translatedName = "";
-//		$scope.sortOrder = 0;
-//		$scope.visible = true;
-//		element.modal('show');
-//		$scope.update = false;
-//	}
-//	// select a row to edit
-//	$scope.selectedRow = null;
-//	$scope.selectedCategory = null;
-//	$scope.setClickedRow = function(menuCategory) {
-//		$scope.selectedCategory = menuCategory;
-//		$scope.selectedRow = menuCategory.id;
-//		$scope.name = menuCategory.name;
-//		$scope.translatedName = menuCategory.translatedName;
-//		$scope.sortOrder = menuCategory.sortOrder;
-//		$scope.visible = menuCategory.visible;
-//	}
-//	// open edit category dialogue
-//	$scope.doEdit = function() {
-//		if ($scope.selectedCategory === null) {
-//			ErrorToastMSG('Please select a row to edit.');
-//			return;
-//		}
-//		$scope.title = "Edit menu category";
-//		$scope.update = true;
-//		element.modal('show');
-//	}
-//	// save categories
-//	$scope.saveCategory = function(isCloseModal) {
-//		// focus menu category controller
-//		$scope.isCloseModal = isCloseModal;
-//		if ($scope.name === "undefined" || $scope.name === ""
-//				|| $scope.name == null) {
-//			ErrorToastMSG('Name is required');
-//			return;
-//		}
-//		var url = 'http://localhost:8080/ebangla/saveOrUpdateGroup/?name='
-//				+ $scope.name + '&translatedName=' + $scope.translatedName
-//				+ '&sortOrder=' + $scope.sortOrder + '&visible='
-//				+ $scope.visible + '&update=' + $scope.update + '&id='
-//				+ $scope.selectedRow;
-//		$http.post(url).then(function(response) {
-//			if (response.data.status === "ok") {
-//				if ($scope.isCloseModal === 'true') {
-//					element.modal('hide');
-//				}
-//				$scope.getAllMenuGroups();
-//				SuccessToastMSG(response.data.message);
-//			} else {
-//				ErrorToastMSG(response.data.message);
-//			}
-//		});
-//	}
-//
-//	// delete categories
-//	$scope.doDelete = function() {
-//		// focus menu category controller
-//		if ($scope.selectedCategory === null) {
-//			ErrorToastMSG('Please select a row to delete.');
-//			return;
-//		}
-//		$http({
-//			method : 'DELETE',
-//			url : 'http://localhost:8080/ebangla/deleteGroup/',
-//			data : angular.toJson($scope.selectedCategory),
-//			headers : {
-//				'Content-Type' : 'application/json'
-//			}
-//		}).then(function(response) {
-//			if (response.data.status === "ok") {
-//				$scope.getAllMenuGroups();
-//				SuccessToastMSG(response.data.message);
-//				$scope.selectedCategory = null;
-//			} else {
-//				ErrorToastMSG(response.data.message);
-//			}
-//		});
-//	}
+	// // open add categories dialog
+	// var element = angular.element('#category_form');
+	// $scope.doAdd = function() {
+	// $scope.title = "Create menu category";
+	// $scope.name = "";
+	// $scope.translatedName = "";
+	// $scope.sortOrder = 0;
+	// $scope.visible = true;
+	// element.modal('show');
+	// $scope.update = false;
+	// }
+	// // select a row to edit
+	// $scope.selectedRow = null;
+	// $scope.selectedCategory = null;
+	// $scope.setClickedRow = function(menuCategory) {
+	// $scope.selectedCategory = menuCategory;
+	// $scope.selectedRow = menuCategory.id;
+	// $scope.name = menuCategory.name;
+	// $scope.translatedName = menuCategory.translatedName;
+	// $scope.sortOrder = menuCategory.sortOrder;
+	// $scope.visible = menuCategory.visible;
+	// }
+	// // open edit category dialogue
+	// $scope.doEdit = function() {
+	// if ($scope.selectedCategory === null) {
+	// ErrorToastMSG('Please select a row to edit.');
+	// return;
+	// }
+	// $scope.title = "Edit menu category";
+	// $scope.update = true;
+	// element.modal('show');
+	// }
+	// // save categories
+	// $scope.saveCategory = function(isCloseModal) {
+	// // focus menu category controller
+	// $scope.isCloseModal = isCloseModal;
+	// if ($scope.name === "undefined" || $scope.name === ""
+	// || $scope.name == null) {
+	// ErrorToastMSG('Name is required');
+	// return;
+	// }
+	// var url = 'http://localhost:8080/ebangla/saveOrUpdateGroup/?name='
+	// + $scope.name + '&translatedName=' + $scope.translatedName
+	// + '&sortOrder=' + $scope.sortOrder + '&visible='
+	// + $scope.visible + '&update=' + $scope.update + '&id='
+	// + $scope.selectedRow;
+	// $http.post(url).then(function(response) {
+	// if (response.data.status === "ok") {
+	// if ($scope.isCloseModal === 'true') {
+	// element.modal('hide');
+	// }
+	// $scope.getAllMenuGroups();
+	// SuccessToastMSG(response.data.message);
+	// } else {
+	// ErrorToastMSG(response.data.message);
+	// }
+	// });
+	// }
+	//
+	// // delete categories
+	// $scope.doDelete = function() {
+	// // focus menu category controller
+	// if ($scope.selectedCategory === null) {
+	// ErrorToastMSG('Please select a row to delete.');
+	// return;
+	// }
+	// $http({
+	// method : 'DELETE',
+	// url : 'http://localhost:8080/ebangla/deleteGroup/',
+	// data : angular.toJson($scope.selectedCategory),
+	// headers : {
+	// 'Content-Type' : 'application/json'
+	// }
+	// }).then(function(response) {
+	// if (response.data.status === "ok") {
+	// $scope.getAllMenuGroups();
+	// SuccessToastMSG(response.data.message);
+	// $scope.selectedCategory = null;
+	// } else {
+	// ErrorToastMSG(response.data.message);
+	// }
+	// });
+	// }
+	$scope.initMenuCategories = function() {
+		var url = 'http://localhost:8080/ebangla/initMenuCategoriesForMenuGroupSearch/';
+		var config = {
+			headers : {
+				'Content-Type' : 'application/json;charset=utf-8;'
+			}
+		}
+		$http.get(url, config).then(function(response) {
+			if (response.data.status == "ok") {
+				$scope.categories = response.data;
+			} else if (response.data.status == "err") {
+				$scope.err = response.data.message;
+			}
+		}, function(err) {
+		});
+	}
 });
 admin.controller('adminController', function($scope, $http) {
 	// create default item angular controller

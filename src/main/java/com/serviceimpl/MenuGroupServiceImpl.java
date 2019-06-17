@@ -32,7 +32,7 @@ public class MenuGroupServiceImpl implements MenuGroupService {
 	}
 
 	@Override
-	public List<MenuGroup> getAllMenuGroups(Response model, MenuCategory category, String name) throws Exception {
+	public List<MenuGroup> getAllMenuGroups(Response model, String category, String name) throws Exception {
 		return menuGroupDao.getAllMenuGroups(model, category, name);
 	}
 

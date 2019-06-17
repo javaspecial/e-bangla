@@ -33,6 +33,17 @@ public class MenuCategoryController {
 			return new Response("err", "Unexpected error! please try to reload again.");
 		}
 	}
+	
+	@RequestMapping(value = "/initMenuCategoriesForMenuGroupSearch/", method = RequestMethod.GET)
+	@ExceptionHandler({ Exception.class })
+	public Response initMenuCategoriesForMenuGroupSearch() throws Exception {
+		try {
+			List<MenuCategory> categories = menuCategoryService.getMenuCategoriesForMenuGroupSearch();
+			return new Response("ok", categories);
+		} catch (Exception e) {
+			return new Response("err", "Unexpected error! please try to reload again.");
+		}
+	}
 
 	@RequestMapping(value = "/saveOrUpdateCategory/", method = RequestMethod.POST)
 	@ExceptionHandler({ Exception.class })

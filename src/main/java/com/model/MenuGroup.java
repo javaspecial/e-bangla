@@ -47,6 +47,7 @@ public class MenuGroup {
 	public static final String MENU_GROUP_SORT_ORDER = "sortOrder";
 	public static final String MENU_GROUP_DISCOUNT = "menuGroupDiscount";
 	public static final String MENU_GROUP_CATEGORY = "parent";
+	public static final  String MENU_CATEGORY_NAME = "name";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

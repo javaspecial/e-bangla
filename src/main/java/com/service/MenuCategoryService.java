@@ -15,4 +15,6 @@ public interface MenuCategoryService {
 	public boolean delete(MenuCategory menuCategory) throws Exception;
 
 	public List<MenuCategory> getAllMenuCategories(Response model, String name) throws Exception;
+
+	public List<MenuCategory> getMenuCategoriesForMenuGroupSearch();
 }

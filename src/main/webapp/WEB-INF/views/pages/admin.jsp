@@ -417,6 +417,7 @@
 								<i class="fa fa-angle-left pull-right"></i>
 						</span>
 					</a>
+					<!-- check dynamic.pages.js*all dynamic page handled by anguar.admin.js* -->
 						<ul class="treeview-menu">
 							<li>
 								<button onclick="displayPageById('menu_categories')"

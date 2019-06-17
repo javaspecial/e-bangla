@@ -26,7 +26,8 @@ public class MenuGroupController {
 	@RequestMapping(value = "/groupList/", method = RequestMethod.GET)
 	@ExceptionHandler({ Exception.class })
 	public Response groupList(@RequestParam(value = "actionCommand") String actionCommand,
-			@RequestParam(value = "nameSearch") String name,MenuCategory selectedCat) throws Exception {
+			@RequestParam(value = "nameSearch") String name, @RequestParam(value = "selectedCat") String selectedCat)
+			throws Exception {
 		try {
 			menuGroupModel.updateCurrentRowIndex(actionCommand);
 			List<MenuGroup> groups = menuGroupService.getAllMenuGroups(menuGroupModel, selectedCat, name);
